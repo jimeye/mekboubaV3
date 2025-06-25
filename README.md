@@ -26,7 +26,7 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ⚠️ **Important** : Les clés Stripe de test expirent en 7 jours. Les régénérer si nécessaire.
 
 ### 2. Déploiement
-
+# Test de déploiement Vercel V3
 ```bash
 # Ajouter tous les fichiers
 git add .
