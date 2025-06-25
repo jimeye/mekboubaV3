@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-// Page admin pour Mekbouba - Gestion des commandes - Dashboard
-export default function DashboardPage() {
+// Page admin pour Mekbouba - Gestion des commandes
+export default function CommandesPage() {
   const [commandes, setCommandes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🍽️ Dashboard Mekbouba - Gestion des Commandes
+            🍽️ Gestion des Commandes Mekbouba
           </h1>
           <p className="text-gray-600">
             Interface d'administration pour suivre les commandes en temps réel
