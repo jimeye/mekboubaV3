@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-// Page admin pour Mekbouba - Gestion des commandes
+// Page admin pour Mekbouba - Gestion des commandes - Version 2.0
 export default function AdminPage() {
   const [commandes, setCommandes] = useState([]);
   const [loading, setLoading] = useState(true);
