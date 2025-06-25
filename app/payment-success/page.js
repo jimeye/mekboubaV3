@@ -198,7 +198,7 @@ ${paymentInfo}
                 onClick={sendWhatsAppMessage}
                 className="block w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition-colors"
               >
-                Renvoyer le message WhatsApp
+                RENVOYER LE MESSAGE SUR WhatsApp
               </button>
               
               <Link 
