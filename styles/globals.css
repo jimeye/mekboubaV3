@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #cf0e0e;
+  --secondary-color: #FFF200;
+  --light-color: #fff9ee;
+  --dark-color: #231f20;
+  --accent-color: #316131;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#FFF9EE] text-custom-grey;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+  
+  .btn {
+    @apply px-6 py-3 font-bold transition-all duration-300 transform rounded-lg hover:scale-105;
+  }
+  
+  .btn-primary {
+    @apply text-white bg-[#cf0e0e] hover:bg-opacity-90;
+  }
+  
+  .btn-secondary {
+    @apply text-custom-grey bg-[#FFF200] hover:bg-opacity-90;
+  }
+} 
