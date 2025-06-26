@@ -17,7 +17,7 @@ function TicketCommande({ commande }) {
   const phone = commande.phone || '';
   const livraison = commande.hotel === 'yes' || commande.isHotel === 'yes'
     ? `${commande.selectedHotel || commande.hotel} (Chambre: ${commande.roomNumber || ''})`
-    : `${commande.address || ''}, ${commande.city || ''}`;
+    : `${commande.address || ''} ${commande.city || ''}`;
   let dateLivraison = '';
   if (commande.deliveryDate && commande.deliveryTime) {
     // Extraction du jour/mois
@@ -38,7 +38,7 @@ function TicketCommande({ commande }) {
   }
   const total = commande.total || commande.amount || 0;
   // Date de commande
-  const dateCommande = commande.createdAt ? new Date(commande.createdAt).toLocaleString('fr-FR', { 
+  const dateCommande = commande.created ? new Date(commande.created * 1000).toLocaleString('fr-FR', { 
     day: '2-digit', 
     month: '2-digit', 
     year: 'numeric', 
@@ -46,17 +46,17 @@ function TicketCommande({ commande }) {
     minute: '2-digit' 
   }) : '';
   // Date de commande format compact
-  const dateCommandeCompact = commande.createdAt ? new Date(commande.createdAt).toLocaleDateString('fr-FR', { 
+  const dateCommandeCompact = commande.created ? new Date(commande.created * 1000).toLocaleDateString('fr-FR', { 
     day: '2-digit', 
     month: '2-digit'
   }) : '';
   // Debug pour voir la date
-  console.log('Debug date commande:', { createdAt: commande.createdAt, dateCompact: dateCommandeCompact });
+  console.log('Debug date commande:', { created: commande.created, dateCompact: dateCommandeCompact });
 
   return (
     <div className="border border-black/20 rounded-lg bg-white mb-2">
       {/* Ligne principale */}
-      <div className="flex items-center px-4 py-2 gap-2">
+      <div className="flex items-center px-2 py-1 gap-1 text-xs sm:px-4 sm:py-2 sm:gap-2 sm:text-sm">
         {/* Chevron */}
         <button
           onClick={() => setOpen((v) => !v)}
@@ -66,7 +66,7 @@ function TicketCommande({ commande }) {
           {open ? '▼' : '►'}
         </button>
         {/* Infos principales */}
-        <div className="flex-1 flex flex-wrap gap-4 items-center text-sm">
+        <div className="flex-1 flex flex-wrap gap-2 items-center text-xs sm:gap-4 sm:text-sm">
           <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
           <span>{client || 'N/A'}</span>
           <span>{phone || 'N/A'}</span>
@@ -102,14 +102,14 @@ function TicketCommande({ commande }) {
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 SBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
-                {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
+                {lot.boulettesSupp > 0 && ` Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 BBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
-                {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
+                {lot.boulettesSupp > 0 && ` Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             {commande.boulettesSuppGlobal > 0 && (
