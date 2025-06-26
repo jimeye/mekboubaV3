@@ -137,8 +137,8 @@ export default function CommandesPage() {
         </div>
 
         {/* Compteurs */}
-        <div className="flex justify-center mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-1/3">
+        <div className="flex justify-end mb-6">
+          <div className="w-1/4 space-y-2">
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
@@ -161,50 +161,52 @@ export default function CommandesPage() {
         </div>
 
         {/* Filtres de date */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filtres par date</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Date de début
-              </label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+        <div className="flex justify-end mb-6">
+          <div className="bg-white rounded-lg shadow p-4 w-1/3">
+            <h3 className="text-sm font-semibold text-gray-900 mb-3">Filtres par date</h3>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Date de début
+                </label>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Date de fin
+                </label>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <button
+                  onClick={clearFilters}
+                  className="w-full px-3 py-1 text-sm bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                >
+                  Effacer les filtres
+                </button>
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Date de fin
-              </label>
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <button
-                onClick={clearFilters}
-                className="w-full px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
-              >
-                Effacer les filtres
-              </button>
-            </div>
+            {(startDate || endDate) && (
+              <div className="mt-3 p-2 bg-blue-50 rounded-md">
+                <p className="text-xs text-blue-800">
+                  {filteredCommandes.length} commande{filteredCommandes.length > 1 ? 's' : ''} 
+                  {startDate && endDate ? ` du ${startDate} au ${endDate}` : 
+                   startDate ? ` à partir du ${startDate}` : 
+                   endDate ? ` jusqu'au ${endDate}` : ''}
+                </p>
+              </div>
+            )}
           </div>
-          {(startDate || endDate) && (
-            <div className="mt-4 p-3 bg-blue-50 rounded-md">
-              <p className="text-sm text-blue-800">
-                Affichage de {filteredCommandes.length} commande{filteredCommandes.length > 1 ? 's' : ''} 
-                {startDate && endDate ? ` du ${startDate} au ${endDate}` : 
-                 startDate ? ` à partir du ${startDate}` : 
-                 endDate ? ` jusqu'au ${endDate}` : ''}
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Erreur */}
