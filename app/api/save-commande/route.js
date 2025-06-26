@@ -50,38 +50,41 @@ function writeCommandes(commandes) {
 }
 
 export async function POST(req) {
+  console.log('[API LOG] save-commande appelée');
   try {
-    console.log('[API LOG] save-commande appelée');
     const body = await req.json();
     const { paymentIntentId, commande } = body;
     if (!paymentIntentId || !commande) {
       console.log('[API LOG] Données manquantes', { paymentIntentId, commande });
       return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
     }
-
     if (hasUpstash && redis) {
-      // Mode production : Upstash Redis
       try {
-        console.log('[API LOG] Tentative sauvegarde dans Upstash', { paymentIntentId });
-        await redis.set(`commande:${paymentIntentId}`, commande);
-        await redis.lpush('commandes', paymentIntentId);
-        console.log('[API LOG] Sauvegarde Upstash OK');
+        const keyList = 'commandes';
+        const keyDetail = `commande:${paymentIntentId}`;
+        console.log('[API LOG] Tentative sauvegarde dans Upstash', { keyList, keyDetail });
+        // Ajout dans la liste des commandes
+        const lpushRes = await redis.lpush(keyList, paymentIntentId);
+        console.log('[API LOG] Résultat lpush Upstash', lpushRes);
+        // Sauvegarde du détail de la commande
+        const setRes = await redis.set(keyDetail, JSON.stringify(commande));
+        console.log('[API LOG] Résultat set Upstash', setRes);
+        return NextResponse.json({ ok: true });
       } catch (err) {
         console.error('[API LOG] Erreur Upstash', err);
-        return NextResponse.json({ error: 'Erreur Upstash', details: err?.message }, { status: 500 });
+        return NextResponse.json({ error: 'Erreur Upstash', details: err?.message || err }, { status: 500 });
       }
     } else {
       // Mode local : fichier JSON
-      console.log('[API LOG] Sauvegarde fichier JSON local');
+      console.log('[API LOG] Utilisation fichier JSON local');
       const commandes = readCommandes();
-      commandes.push(commande);
+      commandes.push({ paymentIntentId, commande });
       writeCommandes(commandes);
+      return NextResponse.json({ ok: true });
     }
-
-    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('[API LOG] Erreur générale save-commande', error);
-    return NextResponse.json({ error: 'Erreur lors de la sauvegarde de la commande', details: error?.message }, { status: 500 });
+    return NextResponse.json({ error: 'Erreur serveur', details: error?.message || error }, { status: 500 });
   }
 }
 
