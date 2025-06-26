@@ -100,10 +100,9 @@ export default function CommandesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header avec date + compteurs/filtre alignés à droite */}
-        <div className="mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-          {/* Partie gauche : titre + date */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Header avec date */}
+        <div className="mb-8">
           <div className="w-full md:w-auto">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
               🍽️ Cmd Ibiza
@@ -116,21 +115,21 @@ export default function CommandesPage() {
               })}
             </p>
           </div>
-          {/* Partie droite : compteurs + filtre, toujours alignés à droite */}
-          <div className="flex flex-col items-end w-1/2 md:w-1/3 ml-auto space-y-2">
-            <div className="bg-white rounded-lg shadow py-2 px-4 w-full max-w-xs">
+          {/* Colonne compteurs/filtre positionnée à droite */}
+          <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-2 mr-2 z-10 w-1/2 max-w-xs md:w-1/3">
+            <div className="bg-white rounded-lg shadow py-2 px-4 w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600">Total💰</p>
                 <p className="text-lg font-bold text-green-600 text-center">{totalPaye.toFixed(2)}€</p>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow py-2 px-4 w-full max-w-xs">
+            <div className="bg-white rounded-lg shadow py-2 px-4 w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600">Quantité 🍽️</p>
                 <p className="text-lg font-bold text-blue-600 text-center">{totalProduits}</p>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow py-2 px-4 w-full max-w-xs">
+            <div className="bg-white rounded-lg shadow py-2 px-4 w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600 mb-2">Filtre par date</p>
                 <div className="flex gap-1 flex-wrap justify-center">
