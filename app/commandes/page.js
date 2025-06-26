@@ -150,7 +150,7 @@ export default function CommandesPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Produits Commandés</p>
+                <p className="text-sm font-medium text-gray-600">Quantité</p>
                 <p className="text-2xl font-bold text-blue-600">{totalProduits}</p>
               </div>
               <div className="text-3xl">🍽️</div>
