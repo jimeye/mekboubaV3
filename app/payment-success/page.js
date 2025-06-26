@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -11,6 +11,8 @@ export default function PaymentSuccessPage() {
   const [orderData, setOrderData] = useState(null);
   const [paymentType, setPaymentType] = useState(null);
   const [whatsappSent, setWhatsappSent] = useState(false);
+  const [orderNumber, setOrderNumber] = useState(null);
+  const orderNumberGenerated = useRef(false);
 
   useEffect(() => {
     const orderDataParam = searchParams.get('orderData');
@@ -21,21 +23,35 @@ export default function PaymentSuccessPage() {
 
     if (orderDataParam) {
       let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      // Générer le numéro de commande unique (même logique que WhatsApp)
-      const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
-      const day = deliveryDateParts?.[1] || '00';
-      const month = deliveryDateParts?.[2] || '00';
-      const monthNames = {
-        'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
-        'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
-        'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
-      };
-      const monthNumber = monthNames[month?.toLowerCase()] || '00';
-      const lastOrderNumber = localStorage.getItem('lastOrderNumber') || '55500';
-      const currentCounter = parseInt(lastOrderNumber) + 1;
-      localStorage.setItem('lastOrderNumber', currentCounter.toString());
-      const orderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
-      parsedOrderData.orderNumber = orderNumber;
+      // Générer le numéro de commande UNE SEULE FOIS
+      if (!orderNumberGenerated.current) {
+        const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
+        const day = deliveryDateParts?.[1] || '00';
+        const month = deliveryDateParts?.[2] || '00';
+        const monthNames = {
+          'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+          'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+          'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+        };
+        const monthNumber = monthNames[month?.toLowerCase()] || '00';
+        let currentCounter = parseInt(localStorage.getItem('lastOrderNumber') || '55500');
+        // Si le numéro n'est pas déjà dans l'URL/sessionStorage, on l'incrémente
+        let generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
+        if (!generatedOrderNumber) {
+          currentCounter++;
+          localStorage.setItem('lastOrderNumber', currentCounter.toString());
+          generatedOrderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
+          sessionStorage.setItem('mekboubaOrderNumber', generatedOrderNumber);
+        }
+        setOrderNumber(generatedOrderNumber);
+        orderNumberGenerated.current = true;
+        parsedOrderData.orderNumber = generatedOrderNumber;
+      } else {
+        // Si déjà généré, on récupère depuis sessionStorage
+        const generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
+        setOrderNumber(generatedOrderNumber);
+        parsedOrderData.orderNumber = generatedOrderNumber;
+      }
       setOrderData(parsedOrderData);
     }
     if (paymentTypeParam) {
@@ -45,21 +61,11 @@ export default function PaymentSuccessPage() {
     // Sauvegarder la commande complète
     if (orderDataParam && paymentIntentId) {
       let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      // Générer le numéro de commande unique (même logique que WhatsApp)
-      const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
-      const day = deliveryDateParts?.[1] || '00';
-      const month = deliveryDateParts?.[2] || '00';
-      const monthNames = {
-        'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
-        'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
-        'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
-      };
-      const monthNumber = monthNames[month?.toLowerCase()] || '00';
-      const lastOrderNumber = localStorage.getItem('lastOrderNumber') || '55500';
-      const currentCounter = parseInt(lastOrderNumber) + 1;
-      localStorage.setItem('lastOrderNumber', currentCounter.toString());
-      const orderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
-      parsedOrderData.orderNumber = orderNumber;
+      // Toujours utiliser le même numéro de commande
+      const generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
+      if (generatedOrderNumber) {
+        parsedOrderData.orderNumber = generatedOrderNumber;
+      }
       saveCommande(parsedOrderData, paymentIntentId);
     } else {
       console.log('[DEBUG] saveCommande non appelée - paramètres manquants:', { orderDataParam: !!orderDataParam, paymentIntentId: !!paymentIntentId });
@@ -132,7 +138,7 @@ export default function PaymentSuccessPage() {
     const currentCounter = parseInt(lastOrderNumber) + 1;
     localStorage.setItem('lastOrderNumber', currentCounter.toString());
     
-    const orderNumber = orderData.orderNumber || `CMD ${day}${monthNumber}-${currentCounter}`;
+    const orderNumber = orderData.orderNumber || orderNumber || '--';
 
     const sbmDetails = Array.isArray(sbmLots)
       ? sbmLots.map((lot, index) => 
