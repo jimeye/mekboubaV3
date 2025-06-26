@@ -162,9 +162,9 @@ export default function CommandesPage() {
 
         {/* Filtres de date */}
         <div className="flex justify-end mb-6">
-          <div className="bg-white rounded-lg shadow p-4 w-1/3">
-            <h3 className="text-sm font-semibold text-gray-900 mb-3">Filtres par date</h3>
-            <div className="space-y-3">
+          <div className="bg-white rounded-lg shadow p-2 w-1/4">
+            <h3 className="text-xs font-semibold text-gray-900 mb-2">Filtres par date</h3>
+            <div className="space-y-2">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">
                   Date de début
@@ -173,7 +173,7 @@ export default function CommandesPage() {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-1 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -184,20 +184,20 @@ export default function CommandesPage() {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-1 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
                 <button
                   onClick={clearFilters}
-                  className="w-full px-3 py-1 text-sm bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                  className="w-full px-2 py-1 text-xs bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                 >
                   Effacer les filtres
                 </button>
               </div>
             </div>
             {(startDate || endDate) && (
-              <div className="mt-3 p-2 bg-blue-50 rounded-md">
+              <div className="mt-2 p-1 bg-blue-50 rounded-md">
                 <p className="text-xs text-blue-800">
                   {filteredCommandes.length} commande{filteredCommandes.length > 1 ? 's' : ''} 
                   {startDate && endDate ? ` du ${startDate} au ${endDate}` : 
