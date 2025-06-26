@@ -81,7 +81,7 @@ export async function GET() {
 
       return {
         id: commande.id,
-        orderNumber: `CMD${new Date(commande.createdAt).getTime()}`,
+        orderNumber: orderData.orderNumber || `CMD${new Date(commande.createdAt).getTime()}`,
         deliveryDate,
         deliveryTime,
         customerName: `${firstName} ${lastName}`,
