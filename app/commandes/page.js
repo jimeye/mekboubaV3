@@ -212,13 +212,13 @@ export default function CommandesPage() {
             </div>
             {/* Compteurs */}
             <div className="w-full space-y-2">
-              <div className="bg-white rounded-lg shadow p-2">
+              <div className="bg-white rounded-lg shadow py-0.5 px-2">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-xs font-medium text-gray-600">Total Payé 💰</p>
                   <p className="text-base font-bold text-green-600 text-center">{totalPaye.toFixed(2)}€</p>
                 </div>
               </div>
-              <div className="bg-white rounded-lg shadow p-2">
+              <div className="bg-white rounded-lg shadow py-0.5 px-2">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-xs font-medium text-gray-600">Quantité 🍽️</p>
                   <p className="text-base font-bold text-blue-600 text-center">{totalProduits}</p>
