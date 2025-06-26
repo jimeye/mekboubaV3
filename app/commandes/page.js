@@ -146,7 +146,7 @@ export default function CommandesPage() {
 
         {/* Bouton filtre calendrier */}
         <div className="flex justify-end mb-4">
-          <div className="w-1/4">
+          <div className="w-1/4 relative">
             <button
               onClick={() => setShowDatePicker(!showDatePicker)}
               className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
@@ -156,7 +156,7 @@ export default function CommandesPage() {
             
             {/* Popup calendrier */}
             {showDatePicker && (
-              <div className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4">
+              <div className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0">
                 <div className="mb-3">
                   <DatePicker
                     selected={startDate}
