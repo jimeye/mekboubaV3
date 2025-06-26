@@ -7,10 +7,17 @@ export default function CommandesPage() {
   const [commandes, setCommandes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [filteredCommandes, setFilteredCommandes] = useState([]);
 
   useEffect(() => {
     fetchCommandes();
   }, []);
+
+  useEffect(() => {
+    filterCommandes();
+  }, [commandes, startDate, endDate]);
 
   const fetchCommandes = async () => {
     try {
@@ -26,6 +33,54 @@ export default function CommandesPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const filterCommandes = () => {
+    let filtered = [...commandes];
+    
+    if (startDate) {
+      const start = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+      filtered = filtered.filter(commande => {
+        const commandeDate = new Date(commande.createdAt);
+        return commandeDate >= start;
+      });
+    }
+    
+    if (endDate) {
+      const end = new Date(endDate);
+      end.setHours(23, 59, 59, 999);
+      filtered = filtered.filter(commande => {
+        const commandeDate = new Date(commande.createdAt);
+        return commandeDate <= end;
+      });
+    }
+    
+    setFilteredCommandes(filtered);
+  };
+
+  const calculateStats = () => {
+    let totalPaye = 0;
+    let totalProduits = 0;
+    
+    filteredCommandes.forEach(commande => {
+      const data = commande.orderData || {};
+      // Total payé
+      if (data.total) {
+        totalPaye += parseFloat(data.total);
+      }
+      // Nombre de produits (SBM + BBM, sans les boulettes supp)
+      const sbmCount = data.sbmLots?.length || 0;
+      const bbmCount = data.bbmLots?.length || 0;
+      totalProduits += sbmCount + bbmCount;
+    });
+    
+    return { totalPaye, totalProduits };
+  };
+
+  const clearFilters = () => {
+    setStartDate('');
+    setEndDate('');
   };
 
   const formatDate = (dateString) => {
@@ -46,6 +101,8 @@ export default function CommandesPage() {
       default: return 'bg-gray-100 text-gray-800';
     }
   };
+
+  const { totalPaye, totalProduits } = calculateStats();
 
   if (loading) {
     return (
@@ -79,6 +136,75 @@ export default function CommandesPage() {
           </div>
         </div>
 
+        {/* Compteurs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Total Payé</p>
+                <p className="text-2xl font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+              </div>
+              <div className="text-3xl">💰</div>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Produits Commandés</p>
+                <p className="text-2xl font-bold text-blue-600">{totalProduits}</p>
+              </div>
+              <div className="text-3xl">🍽️</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Filtres de date */}
+        <div className="bg-white rounded-lg shadow p-6 mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filtres par date</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Date de début
+              </label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Date de fin
+              </label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <button
+                onClick={clearFilters}
+                className="w-full px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+              >
+                Effacer les filtres
+              </button>
+            </div>
+          </div>
+          {(startDate || endDate) && (
+            <div className="mt-4 p-3 bg-blue-50 rounded-md">
+              <p className="text-sm text-blue-800">
+                Affichage de {filteredCommandes.length} commande{filteredCommandes.length > 1 ? 's' : ''} 
+                {startDate && endDate ? ` du ${startDate} au ${endDate}` : 
+                 startDate ? ` à partir du ${startDate}` : 
+                 endDate ? ` jusqu'au ${endDate}` : ''}
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Erreur */}
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
@@ -87,19 +213,21 @@ export default function CommandesPage() {
         )}
 
         {/* Liste des commandes */}
-        {commandes.length === 0 ? (
+        {filteredCommandes.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-8 text-center">
             <div className="text-6xl mb-4">📋</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Aucune commande
+              {commandes.length === 0 ? 'Aucune commande' : 'Aucune commande trouvée'}
             </h3>
             <p className="text-gray-600">
-              Aucune commande n'a été passée pour le moment.
+              {commandes.length === 0 
+                ? "Aucune commande n'a été passée pour le moment."
+                : "Aucune commande ne correspond aux critères de recherche."}
             </p>
           </div>
         ) : (
           <div className="space-y-6">
-            {commandes.map((commande, index) => {
+            {filteredCommandes.map((commande, index) => {
               const data = commande.orderData || {};
               // Numéro de commande formaté (ex: CMD 407-55517)
               const numCmd = commande.id ? `CMD ${commande.id.slice(-8)}` : `CMD #${index + 1}`;
