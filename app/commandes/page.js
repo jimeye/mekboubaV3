@@ -120,22 +120,21 @@ export default function CommandesPage() {
           {/* Partie droite : bouton filtre + compteurs */}
           <div className="flex flex-col items-end gap-2 w-full md:w-1/3">
             {/* Compteurs */}
-            <div className="w-full space-y-2">
-              <div className="bg-white rounded-lg shadow py-2 px-4">
+            <div className="w-full flex flex-col items-end space-y-2">
+              <div className="bg-white rounded-lg shadow py-2 px-4 w-1/2 max-w-xs self-end">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm font-medium text-gray-600">Total💰</p>
                   <p className="text-lg font-bold text-green-600 text-center">{totalPaye.toFixed(2)}€</p>
                 </div>
               </div>
-              <div className="bg-white rounded-lg shadow py-2 px-4">
+              <div className="bg-white rounded-lg shadow py-2 px-4 w-1/2 max-w-xs self-end">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm font-medium text-gray-600">Quantité 🍽️</p>
                   <p className="text-lg font-bold text-blue-600 text-center">{totalProduits}</p>
                 </div>
               </div>
-              
               {/* Nouveau sélecteur de date simple */}
-              <div className="bg-white rounded-lg shadow py-2 px-4">
+              <div className="bg-white rounded-lg shadow py-2 px-4 w-1/2 max-w-xs self-end">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm font-medium text-gray-600 mb-2">Filtre par date</p>
                   <div className="flex gap-1 flex-wrap justify-center">
@@ -146,7 +145,7 @@ export default function CommandesPage() {
                         const date = e.target.value ? new Date(e.target.value) : null;
                         setStartDate(date);
                       }}
-                      className="text-xs px-1 py-1 border border-gray-300 rounded w-20 md:w-24"
+                      className="text-xs px-1 py-1 border border-gray-300 rounded w-16 md:w-24"
                     />
                     <span className="text-xs text-gray-500">à</span>
                     <input
@@ -156,7 +155,7 @@ export default function CommandesPage() {
                         const date = e.target.value ? new Date(e.target.value) : null;
                         setEndDate(date);
                       }}
-                      className="text-xs px-1 py-1 border border-gray-300 rounded w-20 md:w-24"
+                      className="text-xs px-1 py-1 border border-gray-300 rounded w-16 md:w-24"
                     />
                   </div>
                   {(startDate || endDate) && (
