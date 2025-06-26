@@ -135,102 +135,101 @@ export default function CommandesPage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             🍽️ Cmd Ibiza
           </h1>
-          <p className="text-lg font-semibold text-gray-700">
+          <p className="text-lg font-semibold text-gray-700 mb-4">
             {new Date().toLocaleDateString('fr-FR', {
               day: '2-digit',
               month: '2-digit',
               year: '2-digit'
             })}
           </p>
-        </div>
-
-        {/* Bouton filtre calendrier */}
-        <div className="flex justify-end mb-4">
-          <div className="w-1/4 relative">
-            <button
-              onClick={() => {
-                console.log('Bouton cliqué, showDatePicker actuel:', showDatePicker);
-                setShowDatePicker(!showDatePicker);
-                console.log('Nouveau showDatePicker:', !showDatePicker);
-              }}
-              className="w-full px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
-            >
-              📆 Filtre {showDatePicker ? '(Ouvert)' : '(Fermé)'}
-            </button>
-            
-            {/* Popup calendrier */}
-            {showDatePicker && (
-              <div 
-                className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0"
-                style={{
-                  position: 'absolute',
-                  zIndex: 9999,
-                  backgroundColor: 'white',
-                  border: '1px solid #ccc',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  padding: '16px',
-                  minWidth: '300px'
+          
+          {/* Sélecteurs alignés horizontalement */}
+          <div className="flex justify-end gap-4">
+            {/* Bouton filtre calendrier */}
+            <div className="w-1/4 relative">
+              <button
+                onClick={() => {
+                  console.log('Bouton cliqué, showDatePicker actuel:', showDatePicker);
+                  setShowDatePicker(!showDatePicker);
+                  console.log('Nouveau showDatePicker:', !showDatePicker);
                 }}
+                className="w-full px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
               >
-                <div className="mb-3">
-                  <DatePicker
-                    selected={startDate}
-                    onChange={handleDateChange}
-                    startDate={startDate}
-                    endDate={endDate}
-                    selectsRange
-                    inline
-                    locale="fr"
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="Sélectionner une plage de dates"
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={clearFilters}
-                    className="px-3 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
-                  >
-                    Effacer
-                  </button>
-                  <button
-                    onClick={() => setShowDatePicker(false)}
-                    className="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
-                  >
-                    Fermer
-                  </button>
-                </div>
-                {(startDate || endDate) && (
-                  <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-800">
-                    {startDate && endDate 
-                      ? `${startDate.toLocaleDateString('fr-FR')} - ${endDate.toLocaleDateString('fr-FR')}`
-                      : startDate 
-                        ? `À partir du ${startDate.toLocaleDateString('fr-FR')}`
-                        : `Jusqu'au ${endDate.toLocaleDateString('fr-FR')}`
-                    }
+                📆 Filtre
+              </button>
+              
+              {/* Popup calendrier */}
+              {showDatePicker && (
+                <div 
+                  className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0"
+                  style={{
+                    position: 'absolute',
+                    zIndex: 9999,
+                    backgroundColor: 'white',
+                    border: '1px solid #ccc',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    padding: '16px',
+                    minWidth: '300px'
+                  }}
+                >
+                  <div className="mb-3">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={handleDateChange}
+                      startDate={startDate}
+                      endDate={endDate}
+                      selectsRange
+                      inline
+                      locale="fr"
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="Sélectionner une plage de dates"
+                    />
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={clearFilters}
+                      className="px-3 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
+                    >
+                      Effacer
+                    </button>
+                    <button
+                      onClick={() => setShowDatePicker(false)}
+                      className="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                  {(startDate || endDate) && (
+                    <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-800">
+                      {startDate && endDate 
+                        ? `${startDate.toLocaleDateString('fr-FR')} - ${endDate.toLocaleDateString('fr-FR')}`
+                        : startDate 
+                          ? `À partir du ${startDate.toLocaleDateString('fr-FR')}`
+                          : `Jusqu'au ${endDate.toLocaleDateString('fr-FR')}`
+                      }
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
-        {/* Compteurs */}
-        <div className="flex justify-end mb-6">
-          <div className="w-1/4 space-y-2">
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-medium text-gray-600">Total Payé 💰</p>
-                  <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+            {/* Compteurs */}
+            <div className="w-1/4 space-y-2">
+              <div className="bg-white rounded-lg shadow p-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-gray-600">Total Payé 💰</p>
+                    <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-medium text-gray-600">Quantité 🍽️</p>
-                  <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
+              <div className="bg-white rounded-lg shadow p-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-gray-600">Quantité 🍽️</p>
+                    <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
+                  </div>
                 </div>
               </div>
             </div>
