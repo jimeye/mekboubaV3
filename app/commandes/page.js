@@ -45,6 +45,11 @@ function TicketCommande({ commande }) {
     hour: '2-digit', 
     minute: '2-digit' 
   }) : '';
+  // Date de commande format compact
+  const dateCommandeCompact = commande.createdAt ? new Date(commande.createdAt).toLocaleDateString('fr-FR', { 
+    day: '2-digit', 
+    month: '2-digit'
+  }) : '';
 
   return (
     <div className="border border-black/20 rounded-lg bg-white mb-2">
@@ -61,10 +66,10 @@ function TicketCommande({ commande }) {
         {/* Infos principales */}
         <div className="flex-1 flex flex-wrap gap-4 items-center text-sm">
           <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
-          <span>{client}</span>
+          <span>{client} • commandé le {dateCommandeCompact}</span>
           <span>{phone}</span>
           {(livraison && dateLivraison) ? (
-            <span>{livraison} • {dateLivraison}</span>
+            <span>{livraison} {dateLivraison}</span>
           ) : livraison ? (
             <span>{livraison}</span>
           ) : dateLivraison ? (
@@ -90,7 +95,8 @@ function TicketCommande({ commande }) {
           {/* Détail WhatsApp-like */}
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
-            <div className="mb-1 text-gray-600">Commandé le {dateCommande}</div>
+            <div className="mb-1">Client: {client}</div>
+            <div className="mb-1">Téléphone: {phone}</div>
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
