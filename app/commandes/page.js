@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from 'react';
 
+if (typeof window !== 'undefined') {
+  console.log('CODE CLIENT ADMIN EXÉCUTÉ');
+}
+
 // Nouveau composant ticket compact et sûr
 function TicketCommande({ commande }) {
   const [open, setOpen] = useState(false);
@@ -105,6 +109,7 @@ export default function CommandesPage() {
         throw new Error('Erreur lors de la récupération des commandes');
       }
       const data = await response.json();
+      console.log('Commandes récupérées:', data.commandes);
       setCommandes(data.commandes || []);
     } catch (err) {
       setError(err.message);
