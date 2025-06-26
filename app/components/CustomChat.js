@@ -16,7 +16,7 @@ export default function CustomChat() {
       {/* Bouton de chat flottant */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-4 z-50 bg-accent-red/80 hover:bg-accent-red/90 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
+        className={`fixed bottom-6 right-4 z-50 p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 ${isOpen ? 'bg-accent-red/80 hover:bg-accent-red/90 text-white' : 'bg-white text-white border border-gray-200'}`}
         aria-label="Ouvrir le chat"
       >
         {isOpen ? (

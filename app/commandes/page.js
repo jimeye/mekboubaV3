@@ -55,8 +55,13 @@ function TicketCommande({ commande }) {
           <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
           <span>{client}</span>
           <span>{phone}</span>
-          <span>{livraison}</span>
-          <span>{dateLivraison}</span>
+          {(livraison && dateLivraison) ? (
+            <span>{livraison}, {dateLivraison}</span>
+          ) : livraison ? (
+            <span>{livraison}</span>
+          ) : dateLivraison ? (
+            <span>{dateLivraison}</span>
+          ) : null}
           <span className="font-bold text-green-700">{total}&nbsp;€</span>
         </div>
         {/* Bouton à valider */}
