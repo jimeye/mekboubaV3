@@ -186,7 +186,7 @@ export default function CommandesPage() {
                 }}
                 className="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
               >
-                📆
+                📆 {showDatePicker ? 'Fermer' : 'Ouvrir'}
               </button>
               {showDatePicker && (
                 <div 
@@ -203,6 +203,38 @@ export default function CommandesPage() {
                   }}
                 >
                   <div className="mb-3">
+                    <p className="text-sm text-gray-600 mb-2">Sélectionner une plage de dates :</p>
+                    
+                    {/* Test simple avec des boutons */}
+                    <div className="mb-3 p-2 bg-gray-100 rounded">
+                      <p className="text-xs text-gray-600 mb-2">Test rapide :</p>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => {
+                            const today = new Date();
+                            setStartDate(today);
+                            setEndDate(today);
+                            console.log('Test: Date d\'aujourd\'hui sélectionnée');
+                          }}
+                          className="px-2 py-1 text-xs bg-green-500 text-white rounded"
+                        >
+                          Aujourd'hui
+                        </button>
+                        <button
+                          onClick={() => {
+                            const yesterday = new Date();
+                            yesterday.setDate(yesterday.getDate() - 1);
+                            setStartDate(yesterday);
+                            setEndDate(yesterday);
+                            console.log('Test: Date d\'hier sélectionnée');
+                          }}
+                          className="px-2 py-1 text-xs bg-green-500 text-white rounded"
+                        >
+                          Hier
+                        </button>
+                      </div>
+                    </div>
+                    
                     <DatePicker
                       selected={startDate}
                       onChange={handleDateChange}
@@ -218,6 +250,10 @@ export default function CommandesPage() {
                       dropdownMode="select"
                       isClearable={true}
                       shouldCloseOnSelect={false}
+                      onClickOutside={() => console.log('DatePicker clicked outside')}
+                      onInputClick={() => console.log('DatePicker input clicked')}
+                      onCalendarOpen={() => console.log('DatePicker calendar opened')}
+                      onCalendarClose={() => console.log('DatePicker calendar closed')}
                     />
                   </div>
                   <div className="flex gap-2">
