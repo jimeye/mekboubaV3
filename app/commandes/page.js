@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 // Page admin pour Mekbouba - Gestion des commandes
 export default function CommandesPage() {
   const [commandes, setCommandes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [filteredCommandes, setFilteredCommandes] = useState([]);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   useEffect(() => {
     fetchCommandes();
@@ -79,8 +82,15 @@ export default function CommandesPage() {
   };
 
   const clearFilters = () => {
-    setStartDate('');
-    setEndDate('');
+    setStartDate(null);
+    setEndDate(null);
+    setShowDatePicker(false);
+  };
+
+  const handleDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
   };
 
   const formatDate = (dateString) => {
@@ -136,6 +146,61 @@ export default function CommandesPage() {
           </div>
         </div>
 
+        {/* Bouton filtre calendrier */}
+        <div className="flex justify-end mb-4">
+          <div className="w-1/4">
+            <button
+              onClick={() => setShowDatePicker(!showDatePicker)}
+              className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
+            >
+              📅 Filtrer par date
+            </button>
+            
+            {/* Popup calendrier */}
+            {showDatePicker && (
+              <div className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4">
+                <div className="mb-3">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    selectsRange
+                    inline
+                    locale="fr"
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText="Sélectionner une plage de dates"
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={clearFilters}
+                    className="px-3 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
+                  >
+                    Effacer
+                  </button>
+                  <button
+                    onClick={() => setShowDatePicker(false)}
+                    className="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                {(startDate || endDate) && (
+                  <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-800">
+                    {startDate && endDate 
+                      ? `${startDate.toLocaleDateString('fr-FR')} - ${endDate.toLocaleDateString('fr-FR')}`
+                      : startDate 
+                        ? `À partir du ${startDate.toLocaleDateString('fr-FR')}`
+                        : `Jusqu'au ${endDate.toLocaleDateString('fr-FR')}`
+                    }
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Compteurs */}
         <div className="flex justify-end mb-6">
           <div className="w-1/4 space-y-2">
@@ -157,55 +222,6 @@ export default function CommandesPage() {
                 <div className="text-xl">🍽️</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Filtres de date */}
-        <div className="flex justify-end mb-6">
-          <div className="bg-white rounded-lg shadow p-2 w-1/4">
-            <h3 className="text-xs font-semibold text-gray-900 mb-2">Filtres par date</h3>
-            <div className="space-y-2">
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
-                  Date de début
-                </label>
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-1 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
-                  Date de fin
-                </label>
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-1 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <button
-                  onClick={clearFilters}
-                  className="w-full px-2 py-1 text-xs bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
-                >
-                  Effacer les filtres
-                </button>
-              </div>
-            </div>
-            {(startDate || endDate) && (
-              <div className="mt-2 p-1 bg-blue-50 rounded-md">
-                <p className="text-xs text-blue-800">
-                  {filteredCommandes.length} commande{filteredCommandes.length > 1 ? 's' : ''} 
-                  {startDate && endDate ? ` du ${startDate} au ${endDate}` : 
-                   startDate ? ` à partir du ${startDate}` : 
-                   endDate ? ` jusqu'au ${endDate}` : ''}
-                </p>
-              </div>
-            )}
           </div>
         </div>
 
