@@ -66,7 +66,7 @@ export default function CommandesPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🍽️ Gestion des Commandes Mekbouba
+            Cmd Ibiza
           </h1>
           <p className="text-gray-600">
             Interface d'administration pour suivre les commandes en temps réel
