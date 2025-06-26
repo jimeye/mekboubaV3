@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,6 +13,7 @@ export default function CommandesPage() {
   const [endDate, setEndDate] = useState(null);
   const [filteredCommandes, setFilteredCommandes] = useState([]);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const datePickerRef = useRef(null);
 
   useEffect(() => {
     fetchCommandes();
@@ -21,6 +22,23 @@ export default function CommandesPage() {
   useEffect(() => {
     filterCommandes();
   }, [commandes, startDate, endDate]);
+
+  // Gestionnaire de clic en dehors du calendrier
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
+        setShowDatePicker(false);
+      }
+    }
+
+    if (showDatePicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDatePicker]);
 
   const fetchCommandes = async () => {
     try {
@@ -149,12 +167,12 @@ export default function CommandesPage() {
           {/* Partie droite : bouton filtre + compteurs */}
           <div className="flex flex-col items-end gap-2 w-1/3">
             {/* Bouton filtre calendrier */}
-            <div className="relative w-full mb-2">
+            <div className="relative w-full mb-2" ref={datePickerRef}>
               <button
                 onClick={() => setShowDatePicker(!showDatePicker)}
                 className="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
               >
-                📆 Filtre par date
+                📆
               </button>
               {showDatePicker && (
                 <div 
