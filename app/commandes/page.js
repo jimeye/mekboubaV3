@@ -130,35 +130,32 @@ export default function CommandesPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header avec date */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🍽️ Cmd Ibiza
-          </h1>
-          <p className="text-lg font-semibold text-gray-700 mb-4">
-            {new Date().toLocaleDateString('fr-FR', {
-              day: '2-digit',
-              month: '2-digit',
-              year: '2-digit'
-            })}
-          </p>
-          
-          {/* Sélecteurs alignés horizontalement */}
-          <div className="flex justify-end gap-4">
+        {/* Header avec date et filtres alignés */}
+        <div className="mb-8 flex justify-between items-start">
+          {/* Partie gauche : titre + date */}
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              🍽️ Cmd Ibiza
+            </h1>
+            <p className="text-lg font-semibold text-gray-700">
+              {new Date().toLocaleDateString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+              })}
+            </p>
+          </div>
+
+          {/* Partie droite : bouton filtre + compteurs */}
+          <div className="flex flex-col items-end gap-2 w-1/4">
             {/* Bouton filtre calendrier */}
-            <div className="w-1/4 relative">
+            <div className="relative w-full mb-2">
               <button
-                onClick={() => {
-                  console.log('Bouton cliqué, showDatePicker actuel:', showDatePicker);
-                  setShowDatePicker(!showDatePicker);
-                  console.log('Nouveau showDatePicker:', !showDatePicker);
-                }}
+                onClick={() => setShowDatePicker(!showDatePicker)}
                 className="w-full px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
               >
                 📆 Filtre
               </button>
-              
-              {/* Popup calendrier */}
               {showDatePicker && (
                 <div 
                   className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0"
@@ -213,9 +210,8 @@ export default function CommandesPage() {
                 </div>
               )}
             </div>
-
             {/* Compteurs */}
-            <div className="w-1/4 space-y-2">
+            <div className="w-full space-y-2">
               <div className="bg-white rounded-lg shadow p-3">
                 <div className="flex items-center justify-between">
                   <div>
