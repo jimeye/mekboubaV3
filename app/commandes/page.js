@@ -148,15 +148,31 @@ export default function CommandesPage() {
         <div className="flex justify-end mb-4">
           <div className="w-1/4 relative">
             <button
-              onClick={() => setShowDatePicker(!showDatePicker)}
+              onClick={() => {
+                console.log('Bouton cliqué, showDatePicker actuel:', showDatePicker);
+                setShowDatePicker(!showDatePicker);
+                console.log('Nouveau showDatePicker:', !showDatePicker);
+              }}
               className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
             >
-              📅 Filtrer par date
+              📅 Filtrer par date {showDatePicker ? '(Ouvert)' : '(Fermé)'}
             </button>
             
             {/* Popup calendrier */}
             {showDatePicker && (
-              <div className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0">
+              <div 
+                className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0"
+                style={{
+                  position: 'absolute',
+                  zIndex: 9999,
+                  backgroundColor: 'white',
+                  border: '1px solid #ccc',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  padding: '16px',
+                  minWidth: '300px'
+                }}
+              >
                 <div className="mb-3">
                   <DatePicker
                     selected={startDate}
