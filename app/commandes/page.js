@@ -66,21 +66,8 @@ export default function CommandesPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Cmd Ibiza
+            🍽️ Cmd Ibiza
           </h1>
-          <p className="text-gray-600">
-            Interface d'administration pour suivre les commandes en temps réel
-          </p>
-        </div>
-
-        {/* Bouton Actualiser */}
-        <div className="mb-6">
-          <button
-            onClick={fetchCommandes}
-            className="bg-accent-red text-white px-6 py-2 rounded-lg hover:bg-accent-red/90 transition-colors"
-          >
-            🔄 Actualiser les commandes
-          </button>
         </div>
 
         {/* Erreur */}
