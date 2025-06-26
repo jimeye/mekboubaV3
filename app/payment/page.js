@@ -57,21 +57,21 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
           }
 
           // Confirmer le paiement Apple Pay
-          const { error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+          const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: event.paymentMethod.id,
           });
 
-          if (confirmError) {
+          if (result.error) {
             event.complete('fail');
-            setError(confirmError.message);
+            setError(result.error.message);
           } else {
             event.complete('success');
             setSuccess(true);
             // Succès - rediriger vers confirmation
+            const paymentIntentId = result.paymentIntent?.id;
             const successUrl = paymentType === 'cash_validation' 
-              ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}`
-              : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}`;
-            
+              ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`
+              : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`;
             router.push(successUrl);
           }
         } catch (err) {
@@ -125,20 +125,20 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
       }
 
       // Confirmer le paiement
-      const { error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+      const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         }
       });
 
-      if (confirmError) {
-        setError(confirmError.message);
+      if (result.error) {
+        setError(result.error.message);
       } else {
         // Succès - rediriger vers confirmation
+        const paymentIntentId = result.paymentIntent?.id;
         const successUrl = paymentType === 'cash_validation' 
-          ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}`
-          : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}`;
-        
+          ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`
+          : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`;
         router.push(successUrl);
       }
     } catch (err) {
