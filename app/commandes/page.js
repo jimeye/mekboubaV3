@@ -40,13 +40,12 @@ function TicketCommande({ commande }) {
         </div>
         {/* Bouton à valider */}
         <button
-          onClick={() => setValidated(true)}
+          onClick={() => setValidated(v => !v)}
           className={
             validated
               ? 'bg-transparent text-2xl text-green-600 px-3 py-1 border-none shadow-none'
               : 'bg-gray-200 text-gray-800 px-3 py-1 rounded transition'
           }
-          style={validated ? { pointerEvents: 'none' } : {}}
         >
           {validated ? '✅' : 'à valider'}
         </button>
