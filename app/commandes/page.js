@@ -106,9 +106,18 @@ export default function CommandesPage() {
   };
 
   const handleDateChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
+    console.log('DatePicker onChange called with:', dates);
+    if (Array.isArray(dates)) {
+      const [start, end] = dates;
+      console.log('Setting startDate:', start, 'endDate:', end);
+      setStartDate(start);
+      setEndDate(end);
+    } else {
+      // Si une seule date est sélectionnée
+      console.log('Single date selected:', dates);
+      setStartDate(dates);
+      setEndDate(null);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -169,7 +178,12 @@ export default function CommandesPage() {
             {/* Bouton filtre calendrier */}
             <div className="relative w-full mb-2" ref={datePickerRef}>
               <button
-                onClick={() => setShowDatePicker(!showDatePicker)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('Button clicked, current state:', showDatePicker);
+                  setShowDatePicker(!showDatePicker);
+                }}
                 className="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
               >
                 📆
@@ -194,14 +208,16 @@ export default function CommandesPage() {
                       onChange={handleDateChange}
                       startDate={startDate}
                       endDate={endDate}
-                      selectsRange
-                      inline
+                      selectsRange={true}
+                      inline={true}
                       locale="fr"
                       dateFormat="dd/MM/yyyy"
                       placeholderText="Sélectionner une plage de dates"
-                      showMonthDropdown
-                      showYearDropdown
+                      showMonthDropdown={true}
+                      showYearDropdown={true}
                       dropdownMode="select"
+                      isClearable={true}
+                      shouldCloseOnSelect={false}
                     />
                   </div>
                   <div className="flex gap-2">
