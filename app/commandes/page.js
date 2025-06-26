@@ -37,6 +37,14 @@ function TicketCommande({ commande }) {
     }
   }
   const total = commande.total || commande.amount || 0;
+  // Date de commande
+  const dateCommande = commande.createdAt ? new Date(commande.createdAt).toLocaleString('fr-FR', { 
+    day: '2-digit', 
+    month: '2-digit', 
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  }) : '';
 
   return (
     <div className="border border-black/20 rounded-lg bg-white mb-2">
@@ -56,7 +64,7 @@ function TicketCommande({ commande }) {
           <span>{client}</span>
           <span>{phone}</span>
           {(livraison && dateLivraison) ? (
-            <span>{livraison}, {dateLivraison}</span>
+            <span>{livraison} • {dateLivraison}</span>
           ) : livraison ? (
             <span>{livraison}</span>
           ) : dateLivraison ? (
@@ -82,17 +90,18 @@ function TicketCommande({ commande }) {
           {/* Détail WhatsApp-like */}
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
+            <div className="mb-1 text-gray-600">Commandé le {dateCommande}</div>
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                SBM #{i + 1}: Piment({lot.options?.piment ? '✅' : '❌'}), Oeuf({lot.options?.oeuf ? '✅' : '❌'}), Mekbouba({lot.options?.mekbouba ? '✅' : '❌'})
+                SBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
                 {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                BBM #{i + 1}: Piment({lot.options?.piment ? '✅' : '❌'}), Oeuf({lot.options?.oeuf ? '✅' : '❌'}), Mekbouba({lot.options?.mekbouba ? '✅' : '❌'})
+                BBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
                 {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
@@ -211,6 +220,12 @@ export default function CommandesPage() {
 
   return (
     <div className="min-h-screen bg-white py-8">
+      <style jsx>{`
+        /* Masquer le bouton chat sur cette page */
+        :global(.fixed.bottom-6.right-4) {
+          display: none !important;
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header avec date */}
         <div className="mb-8">
