@@ -67,16 +67,16 @@ function TicketCommande({ commande }) {
         </button>
         {/* Infos principales */}
         <div className="flex-1 flex flex-wrap items-center text-xs sm:gap-4 sm:text-sm">
-          <span className="font-bold w-36 flex-shrink-0 mr-1 sm:mr-4">{numCmd}</span>
+          <span className="font-bold flex-shrink-0 mr-1 sm:mr-4 sm:w-36">{commande.orderNumber || numCmd}</span>
           <span className="mr-1 sm:mr-4">{client || 'N/A'}</span>
           <span>{phone || 'N/A'}</span>
           <span>commandé le {dateCommandeCompact || '--/--'}</span>
           {(livraison && dateLivraison) ? (
-            <span>{livraison} {dateLivraison}</span>
+            <span className="ml-2 sm:ml-4">{livraison} {dateLivraison}</span>
           ) : livraison ? (
-            <span>{livraison}</span>
+            <span className="ml-2 sm:ml-4">{livraison}</span>
           ) : dateLivraison ? (
-            <span>{dateLivraison}</span>
+            <span className="ml-2 sm:ml-4">{dateLivraison}</span>
           ) : null}
           <span className="font-bold text-green-700">{total}&nbsp;€</span>
         </div>
