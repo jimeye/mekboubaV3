@@ -1,8 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import { useState, useEffect } from 'react';
 
 // Page admin pour Mekbouba - Gestion des commandes
 export default function CommandesPage() {
@@ -12,8 +10,6 @@ export default function CommandesPage() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [filteredCommandes, setFilteredCommandes] = useState([]);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const datePickerRef = useRef(null);
 
   useEffect(() => {
     fetchCommandes();
@@ -22,23 +18,6 @@ export default function CommandesPage() {
   useEffect(() => {
     filterCommandes();
   }, [commandes, startDate, endDate]);
-
-  // Gestionnaire de clic en dehors du calendrier
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
-        setShowDatePicker(false);
-      }
-    }
-
-    if (showDatePicker) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showDatePicker]);
 
   const fetchCommandes = async () => {
     try {
@@ -102,41 +81,6 @@ export default function CommandesPage() {
   const clearFilters = () => {
     setStartDate(null);
     setEndDate(null);
-    setShowDatePicker(false);
-  };
-
-  const handleDateChange = (dates) => {
-    console.log('DatePicker onChange called with:', dates);
-    if (Array.isArray(dates)) {
-      const [start, end] = dates;
-      console.log('Setting startDate:', start, 'endDate:', end);
-      setStartDate(start);
-      setEndDate(end);
-    } else {
-      // Si une seule date est sélectionnée
-      console.log('Single date selected:', dates);
-      setStartDate(dates);
-      setEndDate(null);
-    }
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleString('fr-FR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'payé': return 'bg-green-100 text-green-800';
-      case 'en attente': return 'bg-yellow-100 text-yellow-800';
-      case 'annulé': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
   };
 
   const { totalPaye, totalProduits } = calculateStats();
@@ -175,114 +119,6 @@ export default function CommandesPage() {
 
           {/* Partie droite : bouton filtre + compteurs */}
           <div className="flex flex-col items-end gap-2 w-1/3">
-            {/* Bouton filtre calendrier */}
-            <div className="relative w-full mb-2" ref={datePickerRef}>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  console.log('Button clicked, current state:', showDatePicker);
-                  setShowDatePicker(!showDatePicker);
-                }}
-                className="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
-              >
-                📆 {showDatePicker ? 'Fermer' : 'Ouvrir'}
-              </button>
-              {showDatePicker && (
-                <div 
-                  className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg border p-4 right-0"
-                  style={{
-                    position: 'absolute',
-                    zIndex: 9999,
-                    backgroundColor: 'white',
-                    border: '1px solid #ccc',
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                    padding: '16px',
-                    minWidth: '350px'
-                  }}
-                >
-                  <div className="mb-3">
-                    <p className="text-sm text-gray-600 mb-2">Sélectionner une plage de dates :</p>
-                    
-                    {/* Test simple avec des boutons */}
-                    <div className="mb-3 p-2 bg-gray-100 rounded">
-                      <p className="text-xs text-gray-600 mb-2">Test rapide :</p>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => {
-                            const today = new Date();
-                            setStartDate(today);
-                            setEndDate(today);
-                            console.log('Test: Date d\'aujourd\'hui sélectionnée');
-                          }}
-                          className="px-2 py-1 text-xs bg-green-500 text-white rounded"
-                        >
-                          Aujourd'hui
-                        </button>
-                        <button
-                          onClick={() => {
-                            const yesterday = new Date();
-                            yesterday.setDate(yesterday.getDate() - 1);
-                            setStartDate(yesterday);
-                            setEndDate(yesterday);
-                            console.log('Test: Date d\'hier sélectionnée');
-                          }}
-                          className="px-2 py-1 text-xs bg-green-500 text-white rounded"
-                        >
-                          Hier
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <DatePicker
-                      selected={startDate}
-                      onChange={handleDateChange}
-                      startDate={startDate}
-                      endDate={endDate}
-                      selectsRange={true}
-                      inline={true}
-                      locale="fr"
-                      dateFormat="dd/MM/yyyy"
-                      placeholderText="Sélectionner une plage de dates"
-                      showMonthDropdown={true}
-                      showYearDropdown={true}
-                      dropdownMode="select"
-                      isClearable={true}
-                      shouldCloseOnSelect={false}
-                      onClickOutside={() => console.log('DatePicker clicked outside')}
-                      onInputClick={() => console.log('DatePicker input clicked')}
-                      onCalendarOpen={() => console.log('DatePicker calendar opened')}
-                      onCalendarClose={() => console.log('DatePicker calendar closed')}
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={clearFilters}
-                      className="px-3 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
-                    >
-                      Effacer
-                    </button>
-                    <button
-                      onClick={() => setShowDatePicker(false)}
-                      className="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                      Fermer
-                    </button>
-                  </div>
-                  {(startDate || endDate) && (
-                    <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-800">
-                      {startDate && endDate 
-                        ? `${startDate.toLocaleDateString('fr-FR')} - ${endDate.toLocaleDateString('fr-FR')}`
-                        : startDate 
-                          ? `À partir du ${startDate.toLocaleDateString('fr-FR')}`
-                          : `Jusqu'au ${endDate.toLocaleDateString('fr-FR')}`
-                      }
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
             {/* Compteurs */}
             <div className="w-full space-y-2">
               <div className="bg-white rounded-lg shadow py-2 px-4">
@@ -295,6 +131,42 @@ export default function CommandesPage() {
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm font-medium text-gray-600">Quantité 🍽️</p>
                   <p className="text-lg font-bold text-blue-600 text-center">{totalProduits}</p>
+                </div>
+              </div>
+              
+              {/* Nouveau sélecteur de date simple */}
+              <div className="bg-white rounded-lg shadow py-2 px-4">
+                <div className="flex flex-col items-center justify-center">
+                  <p className="text-sm font-medium text-gray-600 mb-2">Filtre par date</p>
+                  <div className="flex gap-2">
+                    <input
+                      type="date"
+                      value={startDate ? startDate.toISOString().split('T')[0] : ''}
+                      onChange={(e) => {
+                        const date = e.target.value ? new Date(e.target.value) : null;
+                        setStartDate(date);
+                      }}
+                      className="text-xs px-2 py-1 border border-gray-300 rounded"
+                    />
+                    <span className="text-xs text-gray-500">à</span>
+                    <input
+                      type="date"
+                      value={endDate ? endDate.toISOString().split('T')[0] : ''}
+                      onChange={(e) => {
+                        const date = e.target.value ? new Date(e.target.value) : null;
+                        setEndDate(date);
+                      }}
+                      className="text-xs px-2 py-1 border border-gray-300 rounded"
+                    />
+                  </div>
+                  {(startDate || endDate) && (
+                    <button
+                      onClick={clearFilters}
+                      className="mt-2 px-2 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      Effacer
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
