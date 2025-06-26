@@ -217,7 +217,7 @@ export default function CommandesPage() {
             <div className="w-full space-y-2">
               <div className="bg-white rounded-lg shadow py-2 px-4">
                 <div className="flex flex-col items-center justify-center">
-                  <p className="text-sm font-medium text-gray-600">Total Payé 💰</p>
+                  <p className="text-sm font-medium text-gray-600">Total💰</p>
                   <p className="text-lg font-bold text-green-600 text-center">{totalPaye.toFixed(2)}€</p>
                 </div>
               </div>
