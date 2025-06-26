@@ -11,15 +11,15 @@ function TicketCommande({ commande }) {
   const [open, setOpen] = useState(false);
   const [validated, setValidated] = useState(false);
 
-  const data = commande.orderData || {};
-  const numCmd = commande.id ? `CMD ${commande.id.slice(-8)}` : 'CMD';
-  const client = `${data.firstName || ''} ${data.lastName || ''}`;
-  const phone = data.phone || '';
-  const livraison = data.isHotel === 'yes'
-    ? `${data.selectedHotel} (Chambre: ${data.roomNumber})`
-    : `${data.address}, ${data.city}`;
-  const dateLivraison = `${data.deliveryDate || ''} ${data.deliveryTime || ''}`;
-  const total = data.total || 0;
+  // On lit directement les champs sur l'objet commande
+  const numCmd = commande.orderNumber || (commande.id ? `CMD ${commande.id.slice(-8)}` : 'CMD');
+  const client = commande.customerName || '';
+  const phone = commande.phone || '';
+  const livraison = commande.hotel === 'yes' || commande.isHotel === 'yes'
+    ? `${commande.selectedHotel || commande.hotel} (Chambre: ${commande.roomNumber || ''})`
+    : `${commande.address || ''}, ${commande.city || ''}`;
+  const dateLivraison = `${commande.deliveryDate || ''} ${commande.deliveryTime || ''}`;
+  const total = commande.total || commande.amount || 0;
 
   return (
     <div className="border border-black/20 rounded-lg bg-white mb-2">
@@ -60,22 +60,12 @@ function TicketCommande({ commande }) {
           {/* Détail WhatsApp-like */}
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
-            <div className="mb-1">SBM: {data.sbmLots?.length || 0} x 26&nbsp;€</div>
-            {data.sbmLots?.map((lot, i) => (
-              <div key={i} className="ml-2 text-xs">
-                SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
-              </div>
-            ))}
-            <div className="mb-1">BBM: {data.bbmLots?.length || 0} x 26&nbsp;€</div>
-            {data.bbmLots?.map((lot, i) => (
-              <div key={i} className="ml-2 text-xs">
-                BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
-              </div>
-            ))}
-            <div className="mb-1">Notes: {data.notes && data.notes.trim() !== '' ? data.notes : 'Aucune'}</div>
-            <div className="mb-1">Sous-total: {data.total ? (data.total - (data.livraison || 15)) : ''}&nbsp;€</div>
-            <div className="mb-1">Livraison: {data.livraison || 15}&nbsp;€</div>
-            <div className="mb-1 font-bold">TOTAL PAYÉ: {data.total || ''}&nbsp;€</div>
+            <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
+            <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
+            <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
+            <div className="mb-1">Sous-total: {commande.total ? (commande.total - (commande.livraison || 15)) : ''}&nbsp;€</div>
+            <div className="mb-1">Livraison: {commande.livraison || 15}&nbsp;€</div>
+            <div className="mb-1 font-bold">TOTAL PAYÉ: {commande.total || ''}&nbsp;€</div>
             <div className="mt-2 text-green-700 font-semibold">Paiement CB en ligne effectué</div>
           </div>
         </div>
