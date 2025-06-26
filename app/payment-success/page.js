@@ -37,7 +37,7 @@ export default function PaymentSuccessPage() {
         },
         body: JSON.stringify({
           paymentIntentId,
-          orderData
+          commande: orderData
         })
       });
     } catch (error) {
