@@ -138,7 +138,7 @@ export default function CommandesPage() {
               <div className="bg-white rounded-lg shadow py-2 px-4">
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm font-medium text-gray-600 mb-2">Filtre par date</p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1">
                     <input
                       type="date"
                       value={startDate ? startDate.toISOString().split('T')[0] : ''}
@@ -146,7 +146,7 @@ export default function CommandesPage() {
                         const date = e.target.value ? new Date(e.target.value) : null;
                         setStartDate(date);
                       }}
-                      className="text-xs px-2 py-1 border border-gray-300 rounded"
+                      className="text-xs px-1 py-1 border border-gray-300 rounded w-20"
                     />
                     <span className="text-xs text-gray-500">à</span>
                     <input
@@ -156,7 +156,7 @@ export default function CommandesPage() {
                         const date = e.target.value ? new Date(e.target.value) : null;
                         setEndDate(date);
                       }}
-                      className="text-xs px-2 py-1 border border-gray-300 rounded"
+                      className="text-xs px-1 py-1 border border-gray-300 rounded w-20"
                     />
                   </div>
                   {(startDate || endDate) && (
