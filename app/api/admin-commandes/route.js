@@ -1,18 +1,61 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import fs from 'fs';
+import path from 'path';
+
+// Détection Upstash
+const hasUpstash = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN;
+let redis = null;
+if (hasUpstash) {
+  const { Redis } = require('@upstash/redis');
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+}
+
+// Chemin vers le fichier JSON des commandes
+const COMMANDES_FILE = path.join(process.cwd(), 'data', 'commandes.json');
+
+function ensureDataDir() {
+  const dataDir = path.dirname(COMMANDES_FILE);
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+}
+
+function readCommandes() {
+  try {
+    ensureDataDir();
+    if (!fs.existsSync(COMMANDES_FILE)) {
+      return [];
+    }
+    const data = fs.readFileSync(COMMANDES_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Erreur lecture commandes:', error);
+    return [];
+  }
+}
 
 export async function GET() {
   try {
-    // Récupérer tous les IDs de commandes
-    const commandeIds = await kv.lrange('commandes', 0, -1);
+    let commandes = [];
     
-    // Récupérer les détails de chaque commande
-    const commandes = [];
-    for (const id of commandeIds) {
-      const commande = await kv.get(`commande:${id}`);
-      if (commande) {
-        commandes.push(commande);
+    if (hasUpstash && redis) {
+      // Mode production : Upstash Redis
+      console.log('[API LOG] Utilisation Upstash Redis');
+      const commandeIds = await redis.lrange('commandes', 0, -1);
+      
+      for (const id of commandeIds) {
+        const commande = await redis.get(`commande:${id}`);
+        if (commande) {
+          commandes.push(commande);
+        }
       }
+    } else {
+      // Mode local : fichier JSON
+      console.log('[API LOG] Utilisation fichier JSON local');
+      commandes = readCommandes();
     }
 
     // Traiter les commandes pour l'affichage

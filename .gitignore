@@ -41,3 +41,6 @@ jimeye *.tar.gz
 backup_*
 *.tar.gz
 backup_*
+
+# data
+/data
