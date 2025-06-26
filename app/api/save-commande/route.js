@@ -34,7 +34,7 @@ function readCommandes() {
     const data = fs.readFileSync(COMMANDES_FILE, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Erreur lecture commandes:', error);
+    console.error('[API LOG] Erreur lecture commandes:', error);
     return [];
   }
 }
@@ -43,39 +43,45 @@ function readCommandes() {
 function writeCommandes(commandes) {
   try {
     ensureDataDir();
-    fs.writeFileSync(COMMANDES_FILE, JSON.stringify(commandes, null, 2));
+    fs.writeFileSync(COMMANDES_FILE, JSON.stringify(commandes, null, 2), 'utf8');
   } catch (error) {
-    console.error('Erreur écriture commandes:', error);
-    throw error;
+    console.error('[API LOG] Erreur écriture commandes:', error);
   }
 }
 
-export async function POST(request) {
+export async function POST(req) {
   try {
-    const { paymentIntentId, orderData } = await request.json();
-    const commande = {
-      id: paymentIntentId,
-      orderData: orderData,
-      createdAt: new Date().toISOString(),
-      status: 'en_attente'
-    };
+    console.log('[API LOG] save-commande appelée');
+    const body = await req.json();
+    const { paymentIntentId, commande } = body;
+    if (!paymentIntentId || !commande) {
+      console.log('[API LOG] Données manquantes', { paymentIntentId, commande });
+      return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
+    }
+
     if (hasUpstash && redis) {
-      // Upstash Redis
-      await redis.set(`commande:${paymentIntentId}`, commande);
-      await redis.lpush('commandes', paymentIntentId);
+      // Mode production : Upstash Redis
+      try {
+        console.log('[API LOG] Tentative sauvegarde dans Upstash', { paymentIntentId });
+        await redis.set(`commande:${paymentIntentId}`, commande);
+        await redis.lpush('commandes', paymentIntentId);
+        console.log('[API LOG] Sauvegarde Upstash OK');
+      } catch (err) {
+        console.error('[API LOG] Erreur Upstash', err);
+        return NextResponse.json({ error: 'Erreur Upstash', details: err?.message }, { status: 500 });
+      }
     } else {
-      // Fichier local
+      // Mode local : fichier JSON
+      console.log('[API LOG] Sauvegarde fichier JSON local');
       const commandes = readCommandes();
       commandes.push(commande);
       writeCommandes(commandes);
     }
+
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Erreur sauvegarde commande:', error);
-    return NextResponse.json(
-      { error: 'Erreur lors de la sauvegarde' },
-      { status: 500 }
-    );
+    console.error('[API LOG] Erreur générale save-commande', error);
+    return NextResponse.json({ error: 'Erreur lors de la sauvegarde de la commande', details: error?.message }, { status: 500 });
   }
 }
 
