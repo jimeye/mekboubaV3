@@ -20,8 +20,22 @@ export default function PaymentSuccessPage() {
     console.log('[DEBUG] Paramètres URL:', { orderDataParam, paymentTypeParam, paymentIntentId });
 
     if (orderDataParam) {
-      const parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      console.log('[DEBUG] orderData parsé:', parsedOrderData);
+      let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
+      // Générer le numéro de commande unique (même logique que WhatsApp)
+      const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
+      const day = deliveryDateParts?.[1] || '00';
+      const month = deliveryDateParts?.[2] || '00';
+      const monthNames = {
+        'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+        'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+        'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+      };
+      const monthNumber = monthNames[month?.toLowerCase()] || '00';
+      const lastOrderNumber = localStorage.getItem('lastOrderNumber') || '55500';
+      const currentCounter = parseInt(lastOrderNumber) + 1;
+      localStorage.setItem('lastOrderNumber', currentCounter.toString());
+      const orderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
+      parsedOrderData.orderNumber = orderNumber;
       setOrderData(parsedOrderData);
     }
     if (paymentTypeParam) {
@@ -30,8 +44,22 @@ export default function PaymentSuccessPage() {
 
     // Sauvegarder la commande complète
     if (orderDataParam && paymentIntentId) {
-      const parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      console.log('[DEBUG] Appel saveCommande avec:', { parsedOrderData, paymentIntentId });
+      let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
+      // Générer le numéro de commande unique (même logique que WhatsApp)
+      const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
+      const day = deliveryDateParts?.[1] || '00';
+      const month = deliveryDateParts?.[2] || '00';
+      const monthNames = {
+        'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+        'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+        'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+      };
+      const monthNumber = monthNames[month?.toLowerCase()] || '00';
+      const lastOrderNumber = localStorage.getItem('lastOrderNumber') || '55500';
+      const currentCounter = parseInt(lastOrderNumber) + 1;
+      localStorage.setItem('lastOrderNumber', currentCounter.toString());
+      const orderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
+      parsedOrderData.orderNumber = orderNumber;
       saveCommande(parsedOrderData, paymentIntentId);
     } else {
       console.log('[DEBUG] saveCommande non appelée - paramètres manquants:', { orderDataParam: !!orderDataParam, paymentIntentId: !!paymentIntentId });
@@ -104,7 +132,7 @@ export default function PaymentSuccessPage() {
     const currentCounter = parseInt(lastOrderNumber) + 1;
     localStorage.setItem('lastOrderNumber', currentCounter.toString());
     
-    const orderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
+    const orderNumber = orderData.orderNumber || `CMD ${day}${monthNumber}-${currentCounter}`;
 
     const sbmDetails = Array.isArray(sbmLots)
       ? sbmLots.map((lot, index) => 

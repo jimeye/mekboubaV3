@@ -66,9 +66,9 @@ function TicketCommande({ commande }) {
           {open ? '▼' : '►'}
         </button>
         {/* Infos principales */}
-        <div className="flex-1 flex flex-wrap gap-2 items-center text-xs sm:gap-4 sm:text-sm">
-          <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
-          <span>{client || 'N/A'}</span>
+        <div className="flex-1 flex flex-wrap items-center text-xs sm:gap-4 sm:text-sm">
+          <span className="font-bold w-36 flex-shrink-0 mr-1 sm:mr-4">{numCmd}</span>
+          <span className="mr-1 sm:mr-4">{client || 'N/A'}</span>
           <span>{phone || 'N/A'}</span>
           <span>commandé le {dateCommandeCompact || '--/--'}</span>
           {(livraison && dateLivraison) ? (
