@@ -116,7 +116,7 @@ export default function CommandesPage() {
             </p>
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}
-          <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-0 md:mt-2 mr-2 z-10 w-1/2 max-w-xs md:w-1/3">
+          <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-0 md:mt-2 mr-2 z-10 w-1/3 max-w-[160px] md:w-1/4">
             <div className="bg-white rounded-lg shadow py-2 px-4 w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600">Total💰</p>
@@ -140,7 +140,7 @@ export default function CommandesPage() {
                       const date = e.target.value ? new Date(e.target.value) : null;
                       setStartDate(date);
                     }}
-                    className="text-xs px-1 py-1 border border-gray-300 rounded w-16 md:w-24"
+                    className="text-xs px-1 py-1 border border-gray-300 rounded w-14 md:w-20"
                   />
                   <span className="text-xs text-gray-500">à</span>
                   <input
@@ -150,7 +150,7 @@ export default function CommandesPage() {
                       const date = e.target.value ? new Date(e.target.value) : null;
                       setEndDate(date);
                     }}
-                    className="text-xs px-1 py-1 border border-gray-300 rounded w-16 md:w-24"
+                    className="text-xs px-1 py-1 border border-gray-300 rounded w-14 md:w-20"
                   />
                 </div>
                 {(startDate || endDate) && (
