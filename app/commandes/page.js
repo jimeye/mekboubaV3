@@ -137,14 +137,15 @@ export default function CommandesPage() {
     let totalProduits = 0;
     
     filteredCommandes.forEach(commande => {
-      const data = commande.orderData || {};
       // Total payé
-      if (data.total) {
-        totalPaye += parseFloat(data.total);
+      if (commande.total) {
+        totalPaye += parseFloat(commande.total);
+      } else if (commande.amount) {
+        totalPaye += parseFloat(commande.amount) / 100;
       }
-      // Nombre de produits (SBM + BBM, sans les boulettes supp)
-      const sbmCount = data.sbmLots?.length || 0;
-      const bbmCount = data.bbmLots?.length || 0;
+      // Nombre de produits (SBM + BBM)
+      const sbmCount = commande.sbmCount || 0;
+      const bbmCount = commande.bbmCount || 0;
       totalProduits += sbmCount + bbmCount;
     });
     
