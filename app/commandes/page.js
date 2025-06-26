@@ -48,10 +48,10 @@ function TicketCommande({ commande }) {
           className={
             validated
               ? 'bg-transparent text-2xl text-green-600 px-3 py-1 border-none shadow-none'
-              : 'bg-gray-200 text-gray-800 px-3 py-1 rounded transition'
+              : 'bg-gray-200 text-gray-800 px-3 py-1 rounded transition text-2xl flex items-center justify-center'
           }
         >
-          {validated ? '✅' : 'à valider'}
+          {validated ? '✅' : '⏳'}
         </button>
       </div>
       {/* Détail dépliable */}
@@ -61,7 +61,20 @@ function TicketCommande({ commande }) {
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
+            {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
+              <div key={i} className="ml-2 text-xs">
+                SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+              </div>
+            ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
+            {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
+              <div key={i} className="ml-2 text-xs">
+                BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+              </div>
+            ))}
+            {commande.boulettesSuppGlobal !== undefined && (
+              <div className="mb-1">Boulettes supp global : {commande.boulettesSuppGlobal}</div>
+            )}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
             <div className="mb-1">Sous-total: {commande.total ? (commande.total - (commande.livraison || 15)) : ''}&nbsp;€</div>
             <div className="mb-1">Livraison: {commande.livraison || 15}&nbsp;€</div>
