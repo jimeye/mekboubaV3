@@ -131,19 +131,17 @@ export default function CommandesPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header avec date */}
-        <div className="mb-8 flex justify-between items-start">
+        <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             🍽️ Cmd Ibiza
           </h1>
-          <div className="text-right">
-            <p className="text-lg font-semibold text-gray-700">
-              {new Date().toLocaleDateString('fr-FR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: '2-digit'
-              })}
-            </p>
-          </div>
+          <p className="text-lg font-semibold text-gray-700">
+            {new Date().toLocaleDateString('fr-FR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: '2-digit'
+            })}
+          </p>
         </div>
 
         {/* Bouton filtre calendrier */}
@@ -207,19 +205,17 @@ export default function CommandesPage() {
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-gray-600">Total Payé</p>
+                  <p className="text-xs font-medium text-gray-600">Total Payé 💰</p>
                   <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
                 </div>
-                <div className="text-xl">💰</div>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-gray-600">Quantité</p>
+                  <p className="text-xs font-medium text-gray-600">Quantité 🍽️</p>
                   <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
                 </div>
-                <div className="text-xl">🍽️</div>
               </div>
             </div>
           </div>
