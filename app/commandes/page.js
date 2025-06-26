@@ -138,22 +138,22 @@ export default function CommandesPage() {
 
         {/* Compteurs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Payé</p>
-                <p className="text-2xl font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+                <p className="text-xs font-medium text-gray-600">Total Payé</p>
+                <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
               </div>
-              <div className="text-3xl">💰</div>
+              <div className="text-xl">💰</div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Quantité</p>
-                <p className="text-2xl font-bold text-blue-600">{totalProduits}</p>
+                <p className="text-xs font-medium text-gray-600">Quantité</p>
+                <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
               </div>
-              <div className="text-3xl">🍽️</div>
+              <div className="text-xl">🍽️</div>
             </div>
           </div>
         </div>
