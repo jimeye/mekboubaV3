@@ -18,7 +18,24 @@ function TicketCommande({ commande }) {
   const livraison = commande.hotel === 'yes' || commande.isHotel === 'yes'
     ? `${commande.selectedHotel || commande.hotel} (Chambre: ${commande.roomNumber || ''})`
     : `${commande.address || ''}, ${commande.city || ''}`;
-  const dateLivraison = `${commande.deliveryDate || ''} ${commande.deliveryTime || ''}`;
+  let dateLivraison = '';
+  if (commande.deliveryDate && commande.deliveryTime) {
+    // Extraction du jour/mois
+    const match = commande.deliveryDate.match(/(\d{1,2}) ([a-zéû]+)$/i);
+    const moisMap = {
+      'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+      'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+      'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+    };
+    if (match) {
+      const jour = match[1].padStart(2, '0');
+      const mois = moisMap[match[2].toLowerCase()] || '';
+      const heure = commande.deliveryTime.split(' ')[0];
+      dateLivraison = `liv ${jour}/${mois} ${heure}`;
+    } else {
+      dateLivraison = `liv ${commande.deliveryDate} ${commande.deliveryTime.split(' ')[0]}`;
+    }
+  }
   const total = commande.total || commande.amount || 0;
 
   return (
@@ -48,7 +65,7 @@ function TicketCommande({ commande }) {
           className={
             validated
               ? 'bg-transparent text-2xl text-green-600 px-3 py-1 border-none shadow-none'
-              : 'bg-gray-200 text-gray-800 px-3 py-1 rounded transition text-2xl flex items-center justify-center'
+              : 'bg-white text-gray-800 px-3 py-1 rounded transition text-2xl flex items-center justify-center border border-gray-300'
           }
         >
           {validated ? '✅' : '⏳'}
@@ -63,16 +80,18 @@ function TicketCommande({ commande }) {
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+                SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'})
+                {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+                BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'})
+                {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
-            {commande.boulettesSuppGlobal !== undefined && (
+            {commande.boulettesSuppGlobal > 0 && (
               <div className="mb-1">Boulettes supp global : {commande.boulettesSuppGlobal}</div>
             )}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
