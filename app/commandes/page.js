@@ -36,7 +36,7 @@ function TicketCommande({ commande }) {
           <span>{phone}</span>
           <span>{livraison}</span>
           <span>{dateLivraison}</span>
-          <span className="font-bold text-green-700">{total}€</span>
+          <span className="font-bold text-green-700">{total}&nbsp;€</span>
         </div>
         {/* Bouton à valider */}
         <button
@@ -57,22 +57,22 @@ function TicketCommande({ commande }) {
           {/* Détail WhatsApp-like */}
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
-            <div className="mb-1">SBM: {data.sbmLots?.length || 0} x 26€</div>
+            <div className="mb-1">SBM: {data.sbmLots?.length || 0} x 26&nbsp;€</div>
             {data.sbmLots?.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
               </div>
             ))}
-            <div className="mb-1">BBM: {data.bbmLots?.length || 0} x 26€</div>
+            <div className="mb-1">BBM: {data.bbmLots?.length || 0} x 26&nbsp;€</div>
             {data.bbmLots?.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
               </div>
             ))}
             <div className="mb-1">Notes: {data.notes && data.notes.trim() !== '' ? data.notes : 'Aucune'}</div>
-            <div className="mb-1">Sous-total: {data.total ? (data.total - (data.livraison || 15)) : ''}€</div>
-            <div className="mb-1">Livraison: {data.livraison || 15}€</div>
-            <div className="mb-1 font-bold">TOTAL PAYÉ: {data.total || ''}€</div>
+            <div className="mb-1">Sous-total: {data.total ? (data.total - (data.livraison || 15)) : ''}&nbsp;€</div>
+            <div className="mb-1">Livraison: {data.livraison || 15}&nbsp;€</div>
+            <div className="mb-1 font-bold">TOTAL PAYÉ: {data.total || ''}&nbsp;€</div>
             <div className="mt-2 text-green-700 font-semibold">Paiement CB en ligne effectué</div>
           </div>
         </div>
