@@ -66,8 +66,9 @@ function TicketCommande({ commande }) {
         {/* Infos principales */}
         <div className="flex-1 flex flex-wrap gap-4 items-center text-sm">
           <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
-          <span>{client} • commandé le {dateCommandeCompact}</span>
+          <span>{client}</span>
           <span>{phone}</span>
+          <span>commandé le {dateCommandeCompact}</span>
           {(livraison && dateLivraison) ? (
             <span>{livraison} {dateLivraison}</span>
           ) : livraison ? (
@@ -95,8 +96,6 @@ function TicketCommande({ commande }) {
           {/* Détail WhatsApp-like */}
           <div className="whitespace-pre-wrap">
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
-            <div className="mb-1">Client: {client}</div>
-            <div className="mb-1">Téléphone: {phone}</div>
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
