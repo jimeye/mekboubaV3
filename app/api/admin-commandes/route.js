@@ -47,8 +47,10 @@ export async function GET() {
       const commandeIds = await redis.lrange('commandes', 0, -1);
       
       for (const id of commandeIds) {
-        const commande = await redis.get(`commande:${id}`);
-        if (commande) {
+        const commandeData = await redis.get(`commande:${id}`);
+        if (commandeData) {
+          // Parser les données JSON depuis Upstash
+          const commande = typeof commandeData === 'string' ? JSON.parse(commandeData) : commandeData;
           commandes.push(commande);
         }
       }

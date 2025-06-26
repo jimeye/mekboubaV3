@@ -58,6 +58,16 @@ export async function POST(req) {
       console.log('[API LOG] Données manquantes', { paymentIntentId, commande });
       return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
     }
+
+    // Créer la structure complète de la commande
+    const commandeComplete = {
+      id: paymentIntentId,
+      paymentIntentId,
+      orderData: commande,
+      createdAt: new Date().toISOString(),
+      status: 'payé'
+    };
+
     if (hasUpstash && redis) {
       try {
         const keyList = 'commandes';
@@ -67,7 +77,7 @@ export async function POST(req) {
         const lpushRes = await redis.lpush(keyList, paymentIntentId);
         console.log('[API LOG] Résultat lpush Upstash', lpushRes);
         // Sauvegarde du détail de la commande
-        const setRes = await redis.set(keyDetail, JSON.stringify(commande));
+        const setRes = await redis.set(keyDetail, JSON.stringify(commandeComplete));
         console.log('[API LOG] Résultat set Upstash', setRes);
         return NextResponse.json({ ok: true });
       } catch (err) {
@@ -78,7 +88,7 @@ export async function POST(req) {
       // Mode local : fichier JSON
       console.log('[API LOG] Utilisation fichier JSON local');
       const commandes = readCommandes();
-      commandes.push({ paymentIntentId, commande });
+      commandes.push(commandeComplete);
       writeCommandes(commandes);
       return NextResponse.json({ ok: true });
     }
