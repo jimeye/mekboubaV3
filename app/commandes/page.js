@@ -137,23 +137,25 @@ export default function CommandesPage() {
         </div>
 
         {/* Compteurs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow p-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-600">Total Payé</p>
-                <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+        <div className="flex justify-center mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-1/3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-gray-600">Total Payé</p>
+                  <p className="text-lg font-bold text-green-600">{totalPaye.toFixed(2)}€</p>
+                </div>
+                <div className="text-xl">💰</div>
               </div>
-              <div className="text-xl">💰</div>
             </div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-600">Quantité</p>
-                <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-gray-600">Quantité</p>
+                  <p className="text-lg font-bold text-blue-600">{totalProduits}</p>
+                </div>
+                <div className="text-xl">🍽️</div>
               </div>
-              <div className="text-xl">🍽️</div>
             </div>
           </div>
         </div>
