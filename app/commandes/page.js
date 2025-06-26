@@ -198,7 +198,7 @@ export default function CommandesPage() {
             <div className="bg-white rounded-lg w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600">Total💰</p>
-                <p className="text-lg font-bold text-green-600 text-center">{totalPaye.toFixed(2)}€</p>
+                <p className="text-lg font-bold text-green-600 text-center">{totalPaye.toFixed(2)}&nbsp;€</p>
               </div>
             </div>
             <div className="bg-white rounded-lg w-full">
