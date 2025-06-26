@@ -15,8 +15,12 @@ export default function PaymentSuccessPage() {
     const paymentTypeParam = searchParams.get('type');
     const paymentIntentId = searchParams.get('payment_intent');
 
+    console.log('[DEBUG] Paramètres URL:', { orderDataParam, paymentTypeParam, paymentIntentId });
+
     if (orderDataParam) {
-      setOrderData(JSON.parse(decodeURIComponent(orderDataParam)));
+      const parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
+      console.log('[DEBUG] orderData parsé:', parsedOrderData);
+      setOrderData(parsedOrderData);
     }
     if (paymentTypeParam) {
       setPaymentType(paymentTypeParam);
@@ -24,22 +28,33 @@ export default function PaymentSuccessPage() {
 
     // Sauvegarder la commande complète
     if (orderDataParam && paymentIntentId) {
-      saveCommande(JSON.parse(decodeURIComponent(orderDataParam)), paymentIntentId);
+      const parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
+      console.log('[DEBUG] Appel saveCommande avec:', { parsedOrderData, paymentIntentId });
+      saveCommande(parsedOrderData, paymentIntentId);
+    } else {
+      console.log('[DEBUG] saveCommande non appelée - paramètres manquants:', { orderDataParam: !!orderDataParam, paymentIntentId: !!paymentIntentId });
     }
   }, [searchParams]);
 
   const saveCommande = async (orderData, paymentIntentId) => {
+    console.log('[DEBUG] saveCommande appelée avec:', { orderData, paymentIntentId });
     try {
-      await fetch('/api/save-commande', {
+      const requestBody = {
+        paymentIntentId,
+        commande: orderData
+      };
+      console.log('[DEBUG] Corps de la requête:', requestBody);
+      
+      const response = await fetch('/api/save-commande', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          paymentIntentId,
-          commande: orderData
-        })
+        body: JSON.stringify(requestBody)
       });
+      
+      const result = await response.json();
+      console.log('[DEBUG] Réponse API save-commande:', result);
     } catch (error) {
       console.error('Erreur sauvegarde commande:', error);
     }
