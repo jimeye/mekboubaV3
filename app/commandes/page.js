@@ -99,7 +99,7 @@ export default function CommandesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header avec date */}
         <div className="mb-8">
@@ -204,7 +204,7 @@ export default function CommandesPage() {
               // Notes
               const notes = data.notes && data.notes.trim() !== '' ? data.notes : 'Aucune';
               return (
-                <div key={index} className="bg-white rounded-lg shadow overflow-hidden p-6">
+                <div key={index} className="bg-white border border-black/20 rounded-lg shadow overflow-hidden p-6">
                   <div className="mb-2 font-bold text-lg">Commande {numCmd}</div>
                   <div className="text-xs text-gray-500 mb-2">-----------------------------------</div>
                   <div className="mb-2 text-sm">Commandé le {dateCmd}</div>
