@@ -116,7 +116,7 @@ export default function CommandesPage() {
             </p>
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}
-          <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-2 mr-2 z-10 w-1/2 max-w-xs md:w-1/3">
+          <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-0 md:mt-2 mr-2 z-10 w-1/2 max-w-xs md:w-1/3">
             <div className="bg-white rounded-lg shadow py-2 px-4 w-full">
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm font-medium text-gray-600">Total💰</p>
