@@ -31,7 +31,7 @@ function TicketCommande({ commande }) {
         </button>
         {/* Infos principales */}
         <div className="flex-1 flex flex-wrap gap-4 items-center text-sm">
-          <span className="font-bold">{numCmd}</span>
+          <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
           <span>{client}</span>
           <span>{phone}</span>
           <span>{livraison}</span>
