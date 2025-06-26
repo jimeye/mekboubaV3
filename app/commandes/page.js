@@ -50,6 +50,8 @@ function TicketCommande({ commande }) {
     day: '2-digit', 
     month: '2-digit'
   }) : '';
+  // Debug pour voir la date
+  console.log('Debug date commande:', { createdAt: commande.createdAt, dateCompact: dateCommandeCompact });
 
   return (
     <div className="border border-black/20 rounded-lg bg-white mb-2">
@@ -66,9 +68,9 @@ function TicketCommande({ commande }) {
         {/* Infos principales */}
         <div className="flex-1 flex flex-wrap gap-4 items-center text-sm">
           <span className="font-bold w-36 flex-shrink-0">{numCmd}</span>
-          <span>{client}</span>
-          <span>{phone}</span>
-          <span>commandé le {dateCommandeCompact}</span>
+          <span>{client || 'N/A'}</span>
+          <span>{phone || 'N/A'}</span>
+          <span>commandé le {dateCommandeCompact || '--/--'}</span>
           {(livraison && dateLivraison) ? (
             <span>{livraison} {dateLivraison}</span>
           ) : livraison ? (
