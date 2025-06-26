@@ -188,66 +188,95 @@ export default function CommandesPage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {filteredCommandes.map((commande, index) => {
               const data = commande.orderData || {};
-              // Numéro de commande formaté (ex: CMD 407-55517)
               const numCmd = commande.id ? `CMD ${commande.id.slice(-8)}` : `CMD #${index + 1}`;
-              // Date et heure de commande (format 25/06/2025 à 20:19)
               const dateCmd = commande.createdAt ? new Date(commande.createdAt).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
-              // Paiement (toujours CB en ligne ici)
               const paiement = 'Paiement CB en ligne effectué';
-              // Sous-total, livraison, total (fallback si non présents)
               const sousTotal = data.total ? (data.total - (data.livraison || 15)) : '';
               const livraison = data.livraison || 15;
               const total = data.total || '';
-              // Notes
               const notes = data.notes && data.notes.trim() !== '' ? data.notes : 'Aucune';
+              // Gestion du menu dépliable et du bouton Ready
+              const [open, setOpen] = useState(false);
+              const [validated, setValidated] = useState(false);
               return (
-                <div key={index} className="bg-white border border-black/20 rounded-lg shadow overflow-hidden p-6">
-                  <div className="mb-2 font-bold text-lg">Commande {numCmd}</div>
-                  <div className="text-xs text-gray-500 mb-2">-----------------------------------</div>
-                  <div className="mb-2 text-sm">Commandé le {dateCmd}</div>
-                  <div className="mb-2 text-sm">Nom: <b>{data.lastName || ''}</b></div>
-                  <div className="mb-2 text-sm">Prénom: <b>{data.firstName || ''}</b></div>
-                  <div className="mb-2 text-sm">Téléphone: <b>{data.phone || ''}</b></div>
-
-                  <div className="mt-4 font-semibold text-base">Livraison :</div>
-                  <div className="mb-1 text-sm">Date: {data.deliveryDate} à {data.deliveryTime}</div>
-                  {data.isHotel === 'yes' ? (
-                    <>
-                      <div className="mb-1 text-sm">Hôtel: {data.selectedHotel}</div>
-                      <div className="mb-1 text-sm">Chambre: {data.roomNumber}</div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="mb-1 text-sm">Adresse: {data.address}</div>
-                      <div className="mb-1 text-sm">Code postal: {data.postalCode}</div>
-                      <div className="mb-1 text-sm">Ville: {data.city}</div>
-                      <div className="mb-1 text-sm">Pays: {data.country}</div>
-                    </>
+                <div key={index} className="bg-white border border-black/20 rounded-lg overflow-hidden">
+                  {/* Ligne principale compacte */}
+                  <div className="flex items-center px-4 py-3 gap-2">
+                    {/* Chevron */}
+                    <button onClick={() => setOpen(!open)} className="focus:outline-none">
+                      <span className={`transition-transform duration-200 ${open ? 'rotate-90' : ''}`}>▶️</span>
+                    </button>
+                    {/* Infos principales */}
+                    <div className="flex-1 flex flex-wrap gap-x-4 gap-y-1 items-center text-sm">
+                      <span className="font-bold text-gray-800">{numCmd}</span>
+                      <span>{data.lastName} {data.firstName}</span>
+                      <span>{data.phone}</span>
+                      {data.isHotel === 'yes' ? (
+                        <span>Hôtel: {data.selectedHotel} {data.roomNumber && `Chambre: ${data.roomNumber}`}</span>
+                      ) : (
+                        <span>{data.address}, {data.city}</span>
+                      )}
+                      <span>{data.deliveryDate} {data.deliveryTime}</span>
+                      <span className="font-bold text-green-700">{total}€</span>
+                    </div>
+                    {/* Bouton à valider/validé */}
+                    <button
+                      onClick={() => setValidated(!validated)}
+                      className={`ml-2 px-3 py-1 rounded transition-all duration-200 text-sm font-semibold
+                        ${validated ? 'bg-transparent text-green-600 border-none shadow-none' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                      style={{ minWidth: 70 }}
+                    >
+                      {validated ? '✅' : 'à valider'}
+                    </button>
+                  </div>
+                  {/* Détail dépliable */}
+                  {open && (
+                    <div className="border-t border-black/10 bg-white px-6 py-4 text-sm animate-fade-in">
+                      <div className="mb-2 font-bold text-lg">Commande {numCmd}</div>
+                      <div className="text-xs text-gray-500 mb-2">-----------------------------------</div>
+                      <div className="mb-2 text-sm">Commandé le {dateCmd}</div>
+                      <div className="mb-2 text-sm">Nom: <b>{data.lastName || ''}</b></div>
+                      <div className="mb-2 text-sm">Prénom: <b>{data.firstName || ''}</b></div>
+                      <div className="mb-2 text-sm">Téléphone: <b>{data.phone || ''}</b></div>
+                      <div className="mt-4 font-semibold text-base">Livraison :</div>
+                      <div className="mb-1 text-sm">Date: {data.deliveryDate} à {data.deliveryTime}</div>
+                      {data.isHotel === 'yes' ? (
+                        <>
+                          <div className="mb-1 text-sm">Hôtel: {data.selectedHotel}</div>
+                          <div className="mb-1 text-sm">Chambre: {data.roomNumber}</div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="mb-1 text-sm">Adresse: {data.address}</div>
+                          <div className="mb-1 text-sm">Code postal: {data.postalCode}</div>
+                          <div className="mb-1 text-sm">Ville: {data.city}</div>
+                          <div className="mb-1 text-sm">Pays: {data.country}</div>
+                        </>
+                      )}
+                      <div className="mt-4 font-semibold text-base">Détails de la commande :</div>
+                      <div className="mb-1 text-sm">SBM: {data.sbmLots?.length || 0} x 26€</div>
+                      {data.sbmLots?.map((lot, i) => (
+                        <div key={i} className="ml-2 text-xs">
+                          SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+                        </div>
+                      ))}
+                      <div className="mb-1 text-sm">BBM: {data.bbmLots?.length || 0} x 26€</div>
+                      {data.bbmLots?.map((lot, i) => (
+                        <div key={i} className="ml-2 text-xs">
+                          BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
+                        </div>
+                      ))}
+                      <div className="mb-1 text-sm">Notes: {notes}</div>
+                      <div className="text-xs text-gray-500 mb-2">-----------------------------------</div>
+                      <div className="mb-1 text-sm">Sous-total: {sousTotal}€</div>
+                      <div className="mb-1 text-sm">Livraison: {livraison}€</div>
+                      <div className="mb-1 text-base font-bold">TOTAL PAYÉ: {total}€</div>
+                      <div className="mt-2 text-sm text-green-700 font-semibold">{paiement}</div>
+                    </div>
                   )}
-
-                  <div className="mt-4 font-semibold text-base">Détails de la commande :</div>
-                  <div className="mb-1 text-sm">SBM: {data.sbmLots?.length || 0} x 26€</div>
-                  {data.sbmLots?.map((lot, i) => (
-                    <div key={i} className="ml-2 text-xs">
-                      SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
-                    </div>
-                  ))}
-                  <div className="mb-1 text-sm">BBM: {data.bbmLots?.length || 0} x 26€</div>
-                  {data.bbmLots?.map((lot, i) => (
-                    <div key={i} className="ml-2 text-xs">
-                      BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: {lot.boulettesSupp || 0}
-                    </div>
-                  ))}
-
-                  <div className="mb-1 text-sm">Notes: {notes}</div>
-                  <div className="text-xs text-gray-500 mb-2">-----------------------------------</div>
-                  <div className="mb-1 text-sm">Sous-total: {sousTotal}€</div>
-                  <div className="mb-1 text-sm">Livraison: {livraison}€</div>
-                  <div className="mb-1 text-base font-bold">TOTAL PAYÉ: {total}€</div>
-                  <div className="mt-2 text-sm text-green-700 font-semibold">{paiement}</div>
                 </div>
               );
             })}
