@@ -187,3 +187,7 @@ Un dossier `reseaux/` sera créé à la racine du projet pour accueillir :
 - Les images du slider (copiées depuis public/images)
 - Les textes formatés pour Instagram, Facebook, TikTok (un fichier par réseau)
 - Un README d'instructions pour l'utilisation 
+
+'use client';
+
+console.log('PAGE ADMIN COMMANDES CHARGÉE');

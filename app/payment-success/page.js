@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
+console.log('PAGE PAYMENT SUCCESS CHARGÉE');
+
 export default function PaymentSuccessPage() {
   const searchParams = useSearchParams();
   const [orderData, setOrderData] = useState(null);
