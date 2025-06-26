@@ -65,7 +65,7 @@ function TicketCommande({ commande }) {
           className={
             validated
               ? 'bg-transparent text-2xl text-green-600 px-3 py-1 border-none shadow-none'
-              : 'bg-white text-gray-800 px-3 py-1 rounded transition text-2xl flex items-center justify-center border border-gray-300'
+              : 'bg-white text-gray-800 px-3 py-1 rounded transition text-2xl flex items-center justify-center'
           }
         >
           {validated ? '✅' : '⏳'}
@@ -80,14 +80,14 @@ function TicketCommande({ commande }) {
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                SBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'})
+                SBM #{i + 1}: Piment({lot.options?.piment ? '✅' : '❌'}), Oeuf({lot.options?.oeuf ? '✅' : '❌'}), Mekbouba({lot.options?.mekbouba ? '✅' : '❌'})
                 {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
-                BBM #{i + 1}: Piment({lot.options?.piment ? 'Oui' : 'Non'}), Oeuf({lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba({lot.options?.mekbouba ? 'Oui' : 'Non'})
+                BBM #{i + 1}: Piment({lot.options?.piment ? '✅' : '❌'}), Oeuf({lot.options?.oeuf ? '✅' : '❌'}), Mekbouba({lot.options?.mekbouba ? '✅' : '❌'})
                 {lot.boulettesSupp > 0 && `, Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
