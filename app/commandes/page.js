@@ -153,9 +153,9 @@ export default function CommandesPage() {
                 setShowDatePicker(!showDatePicker);
                 console.log('Nouveau showDatePicker:', !showDatePicker);
               }}
-              className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
+              className="w-full px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center"
             >
-              📅 Filtrer par date {showDatePicker ? '(Ouvert)' : '(Fermé)'}
+              📆 Filtre {showDatePicker ? '(Ouvert)' : '(Fermé)'}
             </button>
             
             {/* Popup calendrier */}
