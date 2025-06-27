@@ -70,7 +70,6 @@ function TicketCommande({ commande }) {
           <span className="font-bold flex-shrink-0 mr-1 sm:mr-4 sm:w-36">{commande.orderNumber || numCmd}</span>
           <span className="mr-1 sm:mr-4">{client || 'N/A'}</span>
           <span>{phone || 'N/A'}</span>
-          <span>commandé le {dateCommandeCompact || '--/--'}</span>
           {(livraison && dateLivraison) ? (
             <span className="ml-2 sm:ml-4">{livraison} {dateLivraison}</span>
           ) : livraison ? (

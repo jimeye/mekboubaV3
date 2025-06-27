@@ -23,25 +23,21 @@ export default function PaymentSuccessPage() {
 
     if (orderDataParam) {
       let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      // Générer le numéro de commande UNE SEULE FOIS
+      // Générer le numéro de commande UNE SEULE FOIS avec la date du jour (commande)
       if (!orderNumberGenerated.current) {
-        const deliveryDateParts = parsedOrderData.deliveryDate?.split(' ');
-        const day = deliveryDateParts?.[1] || '00';
-        const month = deliveryDateParts?.[2] || '00';
-        const monthNames = {
-          'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
-          'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
-          'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
-        };
-        const monthNumber = monthNames[month?.toLowerCase()] || '00';
-        let currentCounter = parseInt(localStorage.getItem('lastOrderNumber') || '55500');
-        // Si le numéro n'est pas déjà dans l'URL/sessionStorage, on l'incrémente
+        const now = new Date();
+        const day = now.getDate().toString().padStart(2, '0');
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        // Compteur du jour (2 chiffres)
+        let currentCounter = parseInt(localStorage.getItem('lastOrderNumber') || '0');
+        if (isNaN(currentCounter) || currentCounter < 1) currentCounter = 1;
+        // Si le numéro n'est pas déjà dans la session, on l'incrémente
         let generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
         if (!generatedOrderNumber) {
-          currentCounter++;
-          localStorage.setItem('lastOrderNumber', currentCounter.toString());
-          generatedOrderNumber = `CMD ${day}${monthNumber}-${currentCounter}`;
+          const counterStr = currentCounter.toString().padStart(2, '0');
+          generatedOrderNumber = `CMD ${day}${month}-555${counterStr}`;
           sessionStorage.setItem('mekboubaOrderNumber', generatedOrderNumber);
+          localStorage.setItem('lastOrderNumber', (currentCounter + 1).toString());
         }
         setOrderNumber(generatedOrderNumber);
         orderNumberGenerated.current = true;
