@@ -17,10 +17,10 @@ export async function GET() {
   // Incrémente le compteur global
   const counterKey = 'orderNumberCounter';
   const counter = await redis.incr(counterKey);
-  // Génère le numéro de commande du type CMD JJMM-555XX
+  // Génère le numéro de commande du type CMD JJMM-555XXX (3 chiffres)
   const now = new Date();
   const day = now.getDate().toString().padStart(2, '0');
   const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  const numCmd = `CMD ${day}${month}-555${counter.toString().padStart(2, '0')}`;
+  const numCmd = `CMD ${day}${month}-555${counter.toString().padStart(3, '0')}`;
   return NextResponse.json({ orderNumber: numCmd });
 } 
