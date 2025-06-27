@@ -137,6 +137,8 @@ export default function CommandesPage() {
 
   useEffect(() => {
     fetchCommandes();
+    setStartDate(null);
+    setEndDate(null);
   }, []);
 
   useEffect(() => {
