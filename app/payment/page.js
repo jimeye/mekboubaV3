@@ -69,9 +69,10 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
             setSuccess(true);
             // Succès - rediriger vers confirmation
             const paymentIntentId = result.paymentIntent?.id;
+            const orderDataWithTotal = { ...orderData, total: amount };
             const successUrl = paymentType === 'cash_validation' 
-              ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`
-              : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`;
+              ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
+              : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
             router.push(successUrl);
           }
         } catch (err) {
@@ -136,9 +137,10 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
       } else {
         // Succès - rediriger vers confirmation
         const paymentIntentId = result.paymentIntent?.id;
+        const orderDataWithTotal = { ...orderData, total: amount };
         const successUrl = paymentType === 'cash_validation' 
-          ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`
-          : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderData))}&payment_intent=${paymentIntentId}`;
+          ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
+          : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
         router.push(successUrl);
       }
     } catch (err) {
