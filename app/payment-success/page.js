@@ -103,7 +103,7 @@ export default function PaymentSuccessPage() {
   const sendWhatsAppMessage = () => {
     if (!orderData) return;
 
-    const { deliveryDate, deliveryTime, firstName, lastName, phone, sbmLots, bbmLots, notes, isHotel, selectedHotel, roomNumber, otherHotelName, otherHotelAddress, otherHotelPostalCode, otherHotelCity, otherHotelCountry, address, postalCode, city, country } = orderData;
+    const { deliveryDate, deliveryTime, firstName, lastName, phone, sbmLots, bbmLots, notes, isHotel, selectedHotel, roomNumber, otherHotelName, otherHotelAddress, otherHotelPostalCode, otherHotelCity, otherHotelCountry, address, postalCode, city, country, boulettesSuppGlobal, total } = orderData;
 
     // Date de prise de commande (date actuelle)
     const now = new Date();
@@ -162,10 +162,10 @@ export default function PaymentSuccessPage() {
 
     const sbmCount = Array.isArray(sbmLots) ? sbmLots.reduce((sum, lot) => sum + lot.qty, 0) : 0;
     const bbmCount = Array.isArray(bbmLots) ? bbmLots.reduce((sum, lot) => sum + lot.qty, 0) : 0;
-    const subtotal = sbmCount * 26 + bbmCount * 26;
+    const subtotal = sbmCount * 26 + bbmCount * 26 + (boulettesSuppGlobal * 5);
     const totalItems = sbmCount + bbmCount;
     const deliveryFee = totalItems >= 6 ? 0 : 15;
-    const total = subtotal + deliveryFee;
+    const totalPaye = total;
 
     const paymentInfo = paymentType === 'cash' 
       ? 'Paiement en espèces à la livraison'
@@ -185,13 +185,13 @@ ${deliveryAddress}
 
 Détails de la commande :
 SBM: ${sbmCount} x 26€${sbmDetails}
-BBM: ${bbmCount} x 26€${bbmDetails}
+BBM: ${bbmCount} x 26€${bbmDetails}${boulettesSuppGlobal > 0 ? `\nBoulettes Marchi : ${boulettesSuppGlobal} x 5€` : ''}
 
 Notes: ${notes || 'Aucune'}
 -----------------------------------
 Sous-total: ${subtotal}€
 Livraison: ${deliveryFee}€
-TOTAL PAYÉ: ${total}€
+TOTAL PAYÉ: ${totalPaye}€
 
 ${paymentInfo}
 `;
