@@ -74,7 +74,10 @@ export async function GET() {
       const bbmCount = bbmLots && Array.isArray(bbmLots) ? bbmLots.reduce((sum, lot) => sum + lot.qty, 0) : 0;
       const boulettesSupp = boulettesSuppGlobal || 0;
       const sousTotal = (sbmCount + bbmCount) * 26 + (boulettesSupp * 5);
-      const livraison = 15;
+      
+      // Logique de livraison gratuite : si SBM + BBM >= 6
+      const totalProduits = sbmCount + bbmCount;
+      const livraison = totalProduits >= 6 ? 0 : 15;
       const total = sousTotal + livraison;
 
       // Construire l'adresse de livraison

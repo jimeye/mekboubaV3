@@ -125,7 +125,7 @@ function TicketCommande({ commande }) {
               );
             })()}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
-            <div className="mb-1">Livraison: {commande.livraison || 15}&nbsp;€</div>
+            <div className="mb-1">Livraison: {commande.livraison === 0 ? 'GRATUITE' : `${commande.livraison || 15}€`}</div>
             <div className="mb-1 font-bold">TOTAL PAYÉ: {commande.total || ''}&nbsp;€</div>
             <div className="mt-2 text-green-700 font-semibold">Paiement CB en ligne effectué</div>
           </div>
