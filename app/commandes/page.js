@@ -322,8 +322,8 @@ export default function CommandesPage() {
           </div>
         ) : (
           <div className="space-y-2">
-            {filteredCommandes.map((commande) => (
-              <TicketCommande key={commande.id} commande={commande} />
+            {filteredCommandes.map((commande, index) => (
+              <TicketCommande key={commande.id || commande.orderNumber || index} commande={commande} />
             ))}
           </div>
         )}
