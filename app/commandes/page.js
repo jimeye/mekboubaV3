@@ -99,13 +99,13 @@ function TicketCommande({ commande }) {
             <div className="mb-2 font-bold text-lg">Détails de la commande</div>
             <div className="mb-1">SBM: {commande.sbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
-              <div key={i} className="ml-2 text-xs">
+              <div key={i} className="ml-2 text-xs mb-1">
                 SBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
-              <div key={i} className="ml-2 text-xs">
+              <div key={i} className="ml-2 text-xs mb-1">
                 BBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
               </div>
             ))}
@@ -118,7 +118,7 @@ function TicketCommande({ commande }) {
               return (
                 <>
                   {marchi > 0 && (
-                    <div className="mb-1 font-semibold">Boulettes Marchi : {marchi} x 5€</div>
+                    <div className="mb-1">Boulettes Marchi : {marchi} x 5€</div>
                   )}
                   <div className="mb-1">Sous-total: {sousTotal}&nbsp;€</div>
                 </>
