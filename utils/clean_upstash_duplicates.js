@@ -1,4 +1,4 @@
-// Script de nettoyage des doublons dans Upstash Redis
+// Script pour ne garder que les deux dernières commandes dans Upstash Redis
 // À lancer avec: node utils/clean_upstash_duplicates.js
 
 const { Redis } = require('@upstash/redis');
@@ -8,42 +8,31 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
-async function cleanDuplicates() {
+async function keepLastTwo() {
   const keyList = 'commandes';
   const commandeIds = await redis.lrange(keyList, 0, -1);
-  const seen = new Set();
-  const uniqueIds = [];
-  const duplicates = [];
-
-  for (const id of commandeIds) {
-    if (seen.has(id)) {
-      duplicates.push(id);
-    } else {
-      seen.add(id);
-      uniqueIds.push(id);
-    }
+  if (commandeIds.length <= 2) {
+    console.log('Il y a déjà 2 commandes ou moins, rien à faire.');
+    return;
   }
+  // On garde les deux premiers (les plus récents)
+  const toKeep = commandeIds.slice(0, 2);
+  const toDelete = commandeIds.slice(2);
 
-  // Remplace la liste par la version sans doublons
-  if (duplicates.length > 0) {
-    await redis.del(keyList);
-    for (let i = uniqueIds.length - 1; i >= 0; i--) {
-      await redis.lpush(keyList, uniqueIds[i]);
-    }
-    console.log(`Doublons supprimés: ${duplicates.length}`);
-  } else {
-    console.log('Aucun doublon trouvé.');
+  // Remplace la liste par les deux derniers
+  await redis.del(keyList);
+  for (let i = toKeep.length - 1; i >= 0; i--) {
+    await redis.lpush(keyList, toKeep[i]);
   }
+  console.log(`Commandes conservées: ${toKeep.join(', ')}`);
+  console.log(`Commandes supprimées: ${toDelete.join(', ')}`);
 
-  // Optionnel: supprimer les clés orphelines (commande:...) qui ne sont plus dans la liste
-  // const allKeys = await redis.keys('commande:*');
-  // for (const key of allKeys) {
-  //   const id = key.split(':')[1];
-  //   if (!seen.has(id)) {
-  //     await redis.del(key);
-  //     console.log(`Clé orpheline supprimée: ${key}`);
-  //   }
-  // }
+  // Supprime les clés orphelines (commande:...) des commandes supprimées
+  for (const id of toDelete) {
+    const key = `commande:${id}`;
+    await redis.del(key);
+    console.log(`Clé supprimée: ${key}`);
+  }
 }
 
-cleanDuplicates().then(() => process.exit(0)); 
+keepLastTwo().then(() => process.exit(0)); 

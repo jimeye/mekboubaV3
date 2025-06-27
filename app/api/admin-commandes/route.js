@@ -37,6 +37,10 @@ function readCommandes() {
   }
 }
 
+export const dynamic = "force-dynamic";
+
+console.log('API admin-commandes appelée, URL:', process.env.UPSTASH_REDIS_REST_URL);
+
 export async function GET() {
   try {
     let commandes = [];
