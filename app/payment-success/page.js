@@ -137,14 +137,14 @@ export default function PaymentSuccessPage() {
     const orderNumber = orderData.orderNumber || orderNumber || '--';
 
     const sbmDetails = Array.isArray(sbmLots)
-      ? sbmLots.map((lot, index) => 
-          `\n  SBM #${index + 1}: Piment(${lot.options?.piment ? 'Oui' : 'Non'}), Oeuf(${lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba(${lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: ${lot.boulettesSupp || 0}`
+      ? sbmLots.map((lot, index) =>
+          `\n  SBM #${index + 1}: Piment(${lot.options?.piment ? 'Oui' : 'Non'}), Oeuf(${lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba(${lot.options?.mekbouba ? 'Oui' : 'Non'})`
         ).join('')
       : '';
     
     const bbmDetails = Array.isArray(bbmLots)
-      ? bbmLots.map((lot, index) => 
-          `\n  BBM #${index + 1}: Piment(${lot.options?.piment ? 'Oui' : 'Non'}), Oeuf(${lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba(${lot.options?.mekbouba ? 'Oui' : 'Non'}), Boulettes supp: ${lot.boulettesSupp || 0}`
+      ? bbmLots.map((lot, index) =>
+          `\n  BBM #${index + 1}: Piment(${lot.options?.piment ? 'Oui' : 'Non'}), Oeuf(${lot.options?.oeuf ? 'Oui' : 'Non'}), Mekbouba(${lot.options?.mekbouba ? 'Oui' : 'Non'})`
         ).join('')
       : '';
 
