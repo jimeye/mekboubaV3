@@ -106,7 +106,16 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
     }
 
     try {
-      // Créer l'intention de paiement
+      // 1. Générer un numéro de commande unique
+      let orderNumber = orderData.orderNumber;
+      if (!orderNumber) {
+        const res = await fetch('/api/generate-order-number');
+        const data = await res.json();
+        orderNumber = data.orderNumber;
+      }
+      const orderDataWithNumber = { ...orderData, orderNumber };
+
+      // 2. Créer l'intention de paiement
       const response = await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: {
@@ -115,7 +124,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
         body: JSON.stringify({
           amount: amount * 100, // Convertir en centimes
           paymentType,
-          orderData
+          orderData: orderDataWithNumber
         }),
       });
 
@@ -125,7 +134,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
         throw new Error(apiError);
       }
 
-      // Confirmer le paiement
+      // 3. Confirmer le paiement
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
@@ -137,7 +146,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
       } else {
         // Succès - rediriger vers confirmation
         const paymentIntentId = result.paymentIntent?.id;
-        const orderDataWithTotal = { ...orderData, total: amount };
+        const orderDataWithTotal = { ...orderDataWithNumber, total: amount };
         const successUrl = paymentType === 'cash_validation' 
           ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
           : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
