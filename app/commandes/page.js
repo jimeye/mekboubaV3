@@ -276,6 +276,13 @@ export default function CommandesPage() {
                 year: '2-digit'
               })}
             </p>
+            {/* Bouton de nettoyage à gauche */}
+            <button
+              onClick={cleanCommandes}
+              className="mt-4 px-4 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors"
+            >
+              🧹 Garder seulement la dernière commande
+            </button>
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}
           <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-0 md:mt-2 mr-2 z-10 w-1/3 max-w-[160px] md:w-1/4">
@@ -323,17 +330,6 @@ export default function CommandesPage() {
                     Effacer
                   </button>
                 )}
-              </div>
-            </div>
-            <div className="bg-white rounded-lg w-full">
-              <div className="flex flex-col items-center justify-center">
-                <p className="text-sm font-medium text-gray-600 mb-2">Nettoyage</p>
-                <button
-                  onClick={cleanCommandes}
-                  className="px-2 py-1 text-xs bg-orange-500 text-white rounded hover:bg-orange-600"
-                >
-                  Garder dernière
-                </button>
               </div>
             </div>
           </div>
