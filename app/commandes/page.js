@@ -228,7 +228,7 @@ export default function CommandesPage() {
       const data = await response.json();
       
       if (response.ok) {
-        alert(`✅ ${data.message}\nCommande conservée: ${data.commandeConservee}`);
+        alert(`✅ ${data.message}\nCommandes conservées: ${data.commandesConservees?.join(', ') || data.commandeConservee}`);
         // Recharger les commandes
         fetchCommandes();
       } else {
@@ -280,7 +280,7 @@ export default function CommandesPage() {
             <button
               onClick={cleanCommandes}
               className="mt-4 px-4 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors w-1/5"
-              title="Garder seulement la dernière commande"
+              title="Garder seulement les deux dernières commandes"
             >
               🧹
             </button>

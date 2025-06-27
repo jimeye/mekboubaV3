@@ -25,22 +25,24 @@ export async function POST() {
     console.log(`📋 Commandes trouvées: ${commandeIds.length}`);
     console.log(`📝 IDs: ${commandeIds.join(', ')}`);
     
-    if (commandeIds.length <= 1) {
+    if (commandeIds.length <= 2) {
       return NextResponse.json({ 
-        message: 'Il y a déjà 1 commande ou moins, rien à faire.',
+        message: 'Il y a déjà 2 commandes ou moins, rien à faire.',
         commandes: commandeIds 
       });
     }
     
-    // On garde seulement la première (la plus récente)
-    const toKeep = commandeIds.slice(0, 1);
-    const toDelete = commandeIds.slice(1);
+    // On garde les deux premières (les plus récentes)
+    const toKeep = commandeIds.slice(0, 2);
+    const toDelete = commandeIds.slice(2);
 
-    // Remplace la liste par la dernière
+    // Remplace la liste par les deux dernières
     await redis.del(keyList);
-    await redis.lpush(keyList, toKeep[0]);
+    for (let i = toKeep.length - 1; i >= 0; i--) {
+      await redis.lpush(keyList, toKeep[i]);
+    }
     
-    console.log(`✅ Commande conservée: ${toKeep[0]}`);
+    console.log(`✅ Commandes conservées: ${toKeep.join(', ')}`);
     console.log(`🗑️ Commandes supprimées: ${toDelete.join(', ')}`);
 
     // Supprime les clés orphelines (commande:...) des commandes supprimées
@@ -52,7 +54,7 @@ export async function POST() {
     
     return NextResponse.json({ 
       message: 'Nettoyage terminé avec succès!',
-      commandeConservee: toKeep[0],
+      commandesConservees: toKeep,
       commandesSupprimees: toDelete
     });
     
