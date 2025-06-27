@@ -109,11 +109,22 @@ function TicketCommande({ commande }) {
                 BBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
               </div>
             ))}
-            {commande.boulettesSuppGlobal > 0 && (
-              <div className="mb-1 font-semibold">Boulettes Marchi : {commande.boulettesSuppGlobal} x 5€</div>
-            )}
+            {/* Calcul du sous-total (SBM + BBM + Boulettes Marchi) */}
+            {(() => {
+              const sbm = commande.sbmCount || 0;
+              const bbm = commande.bbmCount || 0;
+              const marchi = commande.boulettesSuppGlobal || 0;
+              const sousTotal = sbm * 26 + bbm * 26 + marchi * 5;
+              return (
+                <>
+                  {marchi > 0 && (
+                    <div className="mb-1 font-semibold">Boulettes Marchi : {marchi} x 5€</div>
+                  )}
+                  <div className="mb-1">Sous-total: {sousTotal}&nbsp;€</div>
+                </>
+              );
+            })()}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
-            <div className="mb-1">Sous-total: {commande.total ? (commande.total - (commande.livraison || 15)) : ''}&nbsp;€</div>
             <div className="mb-1">Livraison: {commande.livraison || 15}&nbsp;€</div>
             <div className="mb-1 font-bold">TOTAL PAYÉ: {commande.total || ''}&nbsp;€</div>
             <div className="mt-2 text-green-700 font-semibold">Paiement CB en ligne effectué</div>
