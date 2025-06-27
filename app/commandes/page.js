@@ -112,7 +112,7 @@ function TicketCommande({ commande }) {
               </div>
             ))}
             {commande.boulettesSuppGlobal > 0 && (
-              <div className="mb-1">Boulettes supp global : {commande.boulettesSuppGlobal}</div>
+              <div className="mb-1 font-semibold">Boulettes Marchi : {commande.boulettesSuppGlobal}</div>
             )}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
             <div className="mb-1">Sous-total: {commande.total ? (commande.total - (commande.livraison || 15)) : ''}&nbsp;€</div>
