@@ -101,18 +101,16 @@ function TicketCommande({ commande }) {
             {Array.isArray(commande.sbmLots) && commande.sbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 SBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
-                {lot.boulettesSupp > 0 && ` Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             <div className="mb-1">BBM: {commande.bbmCount || 0} x 26&nbsp;€</div>
             {Array.isArray(commande.bbmLots) && commande.bbmLots.map((lot, i) => (
               <div key={i} className="ml-2 text-xs">
                 BBM #{i + 1}: Piment {lot.options?.piment ? '✅' : '❌'} Oeuf {lot.options?.oeuf ? '✅' : '❌'} Mekbouba {lot.options?.mekbouba ? '✅' : '❌'}
-                {lot.boulettesSupp > 0 && ` Boulettes supp: ${lot.boulettesSupp}`}
               </div>
             ))}
             {commande.boulettesSuppGlobal > 0 && (
-              <div className="mb-1 font-semibold">Boulettes Marchi : {commande.boulettesSuppGlobal}</div>
+              <div className="mb-1 font-semibold">Boulettes Marchi : {commande.boulettesSuppGlobal} x 5€</div>
             )}
             <div className="mb-1">Notes: {commande.notes && commande.notes.trim() !== '' ? commande.notes : 'Aucune'}</div>
             <div className="mb-1">Sous-total: {commande.total ? (commande.total - (commande.livraison || 15)) : ''}&nbsp;€</div>
