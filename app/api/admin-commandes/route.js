@@ -73,7 +73,9 @@ export async function GET() {
       const sbmCount = sbmLots && Array.isArray(sbmLots) ? sbmLots.reduce((sum, lot) => sum + lot.qty, 0) : 0;
       const bbmCount = bbmLots && Array.isArray(bbmLots) ? bbmLots.reduce((sum, lot) => sum + lot.qty, 0) : 0;
       const boulettesSupp = boulettesSuppGlobal || 0;
-      const total = (sbmCount + bbmCount) * 26 + (boulettesSupp * 5);
+      const sousTotal = (sbmCount + bbmCount) * 26 + (boulettesSupp * 5);
+      const livraison = 15;
+      const total = sousTotal + livraison;
 
       // Construire l'adresse de livraison
       let deliveryAddress = '';
@@ -97,7 +99,9 @@ export async function GET() {
         bbmLots: bbmLots || [],
         sbmCount,
         bbmCount,
-        boulettesSupp,
+        boulettesSuppGlobal: boulettesSupp,
+        sousTotal,
+        livraison,
         total,
         status: commande.status,
         notes: notes || '',

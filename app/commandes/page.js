@@ -114,7 +114,7 @@ function TicketCommande({ commande }) {
               const sbm = commande.sbmCount || 0;
               const bbm = commande.bbmCount || 0;
               const marchi = commande.boulettesSuppGlobal || 0;
-              const sousTotal = sbm * 26 + bbm * 26 + marchi * 5;
+              const sousTotal = commande.sousTotal || (sbm * 26 + bbm * 26 + marchi * 5);
               return (
                 <>
                   {marchi > 0 && (
@@ -341,4 +341,4 @@ export default function CommandesPage() {
       </div>
     </div>
   );
-} 
+}
