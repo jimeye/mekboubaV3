@@ -78,7 +78,7 @@ function TicketCommande({ commande }) {
           ) : dateLivraison ? (
             <span className="ml-2 sm:ml-4">{dateLivraison}</span>
           ) : null}
-          <span className="font-bold text-green-700">{total}&nbsp;€</span>
+          <span className="font-bold text-green-700 ml-2">{total}&nbsp;€</span>
         </div>
         {/* Bouton à valider */}
         <button
