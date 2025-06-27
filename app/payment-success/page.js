@@ -230,7 +230,7 @@ ${paymentInfo}
             <p className="text-gray-600 mb-6">
               {paymentType === 'cash' 
                 ? `Merci ${orderData?.firstName}, votre commande a été validée. Le paiement se fera en espèces à la livraison.`
-                : `Merci ${orderData?.firstName}, votre commande a été payée et confirmée.`
+                : `Merci ${orderData?.firstName}, votre commande a été payée et confirmée pour un montant de ${orderData?.total}€.`
               }
             </p>
 
