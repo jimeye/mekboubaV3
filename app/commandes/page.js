@@ -220,6 +220,25 @@ export default function CommandesPage() {
     setEndDate(null);
   };
 
+  const cleanCommandes = async () => {
+    try {
+      const response = await fetch('/api/clean-commandes', {
+        method: 'POST'
+      });
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert(`✅ ${data.message}\nCommande conservée: ${data.commandeConservee}`);
+        // Recharger les commandes
+        fetchCommandes();
+      } else {
+        alert(`❌ Erreur: ${data.error}`);
+      }
+    } catch (error) {
+      alert(`❌ Erreur: ${error.message}`);
+    }
+  };
+
   const { totalPaye, totalProduits } = calculateStats();
 
   if (loading) {
@@ -304,6 +323,17 @@ export default function CommandesPage() {
                     Effacer
                   </button>
                 )}
+              </div>
+            </div>
+            <div className="bg-white rounded-lg w-full">
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-sm font-medium text-gray-600 mb-2">Nettoyage</p>
+                <button
+                  onClick={cleanCommandes}
+                  className="px-2 py-1 text-xs bg-orange-500 text-white rounded hover:bg-orange-600"
+                >
+                  Garder dernière
+                </button>
               </div>
             </div>
           </div>

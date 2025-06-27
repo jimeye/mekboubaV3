@@ -1,23 +1,24 @@
-// Script pour ne garder que la dernière commande dans Upstash Redis
-// À lancer avec: node utils/clean_upstash_duplicates.js
+import { NextResponse } from 'next/server';
 
-const { Redis } = require('@upstash/redis');
-
-// Vérification des variables d'environnement
-if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-  console.error('❌ Variables d\'environnement manquantes:');
-  console.error('UPSTASH_REDIS_REST_URL:', process.env.UPSTASH_REDIS_REST_URL ? '✅' : '❌');
-  console.error('UPSTASH_REDIS_REST_TOKEN:', process.env.UPSTASH_REDIS_REST_TOKEN ? '✅' : '❌');
-  process.exit(1);
+// Détection Upstash
+const hasUpstash = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN;
+let redis = null;
+if (hasUpstash) {
+  const { Redis } = require('@upstash/redis');
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
 }
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+export const dynamic = "force-dynamic";
 
-async function keepLastOne() {
+export async function POST() {
   try {
+    if (!hasUpstash || !redis) {
+      return NextResponse.json({ error: 'Upstash non configuré' }, { status: 500 });
+    }
+
     const keyList = 'commandes';
     const commandeIds = await redis.lrange(keyList, 0, -1);
     
@@ -25,8 +26,10 @@ async function keepLastOne() {
     console.log(`📝 IDs: ${commandeIds.join(', ')}`);
     
     if (commandeIds.length <= 1) {
-      console.log('✅ Il y a déjà 1 commande ou moins, rien à faire.');
-      return;
+      return NextResponse.json({ 
+        message: 'Il y a déjà 1 commande ou moins, rien à faire.',
+        commandes: commandeIds 
+      });
     }
     
     // On garde seulement la première (la plus récente)
@@ -47,10 +50,14 @@ async function keepLastOne() {
       console.log(`🗑️ Clé supprimée: ${key}`);
     }
     
-    console.log('✅ Nettoyage terminé avec succès!');
+    return NextResponse.json({ 
+      message: 'Nettoyage terminé avec succès!',
+      commandeConservee: toKeep[0],
+      commandesSupprimees: toDelete
+    });
+    
   } catch (error) {
     console.error('❌ Erreur lors du nettoyage:', error);
+    return NextResponse.json({ error: 'Erreur lors du nettoyage' }, { status: 500 });
   }
-}
-
-keepLastOne().then(() => process.exit(0)); 
+} 
