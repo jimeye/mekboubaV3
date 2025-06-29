@@ -88,6 +88,8 @@ export async function POST(req) {
         const keyDetail = `commande:${paymentIntentId}`;
         await redis.lpush(keyList, paymentIntentId);
         await redis.set(keyDetail, JSON.stringify(commandeComplete));
+        // Ajout du orderNumber dans la liste dédiée
+        await redis.lpush('orderNumbers', orderNumber);
         return NextResponse.json({ ok: true });
       } catch (err) {
         console.error('[API LOG] Erreur Upstash', err);

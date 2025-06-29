@@ -42,10 +42,12 @@ export async function POST() {
       console.log(`🗑️ Clé supprimée: ${key}`);
     }
 
-    // Supprimer toutes les clés orderNumber:*
-    const orderNumberKeys = await redis.keys('orderNumber:*');
-    if (orderNumberKeys.length > 0) {
+    // Supprimer toutes les clés orderNumber:... listées dans la liste Redis 'orderNumbers'
+    const orderNumbers = await redis.lrange('orderNumbers', 0, -1);
+    if (orderNumbers.length > 0) {
+      const orderNumberKeys = orderNumbers.map(num => `orderNumber:${num}`);
       await redis.del(...orderNumberKeys);
+      await redis.del('orderNumbers'); // Vider la liste
       console.log(`🗑️ Clés orderNumber supprimées: ${orderNumberKeys.join(', ')}`);
     }
 
