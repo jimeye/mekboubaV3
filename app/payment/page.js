@@ -70,6 +70,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
             // Succès - rediriger vers confirmation
             const paymentIntentId = result.paymentIntent?.id;
             const orderDataWithTotal = { ...orderData, total: amount };
+            console.log('[DEBUG] Redirection avec orderData :', orderDataWithTotal);
             const successUrl = paymentType === 'cash_validation' 
               ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
               : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
@@ -148,6 +149,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
         // Succès - rediriger vers confirmation
         const paymentIntentId = result.paymentIntent?.id;
         const orderDataWithTotal = { ...orderDataWithNumber, total: amount };
+        console.log('[DEBUG] Redirection avec orderData :', orderDataWithTotal);
         const successUrl = paymentType === 'cash_validation' 
           ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
           : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
