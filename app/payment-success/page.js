@@ -181,18 +181,113 @@ export default function PaymentSuccessPage() {
 
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
               <p className="text-green-800 text-sm">
-                ⚠️ RENVOYEZ LE MESSAGE WhatsApp CI-DESSOUS POUR ENVOYER VOTRE COMMANDE EN CUISINE.
+                ⚠️ ENVOYEZ IMPERATIVEMENT LE MESSAGE CI-DESSOUS POUR LANCER VOTRE COMMANDE EN CUISINE 👨🏻‍🍳
               </p>
             </div>
 
             <div className="space-y-4">
               <button
                 onClick={sendWhatsAppMessage}
-                className="block w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+                className="block w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition-colors animate-pulse"
+                style={{
+                  animation: 'heartbeat 1.5s ease-in-out infinite'
+                }}
               >
-                RENVOYER LE MESSAGE SUR WhatsApp
+                ENVOYER IMPERATIVEMENT SUR W
               </button>
+            </div>
+
+            {/* Ticket de commande */}
+            <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">
+                📋 Détails de votre commande
+              </h3>
               
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold">Numéro de commande :</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded font-mono">{orderData?.orderNumber || '--'}</span>
+                </div>
+                
+                <div className="flex justify-between">
+                  <span>Nom :</span>
+                  <span>{orderData?.lastName} {orderData?.firstName}</span>
+                </div>
+                
+                <div className="flex justify-between">
+                  <span>Téléphone :</span>
+                  <span>{orderData?.phone}</span>
+                </div>
+                
+                <div className="flex justify-between">
+                  <span>Date de livraison :</span>
+                  <span>{orderData?.deliveryDate} à {orderData?.deliveryTime}</span>
+                </div>
+                
+                <div className="border-t pt-3">
+                  <div className="font-semibold mb-2">Adresse de livraison :</div>
+                  <div className="text-gray-600">
+                    {orderData?.isHotel === 'yes' ? (
+                      orderData?.selectedHotel === 'Autre' ? (
+                        <>
+                          <div>Hôtel : {orderData?.otherHotelName}</div>
+                          <div>Chambre : {orderData?.roomNumber}</div>
+                          <div>{orderData?.otherHotelAddress}, {orderData?.otherHotelPostalCode}</div>
+                          <div>{orderData?.otherHotelCity}, {orderData?.otherHotelCountry}</div>
+                        </>
+                      ) : (
+                        <>
+                          <div>Hôtel : {orderData?.selectedHotel}</div>
+                          <div>Chambre : {orderData?.roomNumber}</div>
+                        </>
+                      )
+                    ) : (
+                      <>
+                        <div>{orderData?.address}</div>
+                        <div>{orderData?.postalCode} {orderData?.city}</div>
+                        <div>{orderData?.country}</div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="border-t pt-3">
+                  <div className="font-semibold mb-2">Produits commandés :</div>
+                  {Array.isArray(orderData?.sbmLots) && orderData.sbmLots.length > 0 && (
+                    <div className="mb-2">
+                      <div className="font-medium">SBM : {orderData.sbmLots.reduce((sum, lot) => sum + lot.qty, 0)} x 26€</div>
+                    </div>
+                  )}
+                  {Array.isArray(orderData?.bbmLots) && orderData.bbmLots.length > 0 && (
+                    <div className="mb-2">
+                      <div className="font-medium">BBM : {orderData.bbmLots.reduce((sum, lot) => sum + lot.qty, 0)} x 26€</div>
+                    </div>
+                  )}
+                  {orderData?.boulettesSuppGlobal > 0 && (
+                    <div className="mb-2">
+                      <div className="font-medium">Boulettes Marchi : {orderData.boulettesSuppGlobal} x 5€</div>
+                    </div>
+                  )}
+                </div>
+                
+                {orderData?.notes && (
+                  <div className="border-t pt-3">
+                    <div className="font-semibold mb-1">Notes :</div>
+                    <div className="text-gray-600 italic">{orderData.notes}</div>
+                  </div>
+                )}
+                
+                <div className="border-t pt-3">
+                  <div className="flex justify-between font-semibold">
+                    <span>Total payé :</span>
+                    <span className="text-lg text-green-600">{orderData?.total}€</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bouton retour à l'accueil après le ticket */}
+            <div className="mt-6">
               <Link 
                 href="/"
                 className="block w-full bg-accent-red text-white py-3 px-6 rounded-lg font-semibold hover:bg-accent-red/90 transition-colors"

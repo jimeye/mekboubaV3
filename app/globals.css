@@ -86,6 +86,24 @@ body {
   }
 }
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.1);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
 /* Classes d'animation */
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
