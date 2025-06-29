@@ -97,6 +97,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (loading) return; // Empêche toute double soumission
     setLoading(true);
     setError(null);
 
