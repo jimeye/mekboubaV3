@@ -239,6 +239,21 @@ export default function CommandesPage() {
     }
   };
 
+  const checkCounter = async () => {
+    try {
+      const response = await fetch('/api/check-counter');
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert(`🔍 État du compteur:\nCompteur actuel: ${data.currentCounter}\nClé: ${data.counterKey}\nURL Upstash: ${data.upstashUrl}\nClés trouvées: ${data.allCounterKeys?.join(', ') || 'Aucune'}`);
+      } else {
+        alert(`❌ Erreur: ${data.error}`);
+      }
+    } catch (error) {
+      alert(`❌ Erreur: ${error.message}`);
+    }
+  };
+
   const { totalPaye, totalProduits } = calculateStats();
 
   if (loading) {
@@ -283,6 +298,14 @@ export default function CommandesPage() {
               title="Garder seulement les deux dernières commandes"
             >
               🧹
+            </button>
+            {/* Bouton de vérification du compteur */}
+            <button
+              onClick={checkCounter}
+              className="mt-4 ml-2 px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors w-1/5"
+              title="Vérifier l'état du compteur"
+            >
+              🔍
             </button>
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}
