@@ -37,4 +37,18 @@ export async function GET() {
     console.error('❌ Erreur check-counter:', error);
     return NextResponse.json({ error: 'Erreur lors de la vérification' }, { status: 500 });
   }
+}
+
+export async function POST() {
+  try {
+    if (!hasUpstash || !redis) {
+      return NextResponse.json({ error: 'Upstash non configuré' }, { status: 500 });
+    }
+    const counterKey = 'orderNumberCounter';
+    await redis.set(counterKey, 0);
+    return NextResponse.json({ message: 'Compteur réinitialisé à 0' });
+  } catch (error) {
+    console.error('❌ Erreur reset-counter:', error);
+    return NextResponse.json({ error: 'Erreur lors de la réinitialisation' }, { status: 500 });
+  }
 } 

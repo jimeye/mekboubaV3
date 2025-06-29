@@ -30,7 +30,7 @@ export async function GET() {
   const now = new Date();
   const day = now.getDate().toString().padStart(2, '0');
   const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  const numCmd = `CMD ${day}${month}-555${counter.toString().padStart(3, '0')}`;
+  const numCmd = `CMD${day}${month}-555${counter.toString().padStart(3, '0')}`;
   
   console.log('🔍 [DEBUG] Numéro généré:', numCmd);
   
