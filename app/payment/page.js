@@ -37,6 +37,15 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
         setError(null);
 
         try {
+          // Générer un numéro de commande unique
+          let orderNumber = orderData.orderNumber;
+          if (!orderNumber) {
+            const res = await fetch('/api/generate-order-number');
+            const data = await res.json();
+            orderNumber = data.orderNumber;
+          }
+          const orderDataWithNumber = { ...orderData, orderNumber };
+
           // Créer l'intention de paiement
           const response = await fetch('/api/create-payment-intent', {
             method: 'POST',
@@ -46,7 +55,7 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
             body: JSON.stringify({
               amount: amount * 100,
               paymentType,
-              orderData
+              orderData: orderDataWithNumber
             }),
           });
 
@@ -69,8 +78,8 @@ const PaymentForm = ({ orderData, paymentType, amount }) => {
             setSuccess(true);
             // Succès - rediriger vers confirmation
             const paymentIntentId = result.paymentIntent?.id;
-            const orderDataWithTotal = { ...orderData, total: amount };
-            console.log('[DEBUG] Redirection avec orderData :', orderDataWithTotal);
+            const orderDataWithTotal = { ...orderDataWithNumber, total: amount };
+            console.log('[DEBUG] Redirection ApplePay avec orderData :', orderDataWithTotal);
             const successUrl = paymentType === 'cash_validation' 
               ? `/payment-success?type=cash&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`
               : `/payment-success?type=full&orderData=${encodeURIComponent(JSON.stringify(orderDataWithTotal))}&payment_intent=${paymentIntentId}`;
