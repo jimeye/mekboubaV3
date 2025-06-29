@@ -161,7 +161,7 @@ export default function PaymentSuccessPage() {
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
           <div className="bg-white p-8 rounded-lg shadow-md text-center">
-            <div className="text-4xl mb-4">
+            <div className="text-4xl mb-1">
               {paymentType === 'cash' ? '✅' : '💳'}
             </div>
             
@@ -181,7 +181,7 @@ export default function PaymentSuccessPage() {
 
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
               <p className="text-green-800 text-sm">
-                ⚠️ ENVOYEZ IMPERATIVEMENT LE MESSAGE CI-DESSOUS POUR LANCER VOTRE COMMANDE EN CUISINE 👨🏻‍🍳
+                ⚠️ ENVOYEZ IMPÉRATIVEMENT CE MESSAGE POUR LANCER LA COMMANDE EN CUISINE 👨🏻‍🍳
               </p>
             </div>
 
@@ -193,7 +193,7 @@ export default function PaymentSuccessPage() {
                   animation: 'heartbeat 1.5s ease-in-out infinite'
                 }}
               >
-                ENVOYER IMPERATIVEMENT SUR W
+                ENVOYER SUR WHATSAPP
               </button>
             </div>
 
