@@ -68,17 +68,26 @@ export async function POST(req) {
       status: 'payé'
     };
 
+    // Vérification d'unicité du numéro de commande (orderNumber)
+    const orderNumber = commande?.orderNumber;
+    if (!orderNumber) {
+      return NextResponse.json({ error: 'Numéro de commande manquant' }, { status: 400 });
+    }
+
     if (hasUpstash && redis) {
       try {
+        // Vérification atomique avec SETNX
+        const orderNumberKey = `orderNumber:${orderNumber}`;
+        const setnxRes = await redis.set(orderNumberKey, paymentIntentId, { nx: true });
+        if (!setnxRes) {
+          // La clé existe déjà, donc commande déjà enregistrée
+          return NextResponse.json({ ok: true, idempotent: true, message: 'Commande déjà existante pour ce numéro (atomic)' });
+        }
+        // Ajout dans la liste des commandes
         const keyList = 'commandes';
         const keyDetail = `commande:${paymentIntentId}`;
-        console.log('[API LOG] Tentative sauvegarde dans Upstash', { keyList, keyDetail });
-        // Ajout dans la liste des commandes
-        const lpushRes = await redis.lpush(keyList, paymentIntentId);
-        console.log('[API LOG] Résultat lpush Upstash', lpushRes);
-        // Sauvegarde du détail de la commande
-        const setRes = await redis.set(keyDetail, JSON.stringify(commandeComplete));
-        console.log('[API LOG] Résultat set Upstash', setRes);
+        await redis.lpush(keyList, paymentIntentId);
+        await redis.set(keyDetail, JSON.stringify(commandeComplete));
         return NextResponse.json({ ok: true });
       } catch (err) {
         console.error('[API LOG] Erreur Upstash', err);
@@ -88,6 +97,9 @@ export async function POST(req) {
       // Mode local : fichier JSON
       console.log('[API LOG] Utilisation fichier JSON local');
       const commandes = readCommandes();
+      if (commandes.some(c => c.orderData?.orderNumber === orderNumber)) {
+        return NextResponse.json({ ok: true, idempotent: true, message: 'Commande déjà existante pour ce numéro' });
+      }
       commandes.push(commandeComplete);
       writeCommandes(commandes);
       return NextResponse.json({ ok: true });

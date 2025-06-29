@@ -41,9 +41,20 @@ export async function POST() {
       await redis.del(key);
       console.log(`🗑️ Clé supprimée: ${key}`);
     }
+
+    // Supprimer toutes les clés orderNumber:*
+    const orderNumberKeys = await redis.keys('orderNumber:*');
+    if (orderNumberKeys.length > 0) {
+      await redis.del(...orderNumberKeys);
+      console.log(`🗑️ Clés orderNumber supprimées: ${orderNumberKeys.join(', ')}`);
+    }
+
+    // Réinitialiser le compteur à zéro
+    await redis.set('orderNumberCounter', 0);
     return NextResponse.json({ 
-      message: 'Toutes les commandes ont été supprimées!',
-      commandesSupprimees: toDelete
+      message: 'Toutes les commandes et clés orderNumber ont été supprimées et le compteur a été réinitialisé!',
+      commandesSupprimees: toDelete,
+      orderNumberKeysSupprimees: orderNumberKeys
     });
     
   } catch (error) {

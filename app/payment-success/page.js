@@ -13,6 +13,7 @@ export default function PaymentSuccessPage() {
   const [whatsappSent, setWhatsappSent] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const orderNumberGenerated = useRef(false);
+  const [commandeSaved, setCommandeSaved] = useState(false);
 
   useEffect(() => {
     const orderDataParam = searchParams.get('orderData');
@@ -23,50 +24,22 @@ export default function PaymentSuccessPage() {
 
     if (orderDataParam) {
       let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      // Générer le numéro de commande UNE SEULE FOIS avec la date du jour (commande)
-      if (!orderNumberGenerated.current) {
-        const now = new Date();
-        const day = now.getDate().toString().padStart(2, '0');
-        const month = (now.getMonth() + 1).toString().padStart(2, '0');
-        // Compteur du jour (2 chiffres)
-        let currentCounter = parseInt(localStorage.getItem('lastOrderNumber') || '0');
-        if (isNaN(currentCounter) || currentCounter < 1) currentCounter = 1;
-        // Si le numéro n'est pas déjà dans la session, on l'incrémente
-        let generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
-        if (!generatedOrderNumber) {
-          const counterStr = currentCounter.toString().padStart(2, '0');
-          generatedOrderNumber = `CMD ${day}${month}-555${counterStr}`;
-          sessionStorage.setItem('mekboubaOrderNumber', generatedOrderNumber);
-          localStorage.setItem('lastOrderNumber', (currentCounter + 1).toString());
-        }
-        setOrderNumber(generatedOrderNumber);
-        orderNumberGenerated.current = true;
-        parsedOrderData.orderNumber = generatedOrderNumber;
-      } else {
-        // Si déjà généré, on récupère depuis sessionStorage
-        const generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
-        setOrderNumber(generatedOrderNumber);
-        parsedOrderData.orderNumber = generatedOrderNumber;
-      }
+      setOrderNumber(parsedOrderData.orderNumber || null);
       setOrderData(parsedOrderData);
     }
     if (paymentTypeParam) {
       setPaymentType(paymentTypeParam);
     }
 
-    // Sauvegarder la commande complète
-    if (orderDataParam && paymentIntentId) {
+    // Sauvegarder la commande complète UNE SEULE FOIS
+    if (orderDataParam && paymentIntentId && !commandeSaved) {
       let parsedOrderData = JSON.parse(decodeURIComponent(orderDataParam));
-      // Toujours utiliser le même numéro de commande
-      const generatedOrderNumber = sessionStorage.getItem('mekboubaOrderNumber');
-      if (generatedOrderNumber) {
-        parsedOrderData.orderNumber = generatedOrderNumber;
-      }
       saveCommande(parsedOrderData, paymentIntentId);
+      setCommandeSaved(true);
     } else {
-      console.log('[DEBUG] saveCommande non appelée - paramètres manquants:', { orderDataParam: !!orderDataParam, paymentIntentId: !!paymentIntentId });
+      console.log('[DEBUG] saveCommande non appelée - paramètres manquants ou déjà sauvegardée:', { orderDataParam: !!orderDataParam, paymentIntentId: !!paymentIntentId, commandeSaved });
     }
-  }, [searchParams]);
+  }, [searchParams, commandeSaved]);
 
   const saveCommande = async (orderData, paymentIntentId) => {
     console.log('[DEBUG] saveCommande appelée avec:', { orderData, paymentIntentId });
@@ -127,14 +100,9 @@ export default function PaymentSuccessPage() {
       'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
       'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
     };
-    const monthNumber = monthNames[month.toLowerCase()];
-    
-    // Récupérer le compteur depuis localStorage
-    const lastOrderNumber = localStorage.getItem('lastOrderNumber') || '55500';
-    const currentCounter = parseInt(lastOrderNumber) + 1;
-    localStorage.setItem('lastOrderNumber', currentCounter.toString());
-    
-    const orderNumber = orderData.orderNumber || orderNumber || '--';
+    const monthNumber = monthNames[month?.toLowerCase()] || '';
+
+    const orderNumber = orderData.orderNumber || '--';
 
     const sbmDetails = Array.isArray(sbmLots)
       ? sbmLots.map((lot, index) =>
@@ -171,30 +139,7 @@ export default function PaymentSuccessPage() {
       ? 'Paiement en espèces à la livraison'
       : 'Paiement CB en ligne effectué';
 
-    const message = `
-Commande ${orderNumber}
------------------------------------
-Commandé le ${orderDate} à ${orderTime}
-Nom: ${lastName}
-Prénom: ${firstName}
-Téléphone: ${phone}
-
-Livraison :
-Date: ${deliveryDate} à ${deliveryTime}
-${deliveryAddress}
-
-Détails de la commande :
-SBM: ${sbmCount} x 26€${sbmDetails}
-BBM: ${bbmCount} x 26€${bbmDetails}${boulettesSuppGlobal > 0 ? `\nBoulettes Marchi : ${boulettesSuppGlobal} x 5€` : ''}
-
-Notes: ${notes || 'Aucune'}
------------------------------------
-Sous-total: ${subtotal}€
-Livraison: ${deliveryFee}€
-TOTAL PAYÉ: ${totalPaye}€
-
-${paymentInfo}
-`;
+    const message = `\nCommande ${orderNumber}\n-----------------------------------\nCommandé le ${orderDate} à ${orderTime}\nNom: ${lastName}\nPrénom: ${firstName}\nTéléphone: ${phone}\n\nLivraison :\nDate: ${deliveryDate} à ${deliveryTime}\n${deliveryAddress}\n\nDétails de la commande :\nSBM: ${sbmCount} x 26€${sbmDetails}\nBBM: ${bbmCount} x 26€${bbmDetails}${boulettesSuppGlobal > 0 ? `\nBoulettes Marchi : ${boulettesSuppGlobal} x 5€` : ''}\n\nNotes: ${notes || 'Aucune'}\n-----------------------------------\nSous-total: ${subtotal}€\nLivraison: ${deliveryFee}€\nTOTAL PAYÉ: ${totalPaye}€\n\n${paymentInfo}\n`;
 
     const whatsappUrl = `https://wa.me/33652696976?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -260,4 +205,4 @@ ${paymentInfo}
       </div>
     </div>
   );
-} 
+}
