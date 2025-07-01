@@ -210,7 +210,7 @@ export default function HomeNew() {
                     </p>
                     <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-orange-800 text-center font-semibold">
-                        🚚 Livraison gratuite pour 5 SBM
+                        🚚 Livraison gratuite pour 6 SBM
                       </p>
                     </div>
                     <Link 
@@ -247,7 +247,7 @@ export default function HomeNew() {
                     </p>
                     <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-green-800 text-center font-semibold">
-                        🚚 Livraison gratuite pour 5 BBM
+                        🚚 Livraison gratuite pour 6 BBM
                       </p>
                     </div>
                     <Link 
