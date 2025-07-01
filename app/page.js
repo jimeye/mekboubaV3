@@ -28,7 +28,7 @@ const heroImages = [
   {
     id: 4,
     image: '/images/ibizasunshine.webp',
-    title: 'Isla Bonita',
+    title: 'Ibiza Isla Bonita',
     description: 'Une Expérience Culinaire Unique<br/>À Ibiza Kosher Friendly'
   }
 ];
