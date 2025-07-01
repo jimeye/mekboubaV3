@@ -139,14 +139,13 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                     lancement officiel le 04/07 !
                   </Link>
                   {/* Bloc info commande + viande kosher juste après le lien */}
-                  <div className="mt-6 text-center">
+                  <div className="mt-4 text-center">
                     <div className="text-white text-lg leading-tight">
                       Passez votre commande du<br />
                       Dimanche au Jeudi 12h max<br />
                       Vous serez livrés le vendredi
-                      <br /><span style={{ display: 'inline-block', marginTop: '0.5em' }}></span>
                     </div>
-                    <div className="mt-1">
+                    <div className="mt-4">
                       <span>Viande Kosher by </span>
                       <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>
                     </div>
