@@ -10,7 +10,7 @@ const slides = [
     id: 3,
     image: '/images/une experience unique.jpg',
     title: 'Sandwich Boulettes Mekbouba',
-    description: 'Maintenant À Ibiza'
+    description: 'Le Sandwich Boulette Mekbouba qui te fera oublier celui de ta mère'
   },
   {
     id: 1,

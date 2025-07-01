@@ -665,8 +665,7 @@ export default function ReservationPage() {
               <h3 className="text-xl font-bold mb-4">Informations</h3>
               <div className="space-y-2 text-sm text-gray-200">
                 <div>📅 Pré-commande obligatoire</div>
-                <div>⏰ Passez votre commande du Dimanche au Jeudi max 12h</div>
-                <div>Vous serez livrer vendredi !</div>
+                <div>⏰ Passez votre commande du Dimanche au Jeudi 12h max<br />Vous serez livrés le vendredi</div>
                 <div>🌶️ Cuisine 100% Judéo-Tunisienne</div>
                 <div>Kosher Friendly</div>
               </div>

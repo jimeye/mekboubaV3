@@ -116,7 +116,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center">{slide.title}</h1>
-                <p className="text-xl md:text-2xl text-center max-w-2xl px-4" dangerouslySetInnerHTML={{ __html: slide.description }}></p>
+                <div className="text-xl md:text-2xl text-center max-w-2xl px-4" dangerouslySetInnerHTML={{ __html: slide.description }}></div>
                 <a 
                   href="#menu"
                   className="mt-6 bg-accent-red hover:bg-accent-red/90 text-white text-center py-3 px-6 rounded-lg font-semibold transition-colors duration-300"
@@ -125,7 +125,6 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                 </a>
                 <p className="text-xl md:text-2xl text-white/90 mt-6 mb-1 text-[1.2em]">*Uniquement le vendredi</p>
                 <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1">Pré-Commande Obligatoire</p>
-                
                 {/* Lien de réservation avec ID unique */}
                 <div className="mt-16 md:mt-20 relative z-50">
                   <Link 
@@ -133,17 +132,25 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                     id="reservation-link-slider"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-lg md:text-xl text-white/80 hover:text-white transition-colors duration-300 cursor-pointer block text-center"
+                    className="text-lg md:text-xl text-white/80 hover:text-white transition-colors duration-300 cursor-pointer block text-center underline animate-heartbeat"
                     style={{ pointerEvents: 'auto' }}
                   >
-                    Réservez votre plaisir dès maintenant<br />
-                    lancement officiel le 30/06 !
+                    Réservez votre kiff dès maintenant<br />
+                    lancement officiel le 04/07 !
                   </Link>
-                  <p className="text-lg md:text-xl text-white/80 mt-6 text-center">
-                    Passez votre commande du<br />
-                    Dimanche au Jeudi max 12h<br />
-                    Vous serez livrés le vendredi
-                  </p>
+                  {/* Bloc info commande + viande kosher juste après le lien */}
+                  <div className="mt-6 text-center">
+                    <div className="text-white text-lg leading-tight">
+                      Passez votre commande du<br />
+                      Dimanche au Jeudi 12h max<br />
+                      Vous serez livrés le vendredi
+                      <br /><span style={{ display: 'inline-block', marginTop: '0.5em' }}></span>
+                    </div>
+                    <div className="mt-1">
+                      <span>Viande Kosher by </span>
+                      <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

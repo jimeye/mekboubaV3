@@ -87,19 +87,19 @@ body {
 }
 
 @keyframes heartbeat {
-  0% {
+  0%, 100% {
     transform: scale(1);
   }
-  14% {
-    transform: scale(1.1);
+  20% {
+    transform: scale(1.04);
   }
-  28% {
+  40% {
     transform: scale(1);
   }
-  42% {
-    transform: scale(1.1);
+  60% {
+    transform: scale(1.04);
   }
-  70% {
+  80% {
     transform: scale(1);
   }
 }
@@ -119,6 +119,10 @@ body {
 
 .animate-slide-in-right {
   animation: slideInRight 0.6s ease-out;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
 }
 
 /* Effets de hover avancés */

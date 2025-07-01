@@ -11,7 +11,7 @@ const heroImages = [
     id: 1,
     image: '/images/une experience unique.jpg',
     title: 'Sandwich Boulettes Mekbouba',
-    description: 'Maintenant À Ibiza'
+    description: 'Le Sandwich Boulette Mekbouba<br/>qui te fera oublier celui de ta mère'
   },
   {
     id: 2,
@@ -373,8 +373,7 @@ export default function HomeNew() {
                 <div className="flex flex-col items-center space-y-2">
                   <div className="text-[1.2rem]">⏰</div>
                   <div className="text-base text-white hover:text-accent-red transition-colors duration-300">
-                    Passez votre commande du Dimanche au Jeudi max 12h<br />
-                    Vous serez livrés le vendredi
+                    ⏰ Passez votre commande du Dimanche au Jeudi 12h Max<br />Vous serez livrer vendredi !
                   </div>
                 </div>
                 <div className="flex flex-col items-center space-y-2 mt-4">
@@ -382,6 +381,7 @@ export default function HomeNew() {
                     Kosher Friendly
                   </div>
                 </div>
+                <div className="mt-1"><span>Viande Kosher by </span><a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a></div>
               </div>
             </div>
             
@@ -447,7 +447,7 @@ export default function HomeNew() {
               <h3 className="text-xl font-bold mb-4">Informations</h3>
               <div className="space-y-2 text-sm text-gray-200">
                 <div>📅 Pré-commande obligatoire</div>
-                <div>⏰ Passez votre commande du Dimanche au Jeudi max 12h</div>
+                <div>⏰ Passez votre commande du Dimanche au Jeudi 12h Max</div>
                 <div>Vous serez livrer vendredi !</div>
                 <div>🌶️ Cuisine 100% Judéo-Tunisienne</div>
                 <div>Kosher Friendly</div>
