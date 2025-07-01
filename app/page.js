@@ -410,7 +410,7 @@ export default function HomeNew() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-4">
             <div className="text-center">
-              <h3 className="text-xl font-bold mb-4">MEKBOUBA, BOULETTES & PIMENTS 🌶️</h3>
+              <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
               <p className="text-sm text-gray-200 mb-4">
                 Cuisine certifiée 100% Judéo-Tunisienne,<br />
                 transmise de génération en génération. Kosher Friendly.
