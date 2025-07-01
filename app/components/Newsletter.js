@@ -34,8 +34,8 @@ export default function Newsletter() {
                 <div className="relative h-48 print:h-[80mm]">
                   <div className="absolute inset-0 flex items-center justify-center pt-12">
                     <div className="text-center relative w-full h-full">
-                      <p className="text-xl md:text-2xl text-white/90 mb-1 -mt-16 text-[1.2em]">*Uniquement le vendredi</p>
-                      <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1">Pré-Commande Obligatoire</p>
+                      <p className="text-xl md:text-2xl text-white/90 mb-1 -mt-16 text-[1.2em] text-center">*Uniquement le vendredi</p>
+                      <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1 text-center">Pré-Commande Obligatoire<br />Free Delivery pour 6 BBM et SBM</p>
                       <a href="https://mekbouba.vercel.app" target="_blank" rel="noopener noreferrer" className="block relative z-10">
                         <h1 className="text-4xl font-bold text-white mb-6 scale-[1.07]">🌶️ MEKBOUBA, BOULETTES & PIMENT 🌶️</h1>
                         <p className="text-3xl text-white mt-48 print:mt-48 print:relative print:top-0">Maintenant à Ibiza</p>

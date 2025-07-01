@@ -107,8 +107,8 @@ export default function HeroSlider() {
                 >
                   Notre Menu
                 </a>
-                <p className="text-xl md:text-2xl text-white/90 mt-2 mb-1 text-[1.2em]">*Uniquement le vendredi</p>
-                <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1">Pré-Commande Obligatoire</p>
+                <p className="text-xl md:text-2xl text-white/90 mt-2 mb-1 text-[1.2em] text-center">*Uniquement le vendredi</p>
+                <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1 text-center">Pré-Commande Obligatoire<br />Free Delivery pour 6 BBM et SBM</p>
                 <a 
                   href="/reservation"
                   className="text-sm md:text-base text-white/80 text-[0.55em] mt-24 hover:text-white transition-colors duration-300 cursor-pointer underline block relative z-50"
