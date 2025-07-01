@@ -217,7 +217,7 @@ export default function HomeNew() {
                       href="/reservation"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-1.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
                     >
                       <span className="text-[1.84rem]">🥪</span>
                       <span>Réserver</span>
@@ -245,7 +245,7 @@ export default function HomeNew() {
                       La même que le SBM boulettes, piment, mekbouba & oeuf dans une box complète 
                       avec accompagnements traditionnels.
                     </p>
-                    <div className="bg-green-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
+                    <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-green-800 text-center font-semibold">
                         🚚 Livraison gratuite pour 5 BBM
                       </p>
@@ -254,7 +254,7 @@ export default function HomeNew() {
                       href="/reservation"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-1.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
                     >
                       <span className="text-[1.84rem]">🍱</span>
                       <span>Réserver</span>
@@ -282,13 +282,13 @@ export default function HomeNew() {
                       Nos tajines traditionnels, loubia, hams, nikitouche, classique légumes, 
                       5 salades et sa semoule, parfaits pour vos repas entre amis.
                     </p>
-                    <div className="bg-gray-50 p-3 rounded-lg mb-4">
+                    <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-gray-600 text-center font-semibold">
                         👥 Minimum 6 personnes
                       </p>
                     </div>
                     <button 
-                      className="inline-flex items-center justify-center space-x-2 bg-gray-400 text-white px-5 py-1.5 rounded-xl font-semibold cursor-not-allowed w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-gray-400 text-white px-5 py-3 rounded-xl font-semibold cursor-not-allowed w-full text-center mt-auto text-base"
                       disabled
                     >
                       <span className="text-[1.84rem]">🔜</span>
