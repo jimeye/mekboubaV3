@@ -371,8 +371,8 @@ export default function HomeNew() {
                     <div className="text-[1.2rem]">📧</div>
                     <div>
                       <div className="text-white font-semibold text-base">Email</div>
-                      <a href="mailto:info@mekbouba.com" className="text-white hover:text-accent-red transition-colors text-base">
-                        info@mekbouba.com
+                      <a href="mailto:info@labouletteibiza.com" className="text-white hover:text-accent-red transition-colors text-base">
+                        info@labouletteibiza.com
                       </a>
                     </div>
                   </div>
@@ -403,12 +403,11 @@ export default function HomeNew() {
                       ⏰ Passez votre commande du Dimanche au Jeudi 12h Max<br />Vous serez livrer vendredi !
                     </div>
                   </div>
-                  <div className="flex flex-col items-center space-y-2 mt-4">
+                  <div className="flex flex-col items-center space-y-2 mt-2">
                     <div className="text-base text-white hover:text-accent-red transition-colors duration-300">
-                      Kosher Friendly
+                      Viande Kosher by <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>
                     </div>
                   </div>
-                  <div className="mt-1"><span>Viande Kosher by </span><a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a></div>
                 </div>
               </div>
               
@@ -438,25 +437,21 @@ export default function HomeNew() {
             <div className="grid grid-cols-1 gap-4">
               <div className="text-center">
                 <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
+                <div className="text-lg mb-4">🕍 Kosher Friendly 🕍</div>
                 <p className="text-sm text-gray-200 mb-4">
                   Cuisine certifiée 100% Judéo-Tunisienne,<br />
-                  transmise de génération en génération. Kosher Friendly.
+                  transmise de génération en génération.<br />
+                  Viande Kosher by <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>.
                 </p>
-                <div className="flex space-x-4 justify-center">
-                  <div className="text-2xl">🌶️</div>
-                  <div className="text-2xl">🥘</div>
-                  <div className="text-2xl">👨‍🍳</div>
-                </div>
               </div>
               
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-4">Prenez le micro 🎙️</h3>
                 <div className="space-y-2 text-sm">
                   <a href="https://wa.me/33652696976" target="_blank" rel="noopener noreferrer" className="block hover:text-gray-200 transition-colors">
                     📞 +33 6 52 69 69 76
                   </a>
-                  <a href="mailto:info@mekbouba.com" className="block hover:text-gray-200 transition-colors">
-                    📧 info@mekbouba.com
+                  <a href="mailto:info@labouletteibiza.com" className="block hover:text-gray-200 transition-colors">
+                    📧 info@labouletteibiza.com
                   </a>
                   <a 
                     href="https://maps.google.com/maps?q=38.96426,1.47936&z=15"
@@ -473,18 +468,15 @@ export default function HomeNew() {
               <div className="text-center">
                 <h3 className="text-xl font-bold mb-4">Informations</h3>
                 <div className="space-y-2 text-sm text-gray-200">
-                  <div>📅 Pré-commande obligatoire</div>
-                  <div>⏰ Passez votre commande du Dimanche au Jeudi 12h Max</div>
+                  <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
                   <div>Vous serez livrer vendredi !</div>
-                  <div>🌶️ Cuisine 100% Judéo-Tunisienne</div>
-                  <div>Kosher Friendly</div>
                 </div>
               </div>
             </div>
             
             <div className="border-t border-white/20 mt-8 pt-8 text-center">
               <p className="text-sm text-gray-200">
-                © 2025 MEKBOUBA, BOULETTES & PIMENTS 🌶️ - Tous droits réservés
+                © 2025 La Boulette Ibiza 🌶️<br /><span className="text-xs">Tous droits réservés</span>
               </p>
               <p className="text-xs text-gray-200 mt-2">
                 <a href="https://wa.me/33608251223?text=Je veux le meme site !!" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors">
