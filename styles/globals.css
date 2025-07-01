@@ -38,4 +38,54 @@
   .btn-secondary {
     @apply text-custom-grey bg-[#FFF200] hover:bg-opacity-90;
   }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.08);
+  }
+  20%, 40% {
+    transform: scale(0.96);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  60% {
+    transform: scale(0.98);
+  }
+  70% {
+    transform: scale(1.02);
+  }
+  80% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.4s infinite;
+  will-change: transform;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background: linear-gradient(90deg, #bbf7d0, #fef9c3); }
+  50% { background: linear-gradient(90deg, #fef9c3, #bbf7d0); }
+}
+
+.badge-gradient {
+  animation: gradient-shift 2s infinite alternate;
+}
+
+@keyframes border-pulse {
+  0%, 100% { border-width: 2px; }
+  50% { border-width: 6px; }
+}
+
+.badge-border-pulse {
+  border-style: solid;
+  border-color: #cf0e0e !important;
+  border-width: 2px !important;
+  animation: border-pulse 1.2s infinite;
 } 

@@ -56,6 +56,16 @@ const MenuSection = () => {
               <div className="p-6 flex-grow flex flex-col">
                 <h3 className="text-xl font-bold text-custom-grey mb-2">{item.name}</h3>
                 <p className="text-custom-grey/80 mb-4 flex-grow">{item.description}</p>
+                {item.name === 'Sandwich Mekbouba' && (
+                  <div className="bg-green-200 text-green-900 font-semibold rounded-lg px-3 py-2 mb-2 text-center badge-border-pulse border-green-400">
+                    🚚 Livraison gratuite pour 5 SBM
+                  </div>
+                )}
+                {item.name === 'Box Mekbouba' && (
+                  <div className="bg-yellow-100 text-yellow-900 font-semibold rounded-lg px-3 py-2 mb-2 text-center badge-border-pulse border-yellow-400">
+                    🚚 Livraison gratuite pour 5 BBM
+                  </div>
+                )}
                 <div className="flex justify-between items-center mt-auto">
                   <span className="text-[#cf0e0e] font-bold text-xl">{item.price} €</span>
                   <button className="btn btn-primary group relative overflow-hidden">

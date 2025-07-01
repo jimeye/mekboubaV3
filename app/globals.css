@@ -175,6 +175,28 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Badge avec bordure rouge */
+@keyframes border-pulse {
+  0%, 100% { border-width: 1px; }
+  50% { border-width: 2px; }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 30px rgba(239, 68, 68, 0.4);
+  }
+}
+
+.badge-border-pulse {
+  border-style: solid;
+  border-color: #ef4444 !important;
+  border-width: 1px !important;
+  animation: border-pulse 1.2s infinite, glow 2s ease-in-out infinite;
+}
+
 /* Responsive design amélioré */
 @media (max-width: 768px) {
   .mobile-scale {

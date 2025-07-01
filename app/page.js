@@ -208,7 +208,7 @@ export default function HomeNew() {
                       Découvrez notre sandwich signature aux boulettes, piment, mekbouba & oeuf, 
                       une explosion de saveurs tunisiennes authentiques.
                     </p>
-                    <div className="bg-orange-50 p-3 rounded-lg mb-4">
+                    <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-orange-800 text-center font-semibold">
                         🚚 Livraison gratuite pour 5 SBM
                       </p>
@@ -245,7 +245,7 @@ export default function HomeNew() {
                       La même que le SBM boulettes, piment, mekbouba & oeuf dans une box complète 
                       avec accompagnements traditionnels.
                     </p>
-                    <div className="bg-green-50 p-3 rounded-lg mb-4">
+                    <div className="bg-green-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                       <p className="text-sm text-green-800 text-center font-semibold">
                         🚚 Livraison gratuite pour 5 BBM
                       </p>
