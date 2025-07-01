@@ -657,9 +657,8 @@ export default function ReservationPage() {
               </div>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-xl font-bold mb-4">Informations</h3>
-                            <div className="space-y-2 text-sm text-gray-200">
+                        <div className="text-center">
+              <div className="space-y-2 text-sm text-gray-200">
                 <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h max<br />Vous serez livrés le vendredi</div>
               </div>
             </div>

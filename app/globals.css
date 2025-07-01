@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scroll smooth global */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Correction des conflits d'overflow */
+* {
+  box-sizing: border-box;
+}
+
+/* Assurer que le main n'a pas de problèmes d'overflow */
+main {
+  overflow-x: hidden;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;

@@ -75,7 +75,8 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
   return (
     <div 
       ref={sliderRef}
-      className="relative h-screen overflow-y-auto"
+      className="relative h-screen overflow-y-auto scroll-smooth"
+      style={{ scrollBehavior: 'smooth' }}
       onScroll={handleSliderScroll}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -101,7 +102,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
         {images.map((slide, index) => (
           <div
             key={slide.id}
-            className="relative w-full h-screen"
+            className="relative w-full h-screen transition-all duration-500 ease-in-out"
           >
             <div className="relative w-full h-full">
               <Image

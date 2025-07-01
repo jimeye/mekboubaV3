@@ -167,7 +167,7 @@ export default function HomeNew() {
         </section>
 
         {/* Menu Section Amélioré */}
-        <section id="menu" className="relative min-h-screen overflow-hidden bg-gray-50 py-20">
+        <section id="menu" className="relative min-h-screen bg-gray-50 py-20 transition-all duration-700 ease-in-out">
             <div className="absolute inset-0 z-0">
               <Image
                 src="/images/une experience unique.jpg"
@@ -400,7 +400,7 @@ export default function HomeNew() {
                   <div className="flex flex-col items-center space-y-2">
                     <div className="text-[1.2rem]">⏰</div>
                     <div className="text-base text-white hover:text-accent-red transition-colors duration-300">
-                      ⏰ Passez votre commande du Dimanche au Jeudi 12h Max<br />Vous serez livrer vendredi !
+                      Passez votre commande du<br />Dimanche au Jeudi 12h Max<br />Vous serez livrer vendredi !
                     </div>
                   </div>
                   <div className="flex flex-col items-center space-y-2 mt-2">
@@ -466,7 +466,6 @@ export default function HomeNew() {
               </div>
               
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-4">Informations</h3>
                 <div className="space-y-2 text-sm text-gray-200">
                   <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
                   <div>Vous serez livrer vendredi !</div>
