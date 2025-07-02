@@ -125,7 +125,7 @@ export default function HomeNew() {
               La Boulette Ibiza 🌶️ Cacher, Kosher Friendly à Ibiza
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez notre cuisine traditionnelle, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil. Cacher, Kosher Friendly
+              Découvrez notre cuisine traditionnelle, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil. Cacher, Kosher Friendly.
             </p>
           </div>
         </section>
