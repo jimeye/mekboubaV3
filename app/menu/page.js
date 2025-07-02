@@ -8,7 +8,7 @@ export default function MenuPage() {
       <Navbar />
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6">Menu Restaurant Cacher à Ibiza – La Boulette</h1>
+          <h1 className="text-5xl font-bold text-gray-800 mb-6">La Boulette Ibiza – Restaurant cacher friendly à Ibiza</h1>
           <div className="w-24 h-1 bg-accent-red mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Découvrez nos spécialités authentiques, préparées avec passion et des ingrédients de qualité

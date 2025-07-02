@@ -274,7 +274,7 @@ export default function ReservationPage() {
           <div className="relative z-10 container mx-auto p-4 md:p-8">
             <div className="max-w-3xl mx-auto bg-white/95 p-6 md:p-10 rounded-2xl shadow-xl my-16">
               <div className="text-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">La Boulette Ibiza – Restaurant cacher à Ibiza</h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réservez chez<br className="md:hidden" /> La Boulette Ibiza 🌶️<br className="md:hidden" /> <span className="text-lg md:text-xl">Kosher Friendly</span></h1>
                 <p className="text-gray-600 mt-2">Livraison uniquement le vendredi</p>
               </div>
 
