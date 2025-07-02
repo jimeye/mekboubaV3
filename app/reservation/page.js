@@ -219,10 +219,7 @@ export default function ReservationPage() {
   const availableFridays = getAvailableFridays();
 
   const availableTimes = [
-    '12:30 à 13:00',
-    '13:00 à 13:30',
-    '13:30 à 14:30',
-    '14:30 à 15:00'
+    'de 12H30 à 15H30'
   ];
 
   const addLot = (type) => {
@@ -277,7 +274,7 @@ export default function ReservationPage() {
           <div className="relative z-10 container mx-auto p-4 md:p-8">
             <div className="max-w-3xl mx-auto bg-white/95 p-6 md:p-10 rounded-2xl shadow-xl my-16">
               <div className="text-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réserver chez MEKBOUBA, BOULETTES & PIMENTS 🌶️</h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réserver chez<br />LA BOULETTE IBIZA 🌶️</h1>
                 <p className="text-gray-600 mt-2">Livraison uniquement le vendredi</p>
               </div>
 
