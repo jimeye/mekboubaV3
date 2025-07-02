@@ -197,6 +197,49 @@ body {
   animation: border-pulse 1.2s infinite, glow 2s ease-in-out infinite;
 }
 
+/* Effet Shine + 3D pour les boutons menu */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.btn-shine-3d {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-shine-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(2deg) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-shine-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-shine-3d:hover::before {
+  left: 100%;
+}
+
 /* Responsive design amélioré */
 @media (max-width: 768px) {
   .mobile-scale {

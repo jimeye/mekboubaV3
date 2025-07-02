@@ -225,7 +225,7 @@ export default function HomeNew() {
                       href="/reservation"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base btn-shine-3d"
                     >
                       <span className="text-[1.84rem]">🥪</span>
                       <span>Réserver</span>
@@ -262,7 +262,7 @@ export default function HomeNew() {
                       href="/reservation"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base btn-shine-3d"
                     >
                       <span className="text-[1.84rem]">🍱</span>
                       <span>Réserver</span>
@@ -296,7 +296,7 @@ export default function HomeNew() {
                       </p>
                     </div>
                     <button 
-                      className="inline-flex items-center justify-center space-x-2 bg-gray-400 text-white px-5 py-3 rounded-xl font-semibold cursor-not-allowed w-full text-center mt-auto text-base"
+                      className="inline-flex items-center justify-center space-x-2 bg-gray-400 text-white px-5 py-3 rounded-xl font-semibold cursor-not-allowed w-full text-center mt-auto text-base btn-shine-3d"
                       disabled
                     >
                       <span className="text-[1.84rem]">🔜</span>
