@@ -9,25 +9,25 @@ import HeroSliderNew from './components/HeroSliderNew';
 const heroImages = [
   {
     id: 1,
-    image: '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.Webp',
+    image: '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp',
     title: 'Sandwich Boulettes Mekbouba',
     description: 'Le Sandwich Boulette Mekbouba<br/>qui te fera oublier celui de ta mère'
   },
   {
     id: 2,
-    image: '/images/mekbouba1-ibiza-kosher-cacher-friendly.WebP',
+    image: '/images/mekbouba1-ibiza-kosher-cacher-friendly.webp',
     title: 'Mekbouba',
     description: 'Poivrons, Piments, Tomates & Zeit'
   },
   {
     id: 3,
-    image: '/images/nosspecialites-ibiza-kosher-cacher-friendly.Webp',
+    image: '/images/nosspecialites-ibiza-kosher-cacher-friendly.webp',
     title: 'Boulettes Marchi',
     description: 'Boeuf, Oignons, Persil,<br/>Coriandre & Rose'
   },
   {
     id: 4,
-    image: '/images/ibizasunshine-ibiza-kosher-cacher-friendly.Webp.Webp',
+    image: '/images/ibizasunshine-ibiza-kosher-cacher-friendly.webp',
     title: 'Ibiza Isla Bonita',
     description: 'Une Expérience Culinaire Unique<br/>À Ibiza Kosher Friendly'
   }
