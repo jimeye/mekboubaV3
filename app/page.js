@@ -119,12 +119,15 @@ export default function HomeNew() {
         </section>
         
         {/* H1 Principal pour SEO */}
-        <section className="py-8 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        <section className="py-8 bg-white relative">
+          <div className="absolute inset-0 z-0">
+            <img src="/images/mekbouba2-ibiza-kosher-cacher-friendly.webp" alt="Fond Mekbouba" className="w-full h-full object-cover" style={{opacity:0.7}} />
+          </div>
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               La Boulette Ibiza 🌶️ Cacher, Kosher Friendly à Ibiza
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-white max-w-3xl mx-auto">
               Découvrez notre cuisine traditionnelle, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil. Cacher, Kosher Friendly.
             </p>
           </div>
