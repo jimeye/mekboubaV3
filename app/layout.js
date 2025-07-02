@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content="Découvrez notre cuisine traditionnelle cacher, kosher, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil." />
         <meta property="og:url" content="https://www.laboulette-ibiza.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.laboulette-ibiza.com/images/une%20experience%20unique.jpg" />
+        <meta property="og:image" content="https://www.laboulette-ibiza.com/images/uneexperienceuniqueW.webp" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://www.laboulette-ibiza.com/images/une%20experience%20unique.jpg" />
+        <meta name="twitter:image" content="https://www.laboulette-ibiza.com/images/uneexperienceuniqueW.webp" />
       </head>
       <body className={`${inter.className} ${lilitaOne.variable}`}>
         <Navigation />
