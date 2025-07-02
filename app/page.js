@@ -124,7 +124,9 @@ export default function HomeNew() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               La Boulette Ibiza 🌶️ Cacher, Kosher Friendly à Ibiza
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez notre cuisine traditionnelle cacher, kosher, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil.</p>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Découvrez notre cuisine traditionnelle, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil. Cacher, Kosher Friendly
+            </p>
           </div>
         </section>
 
