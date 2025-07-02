@@ -117,6 +117,14 @@ export default function HomeNew() {
         <section id="hero" className="relative">
           <HeroSliderNew images={heroImages} onSliderScroll={handleSliderScroll} />
         </section>
+        
+        {/* H1 Principal pour SEO */}
+        <section className="py-8 bg-white">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">La Boulette Ibiza – Restaurant cacher à Ibiza</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez notre cuisine traditionnelle cacher, kosher, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil.</p>
+          </div>
+        </section>
 
         {/* About Section */}
         <section id="about" className="relative min-h-screen bg-white py-20 hidden">
@@ -371,8 +379,8 @@ export default function HomeNew() {
                     <div className="text-[1.2rem]">📧</div>
                     <div>
                       <div className="text-white font-semibold text-base">Email</div>
-                      <a href="mailto:info@labouletteibiza.com" className="text-white hover:text-accent-red transition-colors text-base">
-                        info@labouletteibiza.com
+                                          <a href="mailto:info@laboulette-ibiza.com" className="text-white hover:text-accent-red transition-colors text-base">
+                      info@laboulette-ibiza.com
                       </a>
                     </div>
                   </div>
@@ -450,8 +458,8 @@ export default function HomeNew() {
                   <a href="https://wa.me/33652696976" target="_blank" rel="noopener noreferrer" className="block hover:text-gray-200 transition-colors">
                     📞 +33 6 52 69 69 76
                   </a>
-                  <a href="mailto:info@labouletteibiza.com" className="block hover:text-gray-200 transition-colors">
-                    📧 info@labouletteibiza.com
+                                  <a href="mailto:info@laboulette-ibiza.com" className="block hover:text-gray-200 transition-colors">
+                  📧 info@laboulette-ibiza.com
                   </a>
                   <a 
                     href="https://maps.google.com/maps?q=38.96426,1.47936&z=15"

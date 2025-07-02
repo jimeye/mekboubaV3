@@ -12,8 +12,8 @@ const lilitaOne = Lilita_One({
 });
 
 export const metadata = {
-  title: 'La Boulette Ibiza - Restaurant Kosher Friendly | Cuisine Cacher Ibiza',
-  description: 'Restaurant kosher friendly à Ibiza, cuisine judéo-tunisienne authentique. Boulettes, piments et spécialités cacher. Viande Kosher by Bovini. Livraison le vendredi. Commandez en ligne.',
+  title: 'Restaurant Cacher à Ibiza – La Boulette',
+  description: 'Découvrez notre cuisine traditionnelle cacher, kosher, servie en bord de mer à Ibiza. Idéal pour vos vacances sous le soleil.',
   keywords: 'la boulette ibiza, kosher ibiza, cacher ibiza, kosher friendly ibiza, restaurant kosher friendly, cuisine juive ibiza, boulettes tunisiennes, piments, judéo-tunisien, livraison kosher friendly, bovini, shabbat, chabbat, catering, chef à domicile, habad, loubavitch',
 };
  

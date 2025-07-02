@@ -274,7 +274,7 @@ export default function ReservationPage() {
           <div className="relative z-10 container mx-auto p-4 md:p-8">
             <div className="max-w-3xl mx-auto bg-white/95 p-6 md:p-10 rounded-2xl shadow-xl my-16">
               <div className="text-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réserver chez<br />LA BOULETTE IBIZA 🌶️</h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">La Boulette Ibiza – Restaurant cacher à Ibiza</h1>
                 <p className="text-gray-600 mt-2">Livraison uniquement le vendredi</p>
               </div>
 
@@ -384,7 +384,7 @@ export default function ReservationPage() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="deliveryTime" className="block text-sm font-medium text-gray-700 mb-1">Heure de livraison</label>
+                      <label htmlFor="deliveryTime" className="block text-sm font-medium text-gray-700 mb-1">Heure de livraison confirmée jeudi soir</label>
                       <select id="deliveryTime" name="deliveryTime" value={formData.deliveryTime} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
                         <option value="" disabled>Sélectionnez une heure</option>
                         {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
@@ -459,7 +459,6 @@ export default function ReservationPage() {
                                   onChange={handleInputChange} 
                                   placeholder="Ex: 205, 3ème étage, etc." 
                                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                                  required
                                 />
                               </div>
                             </div>
@@ -488,7 +487,6 @@ export default function ReservationPage() {
                                   onChange={handleInputChange} 
                                   placeholder="Ex: 205, 3ème étage, etc." 
                                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                                  required
                                 />
                               </div>
                               <div className="mt-3">
@@ -625,7 +623,7 @@ export default function ReservationPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-4">
             <div className="text-center">
-              <h3 className="text-xl font-bold mb-4">MEKBOUBA, BOULETTES & PIMENTS 🌶️</h3>
+              <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
               <div className="text-lg mb-4">🕍 Kosher Friendly 🕍</div>
               <p className="text-sm text-gray-200 mb-4">
                 Cuisine certifiée 100% Judéo-Tunisienne,<br />
@@ -639,8 +637,8 @@ export default function ReservationPage() {
                 <a href="https://wa.me/33652696976" target="_blank" rel="noopener noreferrer" className="block hover:text-gray-200 transition-colors">
                   📞 +33 6 52 69 69 76
                 </a>
-                <a href="mailto:info@labouletteibiza.com" className="block hover:text-gray-200 transition-colors">
-                  📧 info@labouletteibiza.com
+                <a href="mailto:info@laboulette-ibiza.com" className="block hover:text-gray-200 transition-colors">
+                  📧 info@laboulette-ibiza.com
                 </a>
                 <a 
                   href="https://maps.google.com/maps?q=38.96426,1.47936&z=15"
