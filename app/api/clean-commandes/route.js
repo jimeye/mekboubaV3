@@ -26,10 +26,7 @@ export async function POST() {
     console.log(`📝 IDs: ${commandeIds.join(', ')}`);
     
     if (commandeIds.length === 0) {
-      return NextResponse.json({ 
-        message: "Il n'y a déjà aucune commande.",
-        commandes: []
-      });
+      // Même si aucune commande, on continue pour nettoyer les orderNumber orphelins
     }
     // On ne garde aucune commande
     const toDelete = commandeIds;
@@ -44,19 +41,27 @@ export async function POST() {
 
     // Supprimer toutes les clés orderNumber:... listées dans la liste Redis 'orderNumbers'
     const orderNumbers = await redis.lrange('orderNumbers', 0, -1);
+    let orderNumberKeys = [];
     if (orderNumbers.length > 0) {
-      const orderNumberKeys = orderNumbers.map(num => `orderNumber:${num}`);
+      orderNumberKeys = orderNumbers.map(num => `orderNumber:${num}`);
       await redis.del(...orderNumberKeys);
       await redis.del('orderNumbers'); // Vider la liste
-      console.log(`🗑️ Clés orderNumber supprimées: ${orderNumberKeys.join(', ')}`);
+      console.log(`🗑️ Clés orderNumber supprimées (liste): ${orderNumberKeys.join(', ')}`);
+    }
+
+    // Supprimer toutes les clés orderNumber:* (orphelines ou non)
+    const allOrderNumberKeys = await redis.keys('orderNumber:*');
+    if (allOrderNumberKeys.length > 0) {
+      await redis.del(...allOrderNumberKeys);
+      console.log(`🗑️ Clés orderNumber supprimées (globale): ${allOrderNumberKeys.join(', ')}`);
     }
 
     // Réinitialiser le compteur à zéro
     await redis.set('orderNumberCounter', 0);
     return NextResponse.json({ 
-      message: 'Toutes les commandes et clés orderNumber ont été supprimées et le compteur a été réinitialisé!',
+      message: 'Toutes les commandes et toutes les clés orderNumber ont été supprimées et le compteur a été réinitialisé!',
       commandesSupprimees: toDelete,
-      orderNumberKeysSupprimees: orderNumberKeys
+      orderNumberKeysSupprimees: [...orderNumberKeys, ...(allOrderNumberKeys || [])]
     });
     
   } catch (error) {

@@ -302,7 +302,7 @@ export default function CommandesPage() {
             <button
               onClick={cleanCommandes}
               className="mt-4 px-2.5 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors custom-w-105"
-              title="Garder seulement les deux dernières commandes"
+              title="Supprimer toutes les commandes"
             >
               🧹
             </button>
