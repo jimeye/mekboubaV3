@@ -16,7 +16,13 @@ export default function CustomChat() {
       {/* Bouton de chat flottant */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-4 z-50 p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 bg-accent-red text-white border-none`}
+        style={{
+          background: "rgba(220,38,38,0.7)", // rouge transparent
+          color: "#fff",
+          border: "none",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+        }}
+        className={`fixed bottom-6 right-4 z-50 p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110`}
         aria-label="Ouvrir le chat"
       >
         {isOpen ? (
@@ -32,7 +38,16 @@ export default function CustomChat() {
 
       {/* Fenêtre de chat */}
       {isOpen && (
-        <div className="fixed bottom-20 right-4 z-40 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col">
+        <div
+          style={{
+            background: "rgba(255,255,255,0.85)", // blanc semi-transparent
+            backdropFilter: "blur(8px)",
+            borderRadius: 16,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+            border: "1px solid #e5e7eb",
+          }}
+          className="fixed bottom-20 right-4 z-40 w-80 h-96 flex flex-col"
+        >
           {/* En-tête */}
           <div className="bg-accent-red text-white p-4 rounded-t-lg">
             <h3 className="font-bold text-lg">💬 Support Mekbouba</h3>
