@@ -294,7 +294,7 @@ export default function CommandesPage() {
             {/* Bouton de nettoyage à gauche */}
             <button
               onClick={cleanCommandes}
-              className="mt-4 px-4 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors w-1/5"
+              className="mt-4 px-2.5 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors custom-w-105"
               title="Garder seulement les deux dernières commandes"
             >
               🧹
@@ -302,10 +302,32 @@ export default function CommandesPage() {
             {/* Bouton de vérification du compteur */}
             <button
               onClick={checkCounter}
-              className="mt-4 ml-2 px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors w-1/5"
+              className="mt-4 ml-2 px-2.5 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors custom-w-105"
               title="Vérifier l'état du compteur"
             >
               🔍
+            </button>
+            {/* Bouton de reset du compteur */}
+            <button
+              onClick={async () => {
+                if (window.confirm('Remettre le compteur de commandes à zéro ? Cette action est irréversible.')) {
+                  try {
+                    const response = await fetch('/api/check-counter', { method: 'POST' });
+                    const data = await response.json();
+                    if (response.ok) {
+                      alert('♻️ Compteur remis à zéro !');
+                    } else {
+                      alert('❌ Erreur : ' + (data.error || 'Impossible de remettre le compteur à zéro.'));
+                    }
+                  } catch (error) {
+                    alert('❌ Erreur : ' + error.message);
+                  }
+                }
+              }}
+              className="mt-4 ml-2 px-2.5 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors custom-w-105"
+              title="Remettre le compteur de commandes à zéro"
+            >
+              ♻️
             </button>
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}

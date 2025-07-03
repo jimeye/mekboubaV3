@@ -88,4 +88,9 @@
   border-color: #cf0e0e !important;
   border-width: 2px !important;
   animation: border-pulse 1.2s infinite;
+}
+
+.custom-w-105 {
+  width: 180px !important;
+  min-width: 120px;
 } 
