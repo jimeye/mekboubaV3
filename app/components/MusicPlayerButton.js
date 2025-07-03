@@ -10,17 +10,18 @@ export default function MusicPlayerButton() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (!isMobile) {
-      // Sur desktop : démarrage automatique après 3 secondes
+      // Sur desktop : démarrage automatique après 2 secondes
       const timer = setTimeout(() => {
         if (audioRef.current) {
           audioRef.current.play().then(() => {
+            console.log('Musique démarrée automatiquement');
             setIsPlaying(true);
           }).catch((error) => {
-            console.log('Autoplay blocked:', error);
-            // Si l'autoplay est bloqué, on garde le bouton en mode "play"
+            console.log('Autoplay bloqué par le navigateur:', error);
+            // Le bouton reste en mode "play" pour que l'utilisateur puisse cliquer
           });
         }
-      }, 3000);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
@@ -31,9 +32,14 @@ export default function MusicPlayerButton() {
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
+        console.log('Musique mise en pause');
       } else {
-        audioRef.current.play();
-        setIsPlaying(true);
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+          console.log('Musique lancée manuellement');
+        }).catch((error) => {
+          console.log('Erreur lors du lancement:', error);
+        });
       }
     }
   };
@@ -60,6 +66,7 @@ export default function MusicPlayerButton() {
         ref={audioRef}
         src="/mekbouba-music.mp3"
         loop
+        preload="auto"
       />
     </div>
   );
