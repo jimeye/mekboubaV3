@@ -288,10 +288,10 @@ export default function CommandesPage() {
         {/* Header avec date */}
         <div className="mb-8">
           <div className="w-full md:w-auto">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
               🍽️ Cmd Ibiza
             </h1>
-            <p className="text-base md:text-lg font-semibold text-gray-700">
+            <p className="text-base md:text-lg font-semibold text-white">
               {new Date().toLocaleDateString('fr-FR', {
                 day: '2-digit',
                 month: '2-digit',
