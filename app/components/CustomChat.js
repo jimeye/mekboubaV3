@@ -21,19 +21,15 @@ export default function CustomChat() {
           color: "#fff",
           border: "none",
           boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+          backdropFilter: "blur(4px)",
         }}
-        className={`fixed bottom-6 right-4 z-50 p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110`}
+        className={`fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Ouvrir le chat"
       >
-        {isOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-        )}
+        {/* Icône du chat (exemple) */}
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 4V5z" />
+        </svg>
       </button>
 
       {/* Fenêtre de chat */}
