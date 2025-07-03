@@ -27,6 +27,14 @@ export default function ChatWidget() {
         'restaurant': 'Mekbouba, Boulettes & Piments'
       });
       
+      // Personnalisation du style avec fond rouge transparent
+      window.Tawk_API.customStyle = {
+        'background-color': 'rgba(220, 38, 38, 0.4)', // Rouge avec 40% d'opacité
+        'backdrop-filter': 'blur(6px)',
+        'border-radius': '16px',
+        'box-shadow': '0 8px 32px rgba(220, 38, 38, 0.2)'
+      };
+      
       // Message de bienvenue personnalisé
       window.Tawk_API.maximize();
       window.Tawk_API.sendMessage('🍽️ Bonjour ! Bienvenue chez Mekbouba. Comment puis-je vous aider aujourd\'hui ?');

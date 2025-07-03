@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import HeroSliderNew from './components/HeroSliderNew';
+import MusicPlayerButton from './components/MusicPlayerButton';
 
 const heroImages = [
   {
@@ -455,6 +456,7 @@ export default function HomeNew() {
           </div>
         </footer>
       </main>
+      <MusicPlayerButton />
     </OrientationLock>
   );
 } 
