@@ -166,10 +166,6 @@ export default function ReservationPage() {
         alert('Veuillez sélectionner un hôtel.');
         return;
       }
-      if (!formData.roomNumber) {
-        alert('Veuillez saisir votre numéro de chambre.');
-        return;
-      }
       if (formData.selectedHotel === 'Autre' && !formData.otherHotelName) {
         alert('Veuillez saisir le nom de votre hôtel.');
         return;
