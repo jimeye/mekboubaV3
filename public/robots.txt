@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://laboulette-ibiza.com
+
+# Sitemaps
+Sitemap: https://laboulette-ibiza.com/sitemap.xml

@@ -1,0 +1,23 @@
+module.exports = {
+  siteUrl: 'https://laboulette-ibiza.com',
+  generateRobotsTxt: true,
+  exclude: [
+    '/admin*',
+    '/admin-mekbouba*',
+    '/backup*',
+    '/api/*',
+    '/commandes',
+    '/commandes/page-ticket-backup',
+    '/commandes/page-ticket-backup.js',
+    '/page-old',
+    '/page2',
+    '/page2 2',
+    '/page2.js',
+    '/newsletter',
+    '/newsletter2',
+    '/payment',
+    '/payment-success',
+    '/error',
+    '/not-found',
+  ],
+}; 
