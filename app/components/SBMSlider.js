@@ -11,7 +11,7 @@ export default function SBMSlider() {
 
   const sbmImages = [
     '/images/sbm1.webp', // Image SBM principale
-    '/images/une experience unique.jpg', // Image de backup
+    '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp', // Image de backup
     '/images/nos specialites.jpg', // Image de backup
     '/images/mekbouba1.jpeg', // Image de backup
   ];

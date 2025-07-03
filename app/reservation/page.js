@@ -274,7 +274,7 @@ export default function ReservationPage() {
         <div className="relative">
           <div 
             className="absolute inset-0 bg-cover bg-center z-0"
-            style={{ backgroundImage: "url('/images/une experience unique.jpg')" }}
+            style={{ backgroundImage: "url('/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp')" }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
           </div>

@@ -16,7 +16,7 @@ export default function Home() {
         <div className="relative w-full min-h-screen">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/une experience unique.jpg"
+              src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
               alt=""
               fill
               className="object-cover"
@@ -31,7 +31,7 @@ export default function Home() {
                 <div className="rounded-lg shadow-lg overflow-hidden flex-1 max-w-sm flex flex-col relative border-2 border-accent-red mx-auto w-full lg:min-h-[600px]">
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src="/images/une experience unique.jpg"
+                      src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
                       alt=""
                       fill
                       className="object-cover"

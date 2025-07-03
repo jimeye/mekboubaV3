@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 const slides = [
   {
     id: 3,
-    image: '/images/une experience unique.jpg',
+    image: '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp',
     title: 'Sandwich Boulettes Mekbouba',
     description: 'Le Sandwich Boulette Mekbouba qui te fera oublier celui de ta mère'
   },

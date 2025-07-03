@@ -139,12 +139,12 @@ export default function HomeNew() {
         <section id="menu" className="relative min-h-screen bg-gray-50 py-20 transition-all duration-700 ease-in-out">
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/une experience unique.jpg"
+                src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
                 alt=""
                 fill
-              className="object-cover"
+                className="object-cover"
                 sizes="100vw"
-                quality={75}
+                quality={85}
               />
           </div>
           
@@ -200,7 +200,7 @@ export default function HomeNew() {
                 <div className="shadow-2xl overflow-hidden flex flex-col relative border-2 border-accent-red bg-white transform transition-all duration-500 hover:scale-105 hover:shadow-3xl h-[650px]">
                   <div className="relative h-56 aspect-square">
                     <Image
-                      src="/images/bbm1.webp"
+                      src="/images/nosspecialites-ibiza-kosher-cacher-friendly.webp"
                       alt="Box Boulettes Mekbouba BBM"
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -237,7 +237,7 @@ export default function HomeNew() {
                 <div className="shadow-2xl overflow-hidden flex flex-col relative border-2 border-accent-red bg-white transform transition-all duration-500 hover:scale-105 hover:shadow-3xl h-[650px]">
                   <div className="relative h-56 aspect-square">
                     <Image
-                      src="/images/tajine2.webp"
+                      src="/images/tajine1.webp"
                       alt="Tajines Shabbat"
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -282,7 +282,7 @@ export default function HomeNew() {
               {[
                 '/images/mekbouba1.jpeg',
                 '/images/nos specialites.jpg',
-                '/images/une experience unique.jpg',
+                '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp',
                 '/images/ibizasunshine.webp'
               ].map((image, index) => (
                 <div key={index} className="group relative overflow-hidden shadow-lg">
@@ -308,7 +308,7 @@ export default function HomeNew() {
         <section id="contact" className="relative min-h-screen py-20">
                     <div className="absolute inset-0 z-0">
                       <Image
-                        src="/images/une experience unique.jpg"
+                        src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
                         alt=""
                         fill
                         className="object-cover"
