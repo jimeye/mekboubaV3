@@ -26,12 +26,12 @@ export default function CustomChat() {
         className={`fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Ouvrir le chat"
       >
-        {/* Icône bulle outline avec trois points */}
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        {/* Icône bulle outline fine avec trois points fins */}
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 3.866-3.582 7-8 7a8.96 8.96 0 01-4.255-.949L3 21l1.395-3.72A7.963 7.963 0 013 12c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
-          <circle cx="9" cy="12" r="1" fill="currentColor" />
-          <circle cx="12" cy="12" r="1" fill="currentColor" />
-          <circle cx="15" cy="12" r="1" fill="currentColor" />
+          <circle cx="9" cy="12" r="0.7" fill="currentColor" />
+          <circle cx="12" cy="12" r="0.7" fill="currentColor" />
+          <circle cx="15" cy="12" r="0.7" fill="currentColor" />
         </svg>
       </button>
 
