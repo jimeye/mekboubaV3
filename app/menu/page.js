@@ -60,7 +60,7 @@ export default function MenuPage() {
                   Découvrez notre sandwich signature aux boulettes, piment, mekbouba & oeuf, 
                   une explosion de saveurs tunisiennes authentiques.
                 </p>
-                <div className="bg-orange-50 p-3 rounded-lg mb-4">
+                <div className="bg-orange-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                   <p className="text-sm text-orange-800 text-center font-semibold">
                     🚚 Livraison gratuite pour 5 SBM
                   </p>
@@ -69,7 +69,7 @@ export default function MenuPage() {
                   href="/reservation"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-1.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                  className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base btn-shine-3d"
                 >
                   <span className="text-[1.84rem]">🥪</span>
                   <span>Réserver</span>
@@ -97,7 +97,7 @@ export default function MenuPage() {
                   La même que le SBM boulettes, piment, mekbouba & oeuf dans une box complète 
                   avec accompagnements traditionnels.
                 </p>
-                <div className="bg-green-50 p-3 rounded-lg mb-4">
+                <div className="bg-green-50 p-3 rounded-lg mb-4 badge-border-pulse border border-red-500">
                   <p className="text-sm text-green-800 text-center font-semibold">
                     🚚 Livraison gratuite pour 5 BBM
                   </p>
@@ -106,7 +106,7 @@ export default function MenuPage() {
                   href="/reservation"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-1.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base"
+                  className="inline-flex items-center justify-center space-x-2 bg-accent-red hover:bg-accent-red/90 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg w-full text-center mt-auto text-base btn-shine-3d"
                 >
                   <span className="text-[1.84rem]">🍱</span>
                   <span>Réserver</span>

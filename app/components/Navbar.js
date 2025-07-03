@@ -41,7 +41,7 @@ export default function Navbar({ isVisible }) {
             <Link href="/notre-histoire" className="text-white hover:text-accent-red transition-colors text-base whitespace-nowrap" onClick={() => setMenuOpen(false)}>
               Notre Histoire
             </Link>
-            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-base" onClick={() => setMenuOpen(false)}>
+            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-base btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Menu
             </Link>
             <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-base" onClick={() => setMenuOpen(false)}>
