@@ -26,7 +26,7 @@ export default function MusicPlayerButton() {
     <>
       <audio
         ref={audioRef}
-        src={encodeURI("/עומר אדם - שווארמה ודמעה.mp3")}
+        src="/mekbouba-music.mp3"
         loop
       />
       <button
