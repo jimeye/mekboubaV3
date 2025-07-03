@@ -1,52 +1,115 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Navbar from './Navbar';
 
-const StorySection = () => {
+export default function NotreHistoirePage() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsHeaderVisible(scrollTop < 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section id="histoire" className="py-20 bg-white">
-      <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
-            Notre <span className="text-[#cf0e0e]">Histoire</span>
-          </h2>
-          <div className="w-20 h-1 bg-accent-yellow" />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image avec effet de survol */}
-          <div className="relative w-full h-[400px] overflow-hidden rounded-lg group">
+    <>
+      <Navbar isVisible={isHeaderVisible} />
+      <section id="histoire" className="pt-20 min-h-screen flex items-center justify-center relative">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
+          alt=""
+          fill
+          className="object-cover"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+              <div className="max-w-2xl w-full px-4 relative z-10">
+        <div className="flex justify-center mb-8">
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg border-4 border-accent-red bg-gray-100">
             <Image
-              src="/images/mekbouba1.jpeg"
-              alt="Notre mekbouba traditionnelle"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
-              className="transform transition-transform duration-500 group-hover:scale-110"
+              src="/images/jimmy-joseph-ibiza-kosher-cacher-friendly.webp"
+              alt="Jimmy Joseph"
+              width={160}
+              height={160}
+              className="object-cover w-full h-full"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-
-          {/* Contenu texte */}
-          <div className="space-y-6">
-            <p className="text-custom-grey mb-6">
-              Fondé en 2024, Boulettes Mekbouba est né de la passion pour la cuisine tunisienne authentique. Notre chef, avec plus de 20 ans d'expérience, a créé un concept unique qui allie tradition et modernité.
-            </p>
-            <p className="text-custom-grey mb-6">
-              Chaque boulette est préparée à la main avec des ingrédients frais et des épices soigneusement sélectionnées. Notre secret ? Une recette familiale transmise de génération en génération.
-            </p>
-            <p className="text-custom-grey">
-              Aujourd'hui, nous sommes fiers de partager ces saveurs authentiques avec vous, en créant une expérience culinaire qui vous transporte directement en Tunisie.
-            </p>
-            <button className="btn btn-primary group relative overflow-hidden">
-              <span className="relative z-10">En savoir plus</span>
-              <div className="absolute inset-0 bg-accent-red transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-            </button>
-          </div>
+        </div>
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-6 md:p-10 space-y-6 text-custom-grey text-lg leading-relaxed">
+          <p><strong>Jimmy Joseph – Le mec derrière La Boulette Ibiza</strong></p>
+          <p>Paris-Belleville. Juif tunisien jusqu'au bout de l'ADN. À 20 ans, j'ai découvert Ibiza, l'île qui ne dort jamais mais qui respire l'été éternel. Depuis, je vis entre ici et là-bas, mais surtout, je kiffe cette vibe.</p>
+          <p>C'est au fil des Shabbat, en voyant mes invités kiffer à chaque fois, que je me suis dit : faut que je partage ça. Le plaisir dans leurs yeux, les assiettes vides, les "refais-nous ça, Jimmy !" — là, j'ai compris. Fallait que ça sorte de la maison.</p>
+          <p>Pas un resto, pas un food truck. Non, du direct, du simple, du vrai. La Boulette Ibiza, c'est la livraison de sandwichs aux boulettes 100 % casher, préparés dans les règles de l'art — cuisine dédiée, vaisselle trempée au mikvé, séparation viande/lait, respect strict des règles halakhiques, zéro bullshit.</p>
+          <p>Je n'ai pas de Teouda, mais j'ai le feu sacré du kehal de Rav Mickael Gabison, mon Rabbi d'amour. Ici, on fait les choses bien, avec respect, passion, et cette énergie qu'on ne trouve qu'en Méditerranée.</p>
+          <p>Et puis y'a Israël, toujours dans mon cœur. Un lien viscéral. Une boussole. Une source. Mon amour pour Eretz Israël fait partie de tout ce que je suis — et ça se sent dans chaque boulette.</p>
+          <p>La Boulette, c'est un clin d'œil à Belleville, un hommage à Tunis, une ode à Ibiza… et une grosse pensée pour Jérusalem à chaque bouchée.<br/>Livré avec amour, attitude et convictions.</p>
         </div>
       </div>
     </section>
-  );
-};
 
-export default StorySection; 
+    {/* Footer Amélioré */}
+    <footer className="bg-accent-red text-white py-6">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 gap-4">
+          <div className="text-center">
+            <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
+            <div className="text-lg mb-4">🕍 Kosher Friendly 🕍</div>
+            <p className="text-sm text-gray-200 mb-4">
+              Cuisine certifiée 100% Judéo-Tunisienne,<br />
+              transmise de génération en génération.<br />
+              Viande Kosher by <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>.
+            </p>
+          </div>
+          
+          <div className="text-center">
+            <div className="space-y-2 text-sm">
+              <a href="https://wa.me/33652696976" target="_blank" rel="noopener noreferrer" className="block hover:text-gray-200 transition-colors">
+                📞 +33 6 52 69 69 76
+              </a>
+              <a href="mailto:info@laboulette-ibiza.com" className="block hover:text-gray-200 transition-colors">
+                📧 info@laboulette-ibiza.com
+              </a>
+              <a 
+                href="https://maps.google.com/maps?q=38.96426,1.47936&z=15"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-gray-200 transition-colors"
+                title="Ouvrir dans Google Maps"
+              >
+                🌍 Ibiza, Espagne
+              </a>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="space-y-2 text-sm text-gray-200">
+              <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
+              <div>Vous serez livrer vendredi !</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="border-t border-white/20 mt-8 pt-8 text-center">
+          <p className="text-sm text-gray-200">
+            © 2025 La Boulette Ibiza 🌶️ Kosher friendly<br /><span className="text-xs">Tous droits réservés</span>
+          </p>
+          <p className="text-xs text-gray-200 mt-2">
+            <a href="https://wa.me/33608251223?text=Je veux le meme site !!" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors">
+              Website design by ©MEKBOUBA STUDIO
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    </>
+  );
+} 

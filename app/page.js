@@ -135,54 +135,6 @@ export default function HomeNew() {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="relative min-h-screen bg-white py-20 hidden">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-gray-800 mb-6">Notre Histoire</h2>
-              <div className="w-24 h-1 bg-accent-red mx-auto"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 text-center lg:text-left">
-                <h3 className="text-3xl font-bold text-gray-800">Cuisine Judéo-Tunisienne Authentique - Restaurant Kosher Ibiza</h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Découvrez l'authenticité de la cuisine judéo-tunisienne transmise de génération en génération. 
-                  Restaurant cacher friendly à Ibiza, spécialisé dans les boulettes et piments traditionnels. 
-                  Nos recettes traditionnelles, préparées avec des ingrédients frais et des épices sélectionnées, 
-                  vous transportent directement dans les saveurs de Tunisie.
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Chaque plat raconte une histoire, chaque épice évoque un souvenir. 
-                  De nos boulettes maison aux tajines traditionnels, nous préservons 
-                  l'héritage culinaire de nos ancêtres.
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Notre cuisine se distingue par ses <strong>épices authentiques</strong> soigneusement sélectionnées, 
-                  notre <strong>chef expérimenté</strong> qui maîtrise parfaitement les techniques traditionnelles, 
-                  et nos <strong>recettes traditionnelles</strong> transmises de génération en génération. 
-                  Nous sommes fiers d'être <strong>100% Judéo-Tunisien</strong>, préservant ainsi l'authenticité 
-                  et les saveurs de notre héritage culinaire.
-                </p>
-              </div>
-              
-              <div className="relative">
-                <div className="relative h-full min-h-[500px] overflow-hidden shadow-2xl border-2 border-accent-red">
-                  <Image
-                    src="/images/mekbouba1.jpeg"
-                    alt="Cuisine traditionnelle"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    quality={85}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Menu Section Amélioré */}
         <section id="menu" className="relative min-h-screen bg-gray-50 py-20 transition-all duration-700 ease-in-out">
             <div className="absolute inset-0 z-0">

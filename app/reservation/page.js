@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 
 export default function ReservationPage() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [formData, setFormData] = useState({
     deliveryDate: '',
     deliveryTime: '',
@@ -33,6 +34,16 @@ export default function ReservationPage() {
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsHeaderVisible(scrollTop < 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const prices = { sbm: 26, bbm: 26 };
 
@@ -259,7 +270,7 @@ export default function ReservationPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <main className="flex-grow">
-        <Navbar />
+        <Navbar isVisible={isHeaderVisible} />
         <div className="relative">
           <div 
             className="absolute inset-0 bg-cover bg-center z-0"
@@ -648,9 +659,10 @@ export default function ReservationPage() {
               </div>
             </div>
             
-                        <div className="text-center">
+            <div className="text-center">
               <div className="space-y-2 text-sm text-gray-200">
-                <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h max<br />Vous serez livrés le vendredi</div>
+                <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
+                <div>Vous serez livrer vendredi !</div>
               </div>
             </div>
           </div>
