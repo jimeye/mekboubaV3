@@ -26,9 +26,9 @@ export default function CustomChat() {
         className={`fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Ouvrir le chat"
       >
-        {/* Bulle outline classique avec trois points */}
+        {/* Bulle sans queue (ellipse) avec trois points */}
         <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 3.866-3.582 7-8 7a8.96 8.96 0 01-4.255-.949L3 21l1.395-3.72A7.963 7.963 0 013 12c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
+          <ellipse cx="12" cy="12" rx="8" ry="7" />
           <circle cx="9" cy="12" r="1" fill="currentColor" />
           <circle cx="12" cy="12" r="1" fill="currentColor" />
           <circle cx="15" cy="12" r="1" fill="currentColor" />
