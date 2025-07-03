@@ -11,9 +11,9 @@ export default function BBMSlider() {
 
   const bbmImages = [
     '/images/bbm1.webp', // Image BBM principale
-    '/images/nos specialites.jpg', // Image de backup
+    '/images/nos specialites.webp', // Image de backup
     '/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp', // Image de backup
-    '/images/mekbouba1.jpeg', // Image de backup
+    '/images/mekbouba1.webp', // Image de backup
   ];
 
   // Forcer le scroll vers le haut au chargement

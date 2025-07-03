@@ -16,7 +16,7 @@ const StorySection = () => {
           {/* Image avec effet de survol */}
           <div className="relative w-full h-[400px] overflow-hidden rounded-lg group">
             <Image
-              src="/images/mekbouba1.jpeg"
+              src="/images/mekbouba1.webp"
               alt="Notre mekbouba traditionnelle"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

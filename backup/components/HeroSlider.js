@@ -8,7 +8,7 @@ const HeroSlider = () => {
 
   const slides = [
     {
-      image: '/images/mekbouba1.jpeg',
+      image: '/images/mekbouba1.webp',
       title: 'Bienvenue chez Mekbouba',
       description: 'Découvrez l\'authenticité de la cuisine tunisienne'
     },

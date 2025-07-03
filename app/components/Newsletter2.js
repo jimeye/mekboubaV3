@@ -19,7 +19,7 @@ export default function Newsletter() {
       <div className="relative min-h-screen">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/nos specialites-small.jpg"
+            src="/images/nos specialites-small.webp"
             alt=""
             fill
             className="object-cover opacity-90"
@@ -51,7 +51,7 @@ export default function Newsletter() {
               <div className="rounded-lg shadow-lg overflow-hidden flex-1 max-w-sm flex flex-col relative border-2 border-accent-red bg-black/70 min-h-[28rem]">
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/images/une experience unique-small.jpg"
+                    src="/images/une experience unique-small.webp"
                     alt=""
                     fill
                     className="object-cover"
@@ -80,7 +80,7 @@ export default function Newsletter() {
               <div className="rounded-lg shadow-lg overflow-hidden flex-1 max-w-sm flex flex-col relative border-2 border-accent-red bg-black/70 min-h-[28rem]">
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/images/slider4-small.jpg"
+                    src="/images/slider4-small.webp"
                     alt=""
                     fill
                     className="object-cover"

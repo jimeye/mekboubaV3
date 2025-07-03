@@ -14,19 +14,19 @@ const slides = [
   },
   {
     id: 1,
-    image: '/images/mekbouba1.jpeg',
+    image: '/images/mekbouba1.webp',
     title: 'Cuisine Judéo-Tunisienne',
     description: 'Une Expérience Culinaire Unique<br/>À Ibiza Kosher Friendly'
   },
   {
     id: 2,
-    image: '/images/nos specialites.jpg',
+    image: '/images/nos specialites.webp',
     title: 'Boulettes Marchi',
     description: 'Boeuf, Oignons, Persil,<br/>Coriandre & Rose'
   },
   {
     id: 4,
-    image: '/images/slider4-small.jpg',
+    image: '/images/slider4-small.webp',
     title: 'Mekbouba',
     description: 'Poivrons, Piments, Tomates & Zeit'
   }

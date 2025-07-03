@@ -57,7 +57,7 @@ export default function Home() {
                 <div className="rounded-lg shadow-lg overflow-hidden flex-1 max-w-sm flex flex-col relative border-2 border-accent-red mx-auto w-full lg:min-h-[600px]">
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src="/images/nos specialites.jpg"
+                      src="/images/nos specialites.webp"
                       alt=""
                       fill
                       className="object-cover"
@@ -83,7 +83,7 @@ export default function Home() {
                 <div className="rounded-lg shadow-lg overflow-hidden flex-1 max-w-sm flex flex-col relative border-2 border-accent-red mx-auto w-full lg:min-h-[600px]">
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src="/images/mekbouba1.jpeg"
+                      src="/images/mekbouba1.webp"
                       alt=""
                       fill
                       className="object-cover"
