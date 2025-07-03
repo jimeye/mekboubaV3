@@ -26,12 +26,9 @@ export default function CustomChat() {
         className={`fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Ouvrir le chat"
       >
-        {/* Bulle sans queue (ellipse) avec trois points */}
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <ellipse cx="12" cy="12" rx="8" ry="7" />
-          <circle cx="9" cy="12" r="1" fill="currentColor" />
-          <circle cx="12" cy="12" r="1" fill="currentColor" />
-          <circle cx="15" cy="12" r="1" fill="currentColor" />
+        {/* Icône du chat originale */}
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 4V5z" />
         </svg>
       </button>
 
