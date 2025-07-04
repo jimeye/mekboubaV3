@@ -45,7 +45,7 @@ export default function MusicPlayerButton() {
   };
 
   return (
-    <div className="fixed bottom-4 left-4 z-50">
+    <div className="fixed bottom-6 left-4 z-50">
       <button
         onClick={togglePlay}
         className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm text-white flex items-center justify-center shadow-lg hover:bg-black/60 transition-all duration-300 transform hover:scale-110"
