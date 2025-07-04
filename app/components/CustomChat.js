@@ -27,7 +27,7 @@ export default function CustomChat() {
         aria-label="Ouvrir le chat"
       >
         {/* Bulle de chat outline centrée avec queue en bas à gauche et trois petits points fins */}
-        <svg className="w-7 h-7 mx-auto my-auto block" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 32 32">
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 32 32">
           <path d="M6 24.5V24a12 12 0 1 1 6 10.5L6 30a2 2 0 0 1-2-2v-4.5z" stroke="currentColor" strokeLinejoin="round"/>
           <circle cx="13" cy="18" r="0.7" fill="currentColor" stroke="none"/>
           <circle cx="16" cy="18" r="0.7" fill="currentColor" stroke="none"/>
