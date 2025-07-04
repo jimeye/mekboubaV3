@@ -26,13 +26,8 @@ export default function CustomChat() {
         className={`fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Ouvrir le chat"
       >
-        {/* Bulle de chat classique vide (outline) avec trois petits points au centre */}
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeLinejoin="round"/>
-          <circle cx="10" cy="12" r="0.8" fill="currentColor" stroke="none"/>
-          <circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/>
-          <circle cx="14" cy="12" r="0.8" fill="currentColor" stroke="none"/>
-        </svg>
+        {/* Emoji bulle de chat */}
+        <span className="text-2xl">💬</span>
       </button>
 
       {/* Fenêtre de chat */}
