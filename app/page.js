@@ -370,7 +370,7 @@ export default function HomeNew() {
                   <div className="flex flex-col items-center space-y-2">
                     <div className="text-[1.2rem]">⏰</div>
                     <div className="text-base text-white hover:text-accent-red transition-colors duration-300">
-                      Passez votre commande du<br />Dimanche au Jeudi 12h Max<br />Vous serez livrer vendredi !
+                      Passez votre commande du<br />Dimanche au Jeudi 12h Max
                     </div>
                   </div>
                   <div className="flex flex-col items-center space-y-2 mt-2">
@@ -438,7 +438,6 @@ export default function HomeNew() {
               <div className="text-center">
                 <div className="space-y-2 text-sm text-gray-200">
                   <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
-                  <div>Vous serez livrer vendredi !</div>
                 </div>
               </div>
             </div>

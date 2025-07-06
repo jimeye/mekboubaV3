@@ -113,7 +113,7 @@ export default function HeroSlider() {
                   href="/reservation"
                   className="text-sm md:text-base text-white/80 text-[0.55em] mt-24 hover:text-white transition-colors duration-300 cursor-pointer underline block relative z-50"
                 >
-                  Réservez votre plaisir dès maintenant – lancement officiel le 30/06 !
+                  Réservez votre plaisir dès maintenant – c'est open 🚀
                 </a>
               </div>
             </div>

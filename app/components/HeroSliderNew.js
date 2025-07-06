@@ -137,7 +137,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                     style={{ pointerEvents: 'auto' }}
                   >
                     Réservez votre kiff dès maintenant<br />
-                    lancement officiel le 04/07 !
+                    c'est open 🚀
                   </Link>
                   {/* Bloc info commande + viande kosher juste après le lien */}
                   <div className="mt-4 text-center">

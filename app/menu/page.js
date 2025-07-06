@@ -189,7 +189,6 @@ export default function MenuPage() {
             <div className="text-center">
               <div className="space-y-2 text-sm text-gray-200">
                 <div>⏰ Passez votre commande du<br />Dimanche au Jeudi 12h Max</div>
-                <div>Vous serez livrer vendredi !</div>
               </div>
             </div>
           </div>
