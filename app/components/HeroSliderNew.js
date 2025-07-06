@@ -124,7 +124,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                 >
                   Notre Menu
                 </Link>
-                <p className="text-xl md:text-2xl text-white/90 mt-6 mb-1 text-[1.2em] text-center">*Uniquement le vendredi</p>
+                <p className="text-xl md:text-2xl text-white/90 mt-6 mb-1 text-[1.2em] text-center">*Uniquement le jeudi & vendredi</p>
                 <p className="text-base md:text-lg text-white/90 text-[0.63em] -mt-1 text-center">Pré-Commande Obligatoire<br />Free Delivery pour 6 BBM et SBM</p>
                 {/* Lien de réservation avec ID unique */}
                 <div className="mt-1 relative z-50">
