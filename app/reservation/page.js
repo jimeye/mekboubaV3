@@ -393,7 +393,7 @@ export default function ReservationPage() {
                     <div>
                       <label htmlFor="deliveryTime" className="block text-sm font-medium text-gray-700 mb-1">Heure de livraison confirmée jeudi soir</label>
                       <select id="deliveryTime" name="deliveryTime" value={formData.deliveryTime} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
-                        <option value="" disabled>Sélectionnez une heure</option>
+                        <option value="" disabled>Sélectionnez un créneau</option>
                         {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
                       </select>
                     </div>
