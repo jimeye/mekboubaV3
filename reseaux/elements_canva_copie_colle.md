@@ -29,7 +29,7 @@ MEKBOUBA, BOULETTES & PIMENTS 🌶️
 ```
 
 ```
-Cuisine 100% Judéo-Tunisienne
+Cuisine 100% judéo-tunisienne
 ```
 
 ```
@@ -98,7 +98,7 @@ Découvrez notre Sandwich Boulettes Mekbouba signature :
 • 🥘 Mekbouba traditionnelle
 • 🥚 Oeuf parfait
 
-Cuisine 100% Judéo-Tunisienne transmise de génération en génération ✨
+Cuisine 100% judéo-tunisienne transmise de génération en génération ✨
 
 📞 +33 6 52 69 69 76
 📧 info@mekbouba.com
@@ -121,7 +121,7 @@ Notre box complète avec :
 
 26€ - Livraison offerte dès 6 produits !
 Kosher Friendly ✅
-Cuisine 100% Judéo-Tunisienne ✅
+Cuisine 100% judéo-tunisienne ✅
 
 Commandez maintenant ! ⬇️
 📞 +33 6 52 69 69 76
@@ -153,7 +153,7 @@ Livraison : Vendredi
 
 ```
 MEKBOUBA
-Cuisine 100% Judéo-Tunisienne à Ibiza
+Cuisine 100% judéo-tunisienne à Ibiza
 
 Nos Spécialités 🌶️
 🥪 Sandwich Boulettes Mekbouba
@@ -181,7 +181,7 @@ Informations pratiques
 MEKBOUBA 🌶️
 Boulettes & Piments
 
-Cuisine 100% Judéo-Tunisienne
+Cuisine 100% judéo-tunisienne
 Transmise de génération en génération ✨
 
 🥪 Sandwich Boulettes Mekbouba
@@ -200,7 +200,7 @@ Commander maintenant ! ⬇️
 
 ```
 MENU MEKBOUBA
-Cuisine 100% Judéo-Tunisienne
+Cuisine 100% judéo-tunisienne
 
 🥪 SANDWICHS
 

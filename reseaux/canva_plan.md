@@ -11,7 +11,7 @@ Découvrez notre Sandwich Boulettes Mekbouba signature :
 - 🥘 Mekbouba traditionnelle
 - 🥚 Oeuf parfait
 
-Cuisine 100% Judéo-Tunisienne transmise de génération en génération ✨
+Cuisine 100% judéo-tunisienne transmise de génération en génération ✨
 
 📞 +33 6 52 69 69 76 | 📧 info@mekbouba.com | 📍 Ibiza, Espagne
 
@@ -52,7 +52,7 @@ Notre box complète avec :
 - 🔥 Piment du Maroc
 
 26€ - Livraison offerte dès 6 produits !
-Kosher Friendly ✅ | Cuisine 100% Judéo-Tunisienne ✅
+Kosher Friendly ✅ | Cuisine 100% judéo-tunisienne ✅
 Commandez maintenant ! ⬇️
 📞 +33 6 52 69 69 76
 
@@ -87,7 +87,7 @@ Pré-commande : Dimanche au Jeudi | Livraison : Vendredi
 "Incroyable ! Les meilleures boulettes que j'ai mangées à Ibiza !"
 Merci à tous nos clients pour vos retours exceptionnels ! 🙏
 
-🌶️ Mekbouba - Cuisine 100% Judéo-Tunisienne
+🌶️ Mekbouba - Cuisine 100% judéo-tunisienne
 📍 Ibiza, Espagne | 📞 +33 6 52 69 69 76
 
 **Suggestions de couleurs** : Bleu, blanc, rouge
