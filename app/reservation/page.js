@@ -226,7 +226,7 @@ export default function ReservationPage() {
   const availableDays = getAvailableDays();
 
   const availableTimes = [
-    'de 12H30 à 15H30'
+    'de 12H30 à 16H00'
   ];
 
   const addLot = (type) => {
