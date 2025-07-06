@@ -209,21 +209,21 @@ export default function ReservationPage() {
     router.push(paymentUrl);
   };
 
-  const getAvailableFridays = () => {
-    const fridays = [];
+  const getAvailableDays = () => {
+    const availableDays = [];
     const currentYear = 2025;
     for (let month = 6; month <= 7; month++) { // 6 = juillet, 7 = août
       const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(currentYear, month, day);
-        if (date.getDay() === 5) { // 5 = vendredi
-          fridays.push(date);
+        if (date.getDay() === 4 || date.getDay() === 5) { // 4 = jeudi, 5 = vendredi
+          availableDays.push(date);
         }
       }
     }
-    return fridays.sort((a, b) => a - b);
+    return availableDays.sort((a, b) => a - b);
   };
-  const availableFridays = getAvailableFridays();
+  const availableDays = getAvailableDays();
 
   const availableTimes = [
     'de 12H30 à 15H30'
@@ -282,7 +282,7 @@ export default function ReservationPage() {
             <div className="max-w-3xl mx-auto bg-white/95 p-6 md:p-10 rounded-2xl shadow-xl my-16">
               <div className="text-center mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réservez chez<br className="md:hidden" /> La Boulette Ibiza 🌶️<br className="md:hidden" /> <span className="text-lg md:text-xl">Kosher Friendly</span></h1>
-                <p className="text-gray-600 mt-2">Livraison uniquement le vendredi</p>
+                <p className="text-gray-600 mt-2">Livraison uniquement le jeudi et vendredi</p>
               </div>
 
               <form onSubmit={handleFormSubmit} className="space-y-8">
@@ -386,8 +386,8 @@ export default function ReservationPage() {
                     <div>
                       <label htmlFor="deliveryDate" className="block text-sm font-medium text-gray-700 mb-1">Date de livraison</label>
                       <select id="deliveryDate" name="deliveryDate" value={formData.deliveryDate} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
-                        <option value="" disabled>Sélectionnez un vendredi</option>
-                        {availableFridays.map(d => <option key={d.toISOString()} value={d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}>{d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</option>)}
+                        <option value="" disabled>Sélectionnez un jeudi ou vendredi</option>
+                        {availableDays.map(d => <option key={d.toISOString()} value={d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}>{d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</option>)}
                       </select>
                     </div>
                     <div>
