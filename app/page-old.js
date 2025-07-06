@@ -121,7 +121,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Pré-Commande Obligatoire</h3>
               <p className="text-sm mb-2">Lundi - Jeudi max 12h</p>
-              <p className="text-sm mb-2">Cuisine certifiée 100% Judéo-Tunisienne</p>
+              <p className="text-sm mb-2">Cuisine certifiée 100% judéo-tunisienne</p>
               <p className="text-sm">© 2025 MEKBOUBA, BOULETTES & PIMENTS 🌶️</p>
             </div>
           </div>

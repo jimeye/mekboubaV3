@@ -160,7 +160,7 @@ export default function MenuPage() {
               <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
               <div className="text-lg mb-4">🕍 Kosher Friendly 🕍</div>
               <p className="text-sm text-gray-200 mb-4">
-                Cuisine certifiée 100% Judéo-Tunisienne,<br />
+                Cuisine certifiée 100% judéo-tunisienne,<br />
                 transmise de génération en génération.<br />
                 Viande Kosher by <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>.
               </p>
