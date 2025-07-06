@@ -143,8 +143,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                   <div className="mt-4 text-center">
                     <div className="text-white text-lg leading-tight">
                       Passez votre commande du<br />
-                      Dimanche au Jeudi 12h max<br />
-                      Vous serez livrés le vendredi
+                      Dimanche au Jeudi 12h max
                     </div>
                     <div className="mt-2">
                       <span>Viande Kosher by </span>
