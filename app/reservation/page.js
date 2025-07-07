@@ -282,7 +282,7 @@ export default function ReservationPage() {
             <div className="max-w-3xl mx-auto bg-white/95 p-6 md:p-10 rounded-2xl shadow-xl my-16">
               <div className="text-center mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Réservez chez<br className="md:hidden" /> La Boulette Ibiza 🌶️<br className="md:hidden" /> <span className="text-lg md:text-xl">Kosher Friendly</span></h1>
-                <p className="text-gray-600 mt-2">Livraison uniquement le jeudi et vendredi</p>
+                <p className="text-gray-600 mt-2">Delivery Jeudi & Vendredi</p>
               </div>
 
               <form onSubmit={handleFormSubmit} className="space-y-8">

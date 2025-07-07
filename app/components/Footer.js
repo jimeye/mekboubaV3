@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Horaires */}
           <div className="text-center">
             <h3 className="text-xl font-semibold mb-4">Horaires d'ouverture</h3>
-            <p className="text-gray-400 mb-2">Passez votre commande du<br />Dimanche au Jeudi 12h max<br />Vous serez livrés le vendredi</p>
+            <p className="text-gray-400 mb-2">Passez votre commande du<br />Dimanche au Jeudi 12h max<br />Delivery Jeudi & Vendredi</p>
           </div>
 
           {/* Contact */}

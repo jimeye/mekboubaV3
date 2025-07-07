@@ -123,7 +123,7 @@ Merci de confirmer cette commande !`;
     <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
       <div className="text-center mb-6">
         <h2 className="text-3xl font-bold text-gray-800 mb-2">🍽️ Réserver chez Mekbouba</h2>
-        <p className="text-gray-600">Commande du lundi au jeudi midi • Livraison vendredi</p>
+        <p className="text-gray-600">Delivery Jeudi & Vendredi</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
