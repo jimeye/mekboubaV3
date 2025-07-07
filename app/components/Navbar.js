@@ -29,7 +29,7 @@ export default function Navbar({ isVisible }) {
       
       {/* Overlay menu visible sur tous les écrans */}
       {menuOpen && (
-        <div className="fixed top-0 right-0 h-full w-0 min-w-[140px] max-w-[350px] bg-black/80 z-50 flex flex-col items-end p-6">
+        <div className="fixed top-0 right-0 h-full w-0 min-w-[155px] max-w-[350px] bg-black/80 z-50 flex flex-col items-end p-6">
           <button
             className="text-white text-3xl focus:outline-none self-end mb-8"
             onClick={() => setMenuOpen(false)}
@@ -38,14 +38,17 @@ export default function Navbar({ isVisible }) {
             ×
           </button>
           <nav className="flex flex-col items-end space-y-1 text-right w-full">
-            <Link href="/notre-histoire" className="text-white hover:text-accent-red transition-colors text-base whitespace-nowrap" onClick={() => setMenuOpen(false)}>
+            <Link href="/notre-histoire" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Notre Histoire
             </Link>
-            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-base btn-shine-3d" onClick={() => setMenuOpen(false)}>
+            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Menu
             </Link>
-            <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-base" onClick={() => setMenuOpen(false)}>
+            <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Réserver
+            </Link>
+            <Link href="/avis" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
+              Retour d'expérience
             </Link>
           </nav>
         </div>
