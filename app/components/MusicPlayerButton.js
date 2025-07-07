@@ -6,6 +6,7 @@ export default function MusicPlayerButton() {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [playlist, setPlaylist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [previousTrackIndex, setPreviousTrackIndex] = useState(-1); // Pour éviter les répétitions
   const audioRef = useRef(null);
 
   // Fonction pour vérifier si un fichier audio existe
@@ -86,8 +87,15 @@ export default function MusicPlayerButton() {
   // Gérer la fin d'un morceau et passer au suivant (ordre aléatoire)
   const handleTrackEnd = () => {
     if (playlist.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * playlist.length);
+    
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * playlist.length);
+    } while (randomIndex === previousTrackIndex && playlist.length > 1);
+    
+    setPreviousTrackIndex(currentTrackIndex);
     setCurrentTrackIndex(randomIndex);
+    
     // Charger et jouer le morceau suivant
     if (audioRef.current) {
       audioRef.current.src = playlist[randomIndex];
@@ -121,7 +129,12 @@ export default function MusicPlayerButton() {
   const nextTrack = () => {
     if (playlist.length === 0) return;
     
-    const randomIndex = Math.floor(Math.random() * playlist.length);
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * playlist.length);
+    } while (randomIndex === currentTrackIndex && playlist.length > 1);
+    
+    setPreviousTrackIndex(currentTrackIndex);
     setCurrentTrackIndex(randomIndex);
     
     if (audioRef.current) {
@@ -151,11 +164,15 @@ export default function MusicPlayerButton() {
   // Quand la playlist est prête, choisir un morceau aléatoire au démarrage
   useEffect(() => {
     if (playlist.length > 1) {
-      const randomIndex = Math.floor(Math.random() * playlist.length);
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * playlist.length);
+      } while (randomIndex === previousTrackIndex && playlist.length > 1);
+      
       setCurrentTrackIndex(randomIndex);
       console.log(`🎲 Démarrage aléatoire sur le morceau ${randomIndex + 1}`);
     }
-  }, [isLoading, playlist.length]);
+  }, [isLoading, playlist.length, previousTrackIndex]);
 
   if (isLoading) {
     return (
