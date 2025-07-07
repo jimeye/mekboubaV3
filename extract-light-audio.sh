@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Supprimer les anciens fichiers temporaires
+rm -f audio_temp.mp3 audio_final.mp3
+
 URL="$1"
 
 if [ -z "$URL" ]; then
