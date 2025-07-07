@@ -83,14 +83,14 @@ export default function MusicPlayerButton() {
     }
   }, [currentTrackIndex, isPlaying, playlist]);
 
-  // Gérer la fin d'un morceau et passer au suivant (ordre naturel)
+  // Gérer la fin d'un morceau et passer au suivant (ordre aléatoire)
   const handleTrackEnd = () => {
     if (playlist.length === 0) return;
-    const nextIndex = (currentTrackIndex + 1) % playlist.length;
-    setCurrentTrackIndex(nextIndex);
+    const randomIndex = Math.floor(Math.random() * playlist.length);
+    setCurrentTrackIndex(randomIndex);
     // Charger et jouer le morceau suivant
     if (audioRef.current) {
-      audioRef.current.src = playlist[nextIndex];
+      audioRef.current.src = playlist[randomIndex];
       audioRef.current.load();
       if (isPlaying) {
         audioRef.current.play().catch((e) => {
@@ -117,19 +117,19 @@ export default function MusicPlayerButton() {
     }
   };
 
-  // Changer de morceau manuellement
+  // Changer de morceau manuellement (aléatoire)
   const nextTrack = () => {
     if (playlist.length === 0) return;
     
-    const nextIndex = (currentTrackIndex + 1) % playlist.length;
-    setCurrentTrackIndex(nextIndex);
+    const randomIndex = Math.floor(Math.random() * playlist.length);
+    setCurrentTrackIndex(randomIndex);
     
     if (audioRef.current) {
-      audioRef.current.src = playlist[nextIndex];
+      audioRef.current.src = playlist[randomIndex];
       audioRef.current.load();
       if (isPlaying) {
         audioRef.current.play().then(() => {
-          console.log(`Changement manuel vers le morceau ${nextIndex + 1}`);
+          console.log(`Changement manuel vers le morceau aléatoire ${randomIndex + 1}`);
         }).catch((error) => {
           console.log('Erreur lors du changement de morceau:', error);
         });
