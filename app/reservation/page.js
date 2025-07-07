@@ -668,7 +668,7 @@ export default function ReservationPage() {
           
           <div className="border-t border-white/20 mt-8 pt-8 text-center">
             <p className="text-sm text-gray-200">
-                              © 2025 La Boulette Ibiza 🌶️ Kosher friendly<br /><span className="text-xs">Tous droits réservés</span>
+                              ©2025 La Boulette Ibiza 🌶️ Kosher friendly<br /><span className="text-xs">Tous droits réservés</span>
             </p>
             <p className="text-xs text-gray-200 mt-2">
               <a href="https://wa.me/33608251223?text=Je veux le meme site !!" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors">
