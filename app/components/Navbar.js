@@ -47,9 +47,6 @@ export default function Navbar({ isVisible }) {
             <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Réserver
             </Link>
-            <Link href="/avis" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
-              Retour d'expérience
-            </Link>
           </nav>
         </div>
       )}
