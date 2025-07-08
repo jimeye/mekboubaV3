@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import nodemailer from 'nodemailer';
 
 // Détection Upstash
 const hasUpstash = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -49,6 +50,65 @@ function writeCommandes(commandes) {
   }
 }
 
+// Fonction pour générer un joli template HTML de confirmation de commande
+function generateOrderEmailHTML(commande) {
+  const { firstName, lastName, email, phone, orderNumber, deliveryDate, deliveryTime, sbmLots, bbmLots, boulettesSuppGlobal, notes, isHotel, selectedHotel, roomNumber, address, postalCode, city, country, total } = commande;
+  const produits = [
+    ...(sbmLots || []).map(lot => `<li>${lot.qty} x Sandwich Boulettes Mekbouba</li>`),
+    ...(bbmLots || []).map(lot => `<li>${lot.qty} x Boulettes Mekbouba Box</li>`),
+    boulettesSuppGlobal ? `<li>${boulettesSuppGlobal} x Boulettes supplémentaires</li>` : ''
+  ].filter(Boolean).join('');
+  const adresseLivraison = isHotel === 'yes'
+    ? `${selectedHotel} - Chambre ${roomNumber}`
+    : `${address}, ${postalCode} ${city}, ${country}`;
+  return `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;border:1px solid #eee;padding:24px;border-radius:12px;">
+      <h2 style="color:#b91c1c;">Merci pour votre commande !</h2>
+      <p>Bonjour <b>${firstName} ${lastName}</b>,</p>
+      <p>Votre commande <b>${orderNumber}</b> a bien été validée et payée.</p>
+      <h3>Détails de la commande :</h3>
+      <ul>${produits}</ul>
+      <p><b>Date de livraison :</b> ${deliveryDate} à ${deliveryTime}</p>
+      <p><b>Adresse de livraison :</b> ${adresseLivraison}</p>
+      <p style="font-size:1.1em;"><b>Total payé :</b> <span style="color:#b91c1c;font-size:1.2em;">${(total || 0).toFixed(2)} €</span></p>
+      ${notes ? `<p><b>Notes :</b> ${notes}</p>` : ''}
+      <hr style="margin:24px 0;">
+      <p>Nous vous remercions pour votre confiance.<br>L'équipe La Boulette Ibiza 🌶️</p>
+      <p style="font-size:12px;color:#888;">Ceci est un email automatique, merci de ne pas répondre directement.</p>
+      <div style="margin-top:32px;text-align:center;color:#b91c1c;font-size:1.1em;line-height:1.1;">
+        LA BOULETTE IBIZA 🌶️<br>
+        🕍 Kosher Friendly 🕍<br>
+        Cuisine certifiée 100% judéo-tunisienne,<br>
+        transmise de génération en génération.<br>
+        Viande Kosher by Bovini.
+      </div>
+    </div>
+  `;
+}
+
+// Fonction d'envoi d'email avec Nodemailer
+async function sendOrderConfirmationEmail(commande) {
+  // Configure le transporteur SMTP Ionos
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ionos.fr',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.IONOS_EMAIL_USER,
+      pass: process.env.IONOS_EMAIL_PASS,
+    },
+  });
+  const html = generateOrderEmailHTML(commande);
+  const mailOptions = {
+    from: `La Boulette Ibiza <${process.env.IONOS_EMAIL_USER}>`,
+    to: commande.email,
+    bcc: 'info@laboulette-ibiza.com', // copie admin
+    subject: `Confirmation de votre commande ${commande.orderNumber}`,
+    html,
+  };
+  await transporter.sendMail(mailOptions);
+}
+
 export async function POST(req) {
   console.log('[API LOG] save-commande appelée');
   try {
@@ -90,6 +150,8 @@ export async function POST(req) {
         await redis.set(keyDetail, JSON.stringify(commandeComplete));
         // Ajout du orderNumber dans la liste dédiée
         await redis.lpush('orderNumbers', orderNumber);
+        // ENVOI EMAIL ICI
+        await sendOrderConfirmationEmail(commande);
         return NextResponse.json({ ok: true });
       } catch (err) {
         console.error('[API LOG] Erreur Upstash', err);
@@ -104,6 +166,8 @@ export async function POST(req) {
       }
       commandes.push(commandeComplete);
       writeCommandes(commandes);
+      // ENVOI EMAIL ICI
+      await sendOrderConfirmationEmail(commande);
       return NextResponse.json({ ok: true });
     }
   } catch (error) {

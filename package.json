@@ -17,6 +17,7 @@
     "lucide-react": "^0.244.0",
     "next": "^13.4.12",
     "next-sitemap": "^4.2.3",
+    "nodemailer": "^7.0.5",
     "postcss": "^8.5.4",
     "puppeteer": "^24.10.2",
     "react": "^18.2.0",
