@@ -44,3 +44,6 @@ backup_*
 
 # data
 /data
+
+# audio temporaires
+audio_temp.mp3
