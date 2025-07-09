@@ -77,7 +77,7 @@ function generateOrderEmailHTML(commande) {
       <p style="font-size:12px;color:#888;">Ceci est un email automatique, merci de ne pas répondre directement.</p>
       <div style="margin-top:32px;text-align:center;color:#b91c1c;font-size:1.1em;line-height:1.1;">
         LA BOULETTE IBIZA 🌶️<br>
-        🕍 Kosher Friendly 🕍<br>
+        Kosher Friendly<br>
         Cuisine certifiée 100% judéo-tunisienne,<br>
         transmise de génération en génération.<br>
         Viande Kosher by Bovini.

@@ -631,7 +631,7 @@ export default function ReservationPage() {
           <div className="grid grid-cols-1 gap-4">
             <div className="text-center">
               <h3 className="text-xl font-bold mb-4">LA BOULETTE IBIZA 🌶️</h3>
-              <div className="text-lg mb-4">🕍 Kosher Friendly 🕍</div>
+              <div className="text-lg mb-4">Kosher Friendly</div>
               <p className="text-sm text-gray-200 mb-4">
                 Cuisine certifiée 100% judéo-tunisienne,<br />
                 transmise de génération en génération.<br />
