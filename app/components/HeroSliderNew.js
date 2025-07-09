@@ -146,7 +146,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                       Dimanche au Jeudi 12h max
                     </div>
                     <div className="mt-2">
-                      <span>Viande Kosher by </span>
+                      <span>Viande cacher by </span>
                       <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>
                     </div>
                     <div className="mt-2 text-white text-lg">
