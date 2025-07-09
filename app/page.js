@@ -154,7 +154,7 @@ export default function HomeNew() {
               <h2 className="text-5xl font-bold text-white mb-6">Notre Menu</h2>
               <div className="w-24 h-1 bg-accent-red mx-auto mb-6"></div>
               <p className="text-xl text-white max-w-2xl mx-auto">
-                Découvrez nos spécialités authentiques, préparées avec passion et des ingrédients de qualité
+                Découvrez nos spécialités authentiques, préparées avec passion et des ingrédients de qualité à Ibiza, kosher friendly
               </p>
             </div>
             
