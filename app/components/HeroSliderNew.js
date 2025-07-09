@@ -150,7 +150,7 @@ export default function HeroSliderNew({ images, onSliderScroll }) {
                       <a href="https://bovini.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Bovini</a>
                     </div>
                     <div className="mt-2 text-white text-lg">
-                      🕍 Kosher Friendly 🕍
+                      Kosher Friendly
                     </div>
                   </div>
                 </div>
