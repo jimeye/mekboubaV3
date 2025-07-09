@@ -298,24 +298,24 @@ export default function CommandesPage() {
                 year: '2-digit'
               })}
             </p>
-            {/* Bouton de nettoyage à gauche */}
-            <button
+            {/* Bouton de nettoyage à gauche - MASQUÉ */}
+            {/* <button
               onClick={cleanCommandes}
               className="mt-4 px-2.5 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors custom-w-105"
               title="Supprimer toutes les commandes"
             >
               🧹
-            </button>
-            {/* Bouton de vérification du compteur */}
-            <button
+            </button> */}
+            {/* Bouton de vérification du compteur - MASQUÉ */}
+            {/* <button
               onClick={checkCounter}
               className="mt-4 ml-2 px-2.5 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors custom-w-105"
               title="Vérifier l'état du compteur"
             >
               🔍
-            </button>
-            {/* Bouton de reset du compteur */}
-            <button
+            </button> */}
+            {/* Bouton de reset du compteur - MASQUÉ */}
+            {/* <button
               onClick={async () => {
                 if (window.confirm('Remettre le compteur de commandes à zéro ? Cette action est irréversible.')) {
                   try {
@@ -335,7 +335,7 @@ export default function CommandesPage() {
               title="Remettre le compteur de commandes à zéro"
             >
               ♻️
-            </button>
+            </button> */}
           </div>
           {/* Colonne compteurs/filtre positionnée à droite */}
           <div className="absolute top-0 right-0 flex flex-col items-end space-y-2 mt-0 md:mt-2 mr-2 z-10 w-1/3 max-w-[160px] md:w-1/4">
