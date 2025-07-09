@@ -36,7 +36,7 @@ export default function MenuPage() {
           <h1 className="text-5xl font-bold text-white mb-6">La Boulette Ibiza 🌶️<br />Kosher Friendly</h1>
           <div className="w-24 h-1 bg-accent-red mx-auto mb-6"></div>
           <p className="text-xl text-white/90 max-w-2xl mx-auto text-center">
-            Découvrez nos spécialités authentiques,<br className="md:hidden" /> préparées avec passion et des ingrédients<br className="md:hidden" /> de qualité.
+            Découvrez nos spécialités authentiques,<br className="md:hidden" /> préparées avec passion et des ingrédients<br className="md:hidden" /> de qualité à Ibiza, kosher friendly.
           </p>
         </div>
         
