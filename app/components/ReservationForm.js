@@ -104,6 +104,8 @@ Merci de confirmer cette commande !`;
     return day >= 1 && day <= 4 && hour < 12;
   };
 
+  // Blocage temporairement désactivé - peut être réactivé si nécessaire
+  /*
   if (!isOrderTimeValid()) {
     return (
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
@@ -118,6 +120,7 @@ Merci de confirmer cette commande !`;
       </div>
     );
   }
+  */
 
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
