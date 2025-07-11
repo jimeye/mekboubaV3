@@ -23,7 +23,7 @@ export default function NotreHistoirePage() {
       <section id="histoire" className="pt-20 min-h-screen flex items-center justify-center relative">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/uneexperienceunique-ibiza-kosher-cacher-friendly.webp"
+          src="/images/Slata Mechouia-ibiza-kosher-cacher-friendly.webp"
           alt=""
           fill
           className="object-cover"

@@ -19,7 +19,7 @@ export default function Logo({ isVisible }) {
           Kosher Friendly
         </div>
         {!isHomePage && (
-          <Link href="/" className="block -mt-8 text-white/80 text-xl transition-colors cursor-pointer" style={{ marginLeft: '11rem' }} title="Retour à l'accueil">
+          <Link href="/" className="block -mt-9 text-white/80 text-xl transition-colors cursor-pointer" style={{ marginLeft: '11rem' }} title="Retour à l'accueil">
             ⟵
           </Link>
         )}
