@@ -38,13 +38,13 @@ export default function Navbar({ isVisible }) {
             ×
           </button>
           <nav className="flex flex-col items-end space-y-1 text-right w-full">
-            <Link href="/notre-histoire" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
+            <Link href="/notre-histoire" className="text-white hover:text-accent-red transition-colors text-sm whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Notre Histoire
             </Link>
-            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
+            <Link href="/menu" className="text-white hover:text-accent-red transition-colors text-sm whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Menu
             </Link>
-            <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-xs whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
+            <Link href="/reservation" className="text-white hover:text-accent-red transition-colors text-sm whitespace-nowrap btn-shine-3d" onClick={() => setMenuOpen(false)}>
               Réserver
             </Link>
           </nav>
