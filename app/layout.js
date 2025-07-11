@@ -1,10 +1,9 @@
-import { Inter, Lilita_One } from 'next/font/google';
+import { Lilita_One } from 'next/font/google';
 import './globals.css';
 import Navigation from './components/Navigation';
 import CustomChat from './components/CustomChat';
 import GoogleAnalytics from './components/GoogleAnalytics';
 
-const inter = Inter({ subsets: ['latin'] });
 const lilitaOne = Lilita_One({
   weight: '400',
   subsets: ['latin'],
@@ -32,7 +31,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://laboulette-ibiza.com/images/uneexperienceuniqueW.webp" />
       </head>
-      <body className={`${inter.className} ${lilitaOne.variable}`}>
+      <body className={`font-sans ${lilitaOne.variable}`}>
         <Navigation />
         {children}
         <CustomChat />
